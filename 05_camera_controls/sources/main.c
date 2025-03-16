@@ -398,7 +398,7 @@ int kickstart(int argc, char **argv) {
 		    .dimension             = KORE_GPU_TEXTURE_DIMENSION_2D,
 		    .mip_level_count       = 1,
 		    .sample_count          = 1,
-		    .usage                 = KONG_G5_TEXTURE_USAGE_RENDER_ATTACHMENT,
+		    .usage                 = KORE_GPU_TEXTURE_USAGE_RENDER_ATTACHMENT,
 		};
 		kore_gpu_device_create_texture(&device, &texture_params, &depth);
 	}
@@ -412,7 +412,7 @@ int kickstart(int argc, char **argv) {
 		    .sample_count          = 1,
 		    .dimension             = KORE_GPU_TEXTURE_DIMENSION_2D,
 		    .format                = KORE_GPU_TEXTURE_FORMAT_RGBA8_UNORM,
-		    .usage                 = KONG_G5_TEXTURE_USAGE_SAMPLE | KONG_G5_TEXTURE_USAGE_COPY_DST,
+		    .usage                 = KORE_GPU_TEXTURE_USAGE_SAMPLE | KORE_GPU_TEXTURE_USAGE_COPY_DST,
 		};
 		kore_gpu_device_create_texture(&device, &texture_parameters, &texture);
 	}
