@@ -1,4 +1,4 @@
-const project = new Project('DepthRenderTargets');
+const project = new Project('09_depth_render_targets');
 
 await project.addProject(findKore());
 

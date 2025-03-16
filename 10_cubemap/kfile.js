@@ -1,4 +1,4 @@
-const project = new Project('CubeMap');
+const project = new Project('10_cubemap');
 
 await project.addProject(findKore());
 
