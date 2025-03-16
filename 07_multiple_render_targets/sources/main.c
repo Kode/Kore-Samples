@@ -22,14 +22,18 @@ static const int width  = 800;
 static const int height = 600;
 
 static void update(void *data) {
-	kore_gpu_render_pass_parameters parameters = {0};
+	kore_gpu_render_pass_parameters parameters = {
+	    .color_attachments_count = 4,
+	};
 	for (uint32_t i = 0; i < 4; ++i) {
-		parameters.color_attachments[i].load_op = KORE_GPU_LOAD_OP_CLEAR;
-		kore_gpu_color clear_color;
-		clear_color.r                                             = 0.0f;
-		clear_color.g                                             = 0.0f;
-		clear_color.b                                             = 0.0f;
-		clear_color.a                                             = 1.0f;
+		kore_gpu_color clear_color = {
+		    .r = 0.0f,
+		    .g = 0.0f,
+		    .b = 0.0f,
+		    .a = 1.0f,
+		};
+
+		parameters.color_attachments[i].load_op                   = KORE_GPU_LOAD_OP_CLEAR;
 		parameters.color_attachments[i].clear_value               = clear_color;
 		parameters.color_attachments[i].texture.texture           = &render_targets[i];
 		parameters.color_attachments[i].texture.array_layer_count = 1;
@@ -37,7 +41,6 @@ static void update(void *data) {
 		parameters.color_attachments[i].texture.format            = KORE_GPU_TEXTURE_FORMAT_BGRA8_UNORM;
 		parameters.color_attachments[i].texture.dimension         = KORE_GPU_TEXTURE_VIEW_DIMENSION_2D;
 	}
-	parameters.color_attachments_count = 4;
 	kore_gpu_command_list_begin_render_pass(&list, &parameters);
 
 	kong_set_render_pipeline_pipeline(&list);
@@ -52,21 +55,23 @@ static void update(void *data) {
 
 	kore_gpu_texture *framebuffer = kore_gpu_device_get_framebuffer(&device);
 
-	kore_gpu_image_copy_texture destination = {0};
-	destination.texture                     = framebuffer;
-	destination.aspect                      = KORE_GPU_IMAGE_COPY_ASPECT_ALL;
-	destination.mip_level                   = 0;
-	destination.origin_x                    = 0;
-	destination.origin_y                    = 0;
-	destination.origin_z                    = 0;
+	kore_gpu_image_copy_texture destination = {
+	    .texture   = framebuffer,
+	    .aspect    = KORE_GPU_IMAGE_COPY_ASPECT_ALL,
+	    .mip_level = 0,
+	    .origin_x  = 0,
+	    .origin_y  = 0,
+	    .origin_z  = 0,
+	};
 
-	kore_gpu_image_copy_texture source = {0};
-	source.texture                     = &render_targets[0];
-	source.aspect                      = KORE_GPU_IMAGE_COPY_ASPECT_ALL;
-	source.mip_level                   = 0;
-	source.origin_x                    = 0;
-	source.origin_y                    = 0;
-	source.origin_z                    = 0;
+	kore_gpu_image_copy_texture source = {
+	    .texture   = &render_targets[0],
+	    .aspect    = KORE_GPU_IMAGE_COPY_ASPECT_ALL,
+	    .mip_level = 0,
+	    .origin_x  = 0,
+	    .origin_y  = 0,
+	    .origin_z  = 0,
+	};
 
 	kore_gpu_command_list_copy_texture_to_texture(&list, &source, &destination, width / 2, height / 2, 1);
 
@@ -109,15 +114,16 @@ int kickstart(int argc, char **argv) {
 	kore_gpu_device_create_command_list(&device, KORE_GPU_COMMAND_LIST_TYPE_GRAPHICS, &list);
 
 	for (uint32_t i = 0; i < 4; ++i) {
-		kore_gpu_texture_parameters texture_parameters;
-		texture_parameters.width                 = width / 2;
-		texture_parameters.height                = height / 2;
-		texture_parameters.depth_or_array_layers = 1;
-		texture_parameters.mip_level_count       = 1;
-		texture_parameters.sample_count          = 1;
-		texture_parameters.dimension             = KORE_GPU_TEXTURE_DIMENSION_2D;
-		texture_parameters.format                = KORE_GPU_TEXTURE_FORMAT_RGBA8_UNORM;
-		texture_parameters.usage                 = KORE_GPU_TEXTURE_USAGE_RENDER_ATTACHMENT | KORE_GPU_TEXTURE_USAGE_COPY_SRC;
+		kore_gpu_texture_parameters texture_parameters = {
+		    .width                 = width / 2,
+		    .height                = height / 2,
+		    .depth_or_array_layers = 1,
+		    .mip_level_count       = 1,
+		    .sample_count          = 1,
+		    .dimension             = KORE_GPU_TEXTURE_DIMENSION_2D,
+		    .format                = KORE_GPU_TEXTURE_FORMAT_RGBA8_UNORM,
+		    .usage                 = KORE_GPU_TEXTURE_USAGE_RENDER_ATTACHMENT | KORE_GPU_TEXTURE_USAGE_COPY_SRC,
+		};
 		kore_gpu_device_create_texture(&device, &texture_parameters, &render_targets[i]);
 	}
 
@@ -140,15 +146,18 @@ int kickstart(int argc, char **argv) {
 		kong_vertex_in_buffer_unlock(&vertices);
 	}
 
-	kore_gpu_buffer_parameters params;
-	params.size        = 3 * sizeof(uint16_t);
-	params.usage_flags = KORE_GPU_BUFFER_USAGE_INDEX | KORE_GPU_BUFFER_USAGE_CPU_WRITE;
+	kore_gpu_buffer_parameters params = {
+	    .size        = 3 * sizeof(uint16_t),
+	    .usage_flags = KORE_GPU_BUFFER_USAGE_INDEX | KORE_GPU_BUFFER_USAGE_CPU_WRITE,
+	};
 	kore_gpu_device_create_buffer(&device, &params, &indices);
 	{
 		uint16_t *i = (uint16_t *)kore_gpu_buffer_lock_all(&indices);
-		i[0]        = 0;
-		i[1]        = 1;
-		i[2]        = 2;
+
+		i[0] = 0;
+		i[1] = 1;
+		i[2] = 2;
+
 		kore_gpu_buffer_unlock(&indices);
 	}
 
