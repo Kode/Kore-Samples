@@ -1,12 +1,7 @@
-#include <kinc/graphics1/graphics.h>
-#include <kinc/graphics4/graphics.h>
-#include <kinc/graphics4/indexbuffer.h>
-#include <kinc/graphics4/pipeline.h>
-#include <kinc/graphics4/rendertarget.h>
-#include <kinc/graphics4/shader.h>
-#include <kinc/graphics4/vertexbuffer.h>
-#include <kinc/io/filereader.h>
-#include <kinc/system.h>
+#include <kore3/gpu/buffer.h>
+#include <kore3/gpu/gpu.h>
+#include <kore3/io/filereader.h>
+#include <kore3/system.h>
 
 #include <kong.h>
 
@@ -17,20 +12,20 @@
 #include "../../screenshot.h"
 #endif
 
-static kope_g5_device       device;
-static kope_g5_command_list list;
-static vertex_in_buffer     vertices;
-static kope_g5_buffer       indices;
-static kope_g5_texture      render_targets[4];
+static kore_gpu_device       device;
+static kore_gpu_command_list list;
+static vertex_in_buffer      vertices;
+static kore_gpu_buffer       indices;
+static kore_gpu_texture      render_targets[4];
 
 static const int width  = 800;
 static const int height = 600;
 
 static void update(void *data) {
-	kope_g5_render_pass_parameters parameters = {0};
+	kore_gpu_render_pass_parameters parameters = {0};
 	for (uint32_t i = 0; i < 4; ++i) {
-		parameters.color_attachments[i].load_op = KOPE_G5_LOAD_OP_CLEAR;
-		kope_g5_color clear_color;
+		parameters.color_attachments[i].load_op = KORE_GPU_LOAD_OP_CLEAR;
+		kore_gpu_color clear_color;
 		clear_color.r                                             = 0.0f;
 		clear_color.g                                             = 0.0f;
 		clear_color.b                                             = 0.0f;
@@ -39,91 +34,91 @@ static void update(void *data) {
 		parameters.color_attachments[i].texture.texture           = &render_targets[i];
 		parameters.color_attachments[i].texture.array_layer_count = 1;
 		parameters.color_attachments[i].texture.mip_level_count   = 1;
-		parameters.color_attachments[i].texture.format            = KOPE_G5_TEXTURE_FORMAT_BGRA8_UNORM;
-		parameters.color_attachments[i].texture.dimension         = KOPE_G5_TEXTURE_VIEW_DIMENSION_2D;
+		parameters.color_attachments[i].texture.format            = KORE_GPU_TEXTURE_FORMAT_BGRA8_UNORM;
+		parameters.color_attachments[i].texture.dimension         = KORE_GPU_TEXTURE_VIEW_DIMENSION_2D;
 	}
 	parameters.color_attachments_count = 4;
-	kope_g5_command_list_begin_render_pass(&list, &parameters);
+	kore_gpu_command_list_begin_render_pass(&list, &parameters);
 
-	kong_set_render_pipeline(&list, &pipeline);
+	kong_set_render_pipeline_pipeline(&list);
 
 	kong_set_vertex_buffer_vertex_in(&list, &vertices);
 
-	kope_g5_command_list_set_index_buffer(&list, &indices, KOPE_G5_INDEX_FORMAT_UINT16, 0, 3 * sizeof(uint16_t));
+	kore_gpu_command_list_set_index_buffer(&list, &indices, KORE_GPU_INDEX_FORMAT_UINT16, 0, 3 * sizeof(uint16_t));
 
-	kope_g5_command_list_draw_indexed(&list, 3, 1, 0, 0, 0);
+	kore_gpu_command_list_draw_indexed(&list, 3, 1, 0, 0, 0);
 
-	kope_g5_command_list_end_render_pass(&list);
+	kore_gpu_command_list_end_render_pass(&list);
 
-	kope_g5_texture *framebuffer = kope_g5_device_get_framebuffer(&device);
+	kore_gpu_texture *framebuffer = kore_gpu_device_get_framebuffer(&device);
 
-	kope_g5_image_copy_texture destination = {0};
-	destination.texture                    = framebuffer;
-	destination.aspect                     = KOPE_G5_IMAGE_COPY_ASPECT_ALL;
-	destination.mip_level                  = 0;
-	destination.origin_x                   = 0;
-	destination.origin_y                   = 0;
-	destination.origin_z                   = 0;
+	kore_gpu_image_copy_texture destination = {0};
+	destination.texture                     = framebuffer;
+	destination.aspect                      = KORE_GPU_IMAGE_COPY_ASPECT_ALL;
+	destination.mip_level                   = 0;
+	destination.origin_x                    = 0;
+	destination.origin_y                    = 0;
+	destination.origin_z                    = 0;
 
-	kope_g5_image_copy_texture source = {0};
-	source.texture                    = &render_targets[0];
-	source.aspect                     = KOPE_G5_IMAGE_COPY_ASPECT_ALL;
-	source.mip_level                  = 0;
-	source.origin_x                   = 0;
-	source.origin_y                   = 0;
-	source.origin_z                   = 0;
+	kore_gpu_image_copy_texture source = {0};
+	source.texture                     = &render_targets[0];
+	source.aspect                      = KORE_GPU_IMAGE_COPY_ASPECT_ALL;
+	source.mip_level                   = 0;
+	source.origin_x                    = 0;
+	source.origin_y                    = 0;
+	source.origin_z                    = 0;
 
-	kope_g5_command_list_copy_texture_to_texture(&list, &source, &destination, width / 2, height / 2, 1);
+	kore_gpu_command_list_copy_texture_to_texture(&list, &source, &destination, width / 2, height / 2, 1);
 
 	destination.origin_x = width / 2;
 	destination.origin_y = 0;
 	source.texture       = &render_targets[1];
 
-	kope_g5_command_list_copy_texture_to_texture(&list, &source, &destination, width / 2, height / 2, 1);
+	kore_gpu_command_list_copy_texture_to_texture(&list, &source, &destination, width / 2, height / 2, 1);
 
 	destination.origin_x = 0;
 	destination.origin_y = height / 2;
 	source.texture       = &render_targets[2];
 
-	kope_g5_command_list_copy_texture_to_texture(&list, &source, &destination, width / 2, height / 2, 1);
+	kore_gpu_command_list_copy_texture_to_texture(&list, &source, &destination, width / 2, height / 2, 1);
 
 	destination.origin_x = width / 2;
 	destination.origin_y = height / 2;
 	source.texture       = &render_targets[3];
 
-	kope_g5_command_list_copy_texture_to_texture(&list, &source, &destination, width / 2, height / 2, 1);
-
-	kope_g5_command_list_present(&list);
-
-	kope_g5_device_execute_command_list(&device, &list);
+	kore_gpu_command_list_copy_texture_to_texture(&list, &source, &destination, width / 2, height / 2, 1);
 
 #ifdef SCREENSHOT
 	screenshot_take(&device, &list, framebuffer, width, height);
 #endif
+
+	kore_gpu_command_list_present(&list);
+
+	kore_gpu_device_execute_command_list(&device, &list);
 }
 
 int kickstart(int argc, char **argv) {
-	kinc_init("Example", width, height, NULL, NULL);
-	kinc_set_update_callback(update, NULL);
+	kore_init("Example", width, height, NULL, NULL);
+	kore_set_update_callback(update, NULL);
 
-	kope_g5_device_wishlist wishlist = {0};
-	kope_g5_device_create(&device, &wishlist);
+	kore_gpu_device_wishlist wishlist = {0};
+	kore_gpu_device_create(&device, &wishlist);
 
 	kong_init(&device);
 
-	kope_g5_device_create_command_list(&device, KOPE_G5_COMMAND_LIST_TYPE_GRAPHICS, &list);
+	kore_gpu_device_create_command_list(&device, KORE_GPU_COMMAND_LIST_TYPE_GRAPHICS, &list);
 
 	for (uint32_t i = 0; i < 4; ++i) {
-		kope_g5_texture_parameters texture_parameters;
+		kore_gpu_texture_parameters texture_parameters;
 		texture_parameters.width                 = width / 2;
 		texture_parameters.height                = height / 2;
 		texture_parameters.depth_or_array_layers = 1;
 		texture_parameters.mip_level_count       = 1;
 		texture_parameters.sample_count          = 1;
-		texture_parameters.dimension             = KOPE_G5_TEXTURE_DIMENSION_2D;
-		texture_parameters.format                = KOPE_G5_TEXTURE_FORMAT_RGBA8_UNORM;
-		texture_parameters.usage                 = KONG_G5_TEXTURE_USAGE_RENDER_ATTACHMENT | KONG_G5_TEXTURE_USAGE_COPY_SRC;
-		kope_g5_device_create_texture(&device, &texture_parameters, &render_targets[i]);
+		texture_parameters.dimension             = KORE_GPU_TEXTURE_DIMENSION_2D;
+		texture_parameters.format                = KORE_GPU_TEXTURE_FORMAT_RGBA8_UNORM;
+		texture_parameters.usage                 = KORE_GPU_TEXTURE_USAGE_RENDER_ATTACHMENT | KORE_GPU_TEXTURE_USAGE_COPY_SRC;
+		kore_gpu_device_create_texture(&device, &texture_parameters, &render_targets[i]);
 	}
 
 	kong_create_buffer_vertex_in(&device, 3, &vertices);
@@ -145,19 +140,19 @@ int kickstart(int argc, char **argv) {
 		kong_vertex_in_buffer_unlock(&vertices);
 	}
 
-	kope_g5_buffer_parameters params;
+	kore_gpu_buffer_parameters params;
 	params.size        = 3 * sizeof(uint16_t);
-	params.usage_flags = KOPE_G5_BUFFER_USAGE_INDEX | KOPE_G5_BUFFER_USAGE_CPU_WRITE;
-	kope_g5_device_create_buffer(&device, &params, &indices);
+	params.usage_flags = KORE_GPU_BUFFER_USAGE_INDEX | KORE_GPU_BUFFER_USAGE_CPU_WRITE;
+	kore_gpu_device_create_buffer(&device, &params, &indices);
 	{
-		uint16_t *i = (uint16_t *)kope_g5_buffer_lock_all(&indices);
+		uint16_t *i = (uint16_t *)kore_gpu_buffer_lock_all(&indices);
 		i[0]        = 0;
 		i[1]        = 1;
 		i[2]        = 2;
-		kope_g5_buffer_unlock(&indices);
+		kore_gpu_buffer_unlock(&indices);
 	}
 
-	kinc_start();
+	kore_start();
 
 	return 0;
 }
