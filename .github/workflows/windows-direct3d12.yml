@@ -188,6 +188,81 @@ jobs:
         name: 10_cubemap image
         path: 10_cubemap/Deployment/test.png
     - name: Copy WARP
+      working-directory: 11_instanced_rendering
+      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
+    - name: Compile 11_instanced_rendering
+      working-directory: 11_instanced_rendering
+      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+    - name: Check 11_instanced_rendering
+      working-directory: 11_instanced_rendering
+      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+    - name: Upload  11_instanced_rendering failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 11_instanced_rendering image
+        path: 11_instanced_rendering/Deployment/test.png
+    - name: Copy WARP
+      working-directory: 12_set_render_target_depth
+      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
+    - name: Compile 12_set_render_target_depth
+      working-directory: 12_set_render_target_depth
+      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+    - name: Check 12_set_render_target_depth
+      working-directory: 12_set_render_target_depth
+      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+    - name: Upload  12_set_render_target_depth failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 12_set_render_target_depth image
+        path: 12_set_render_target_depth/Deployment/test.png
+    - name: Copy WARP
+      working-directory: 13_generate_mipmaps
+      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
+    - name: Compile 13_generate_mipmaps
+      working-directory: 13_generate_mipmaps
+      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+    - name: Check 13_generate_mipmaps
+      working-directory: 13_generate_mipmaps
+      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+    - name: Upload  13_generate_mipmaps failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 13_generate_mipmaps image
+        path: 13_generate_mipmaps/Deployment/test.png
+    - name: Copy WARP
+      working-directory: 14_set_mipmap
+      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
+    - name: Compile 14_set_mipmap
+      working-directory: 14_set_mipmap
+      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+    - name: Check 14_set_mipmap
+      working-directory: 14_set_mipmap
+      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+    - name: Upload  14_set_mipmap failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 14_set_mipmap image
+        path: 14_set_mipmap/Deployment/test.png
+    - name: Copy WARP
+      working-directory: 15_deinterleaved_buffers
+      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
+    - name: Compile 15_deinterleaved_buffers
+      working-directory: 15_deinterleaved_buffers
+      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+    - name: Check 15_deinterleaved_buffers
+      working-directory: 15_deinterleaved_buffers
+      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+    - name: Upload  15_deinterleaved_buffers failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 15_deinterleaved_buffers image
+        path: 15_deinterleaved_buffers/Deployment/test.png
+    - name: Copy WARP
       working-directory: shader
       run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
     - name: Compile shader

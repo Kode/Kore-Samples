@@ -365,7 +365,7 @@ const workflows = [
     runsOn: 'windows-latest',
     canExecute: true,
     vs: 'vs2022',
-    checked: [1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,1,0,0,0,0,0]
+    checked: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0]
   },
   {
     sys: 'Windows',

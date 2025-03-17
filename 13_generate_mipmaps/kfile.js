@@ -1,4 +1,4 @@
-const project = new Project('GenerateMipmaps');
+const project = new Project('13_generate_mipmaps');
 
 await project.addProject(findKore());
 

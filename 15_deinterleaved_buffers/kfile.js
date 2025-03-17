@@ -1,4 +1,4 @@
-const project = new Project('DeinterleavedBuffers');
+const project = new Project('15_deinterleaved_buffers');
 
 await project.addProject(findKore());
 

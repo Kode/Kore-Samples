@@ -1,4 +1,4 @@
-const project = new Project('SetRenderTargetDepth');
+const project = new Project('12_set_render_target_depth');
 
 await project.addProject(findKore());
 

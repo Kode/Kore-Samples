@@ -1,4 +1,4 @@
-const project = new Project('InstancedRendering');
+const project = new Project('11_instanced_rendering');
 
 await project.addProject(findKore());
 
