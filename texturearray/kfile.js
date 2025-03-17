@@ -1,4 +1,4 @@
-const project = new Project('TextureArray');
+const project = new Project('texturearray');
 
 await project.addProject(findKore());
 

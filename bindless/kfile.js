@@ -1,4 +1,4 @@
-const project = new Project('Bindless');
+const project = new Project('bindless');
 
 await project.addProject(findKore());
 
