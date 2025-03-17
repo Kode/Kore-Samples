@@ -1,4 +1,4 @@
-const project = new Project('Compute');
+const project = new Project('computeshader');
 
 await project.addProject(findKore());
 

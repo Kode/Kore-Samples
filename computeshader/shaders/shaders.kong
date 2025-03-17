@@ -13,20 +13,14 @@ const constants: {
 	mvp: float3x3;
 };
 
-//#[set(everything)]
-//const comp_texture: tex2d;
+#[set(everything)]
+const comp_texture: tex2d;
 
-//#[set(everything)]
-//const comp_sampler: sampler;
-
-#[set(everything), set(compute)]
-const comp_texture: float4[];
+#[set(everything)]
+const comp_sampler: sampler;
 
 fun pix(input: vertex_out): float4 {
-	//var color: float4 = sample(comp_texture, comp_sampler, input.tex);
-	var x: int = input.tex.x * 255;
-	var y: int = input.tex.y * 255;
-	var color: float4 = comp_texture[x + y * 256];
+	var color: float4 = sample(comp_texture, comp_sampler, input.tex);
 	return float4(color.r, color.g, color.b, 1.0);
 }
 
@@ -54,9 +48,6 @@ struct pipeline {
 const compute_constants: {
 	roll: float;
 };
-
-//#[set(compute), write]
-//const dest_texture: tex2d;
 
 #[compute, threads(16, 16, 1)]
 fun comp(): void {

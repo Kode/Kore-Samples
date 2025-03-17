@@ -13,12 +13,6 @@ const constants: {
 	mvp: float3x3;
 };
 
-//#[set(everything)]
-//const comp_texture: tex2d;
-
-//#[set(everything)]
-//const comp_sampler: sampler;
-
 #[set(everything), set(compute)]
 const comp_texture: float4[];
 
@@ -54,9 +48,6 @@ struct pipeline {
 const compute_constants: {
 	roll: float;
 };
-
-//#[set(compute), write]
-//const dest_texture: tex2d;
 
 #[compute, threads(16, 16, 1), cpu]
 fun comp(): void {
