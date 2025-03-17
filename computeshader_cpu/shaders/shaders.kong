@@ -58,7 +58,7 @@ const compute_constants: {
 //#[set(compute), write]
 //const dest_texture: tex2d;
 
-#[compute, threads(16, 16, 1)]
+#[compute, threads(16, 16, 1), cpu]
 fun comp(): void {
 	var store_pos: uint2 = dispatch_thread_id().xy;
 	var local_coef: float = length(float2(int2(group_thread_id().xy) - 8) / 8.0);
