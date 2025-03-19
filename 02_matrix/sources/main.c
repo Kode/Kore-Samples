@@ -23,12 +23,12 @@ static everything_set        everything;
 static const int width  = 800;
 static const int height = 600;
 
-float vec4_length(kore_float3 a) {
+float vec3_length(kore_float3 a) {
 	return sqrtf(a.x * a.x + a.y * a.y + a.z * a.z);
 }
 
 kore_float3 vec3_normalize(kore_float3 a) {
-	float n = vec4_length(a);
+	float n = vec3_length(a);
 	if (n > 0.0) {
 		float inv_n = 1.0f / n;
 		a.x *= inv_n;
