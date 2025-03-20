@@ -293,6 +293,21 @@ jobs:
         name: texture image
         path: texture/Deployment/test.png
     - name: Copy WARP
+      working-directory: computeshader
+      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
+    - name: Compile computeshader
+      working-directory: computeshader
+      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+    - name: Check computeshader
+      working-directory: computeshader
+      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+    - name: Upload  computeshader failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: computeshader image
+        path: computeshader/Deployment/test.png
+    - name: Copy WARP
       working-directory: texturearray
       run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
     - name: Compile texturearray
