@@ -2,8 +2,6 @@
 #include <kore3/math/matrix.h>
 #include <kore3/system.h>
 
-#include <kong_cpu_comp.h>
-
 #include <kong.h>
 
 #include <assert.h>
@@ -12,27 +10,17 @@
 #include "../../screenshot.h"
 #endif
 
-#define USE_BUFFER_IMAGE
-#define USE_CPU
-
 static kore_gpu_device       device;
 static kore_gpu_command_list list;
 static vertex_in_buffer      vertices;
 static kore_gpu_buffer       indices;
 static kore_gpu_buffer       constants;
 static kore_gpu_buffer       compute_constants;
-#ifdef USE_BUFFER_IMAGE
-#ifdef USE_CPU
-static kore_gpu_buffer buffer_source_texture;
-#endif
-static kore_gpu_buffer buffer_texture;
-#else
-static kore_gpu_texture texture;
-static kore_gpu_sampler sampler;
-#endif
-static everything_set  everything;
-static compute_set     compute;
-static kore_gpu_buffer image_buffer;
+static kore_gpu_texture      texture;
+static kore_gpu_sampler      sampler;
+static everything_set        everything;
+static compute_set           compute;
+static kore_gpu_buffer       image_buffer;
 
 static const int width  = 800;
 static const int height = 600;
@@ -51,23 +39,9 @@ void update(void *data) {
 
 	kore_gpu_texture *framebuffer = kore_gpu_device_get_framebuffer(&device);
 
-#ifdef USE_CPU
-	kore_float4 *pixel = (kore_float4 *)kore_gpu_buffer_lock_all(&buffer_source_texture);
-
-	compute_constants_type compute_data;
-	compute_data.roll = 0;
-	set_compute_constants(&compute_data);
-	set_comp_texture(pixel);
-	comp_on_cpu(256 / 16, 256 / 16, 1);
-
-	kore_gpu_buffer_unlock(&buffer_source_texture);
-
-	kore_gpu_command_list_copy_buffer_to_buffer(&list, &buffer_source_texture, 0, &buffer_texture, 0, buffer_size);
-#else
 	kong_set_compute_shader_comp(&list);
 	kong_set_descriptor_set_compute(&list, &compute);
 	kore_gpu_command_list_compute(&list, 256 / 16, 256 / 16, 1);
-#endif
 
 	kore_gpu_render_pass_parameters parameters = {0};
 	parameters.color_attachments_count         = 1;
@@ -115,44 +89,31 @@ int kickstart(int argc, char **argv) {
 
 	kong_init(&device);
 
-#ifdef USE_BUFFER_IMAGE
-#ifdef USE_CPU
-	const kore_gpu_buffer_parameters buffer_source_texture_parameters = {
-	    .size        = buffer_size,
-	    .usage_flags = KORE_GPU_BUFFER_USAGE_CPU_WRITE,
+	kore_gpu_texture_parameters texture_parameters = {
+	    .width                 = 256,
+	    .height                = 256,
+	    .depth_or_array_layers = 1,
+	    .mip_level_count       = 1,
+	    .sample_count          = 1,
+	    .dimension             = KORE_GPU_TEXTURE_DIMENSION_2D,
+	    .format                = KORE_GPU_TEXTURE_FORMAT_RGBA32_FLOAT,
+	    .usage                 = KORE_GPU_TEXTURE_USAGE_SAMPLE | KORE_GPU_TEXTURE_USAGE_READ_WRITE,
 	};
-	kore_gpu_device_create_buffer(&device, &buffer_source_texture_parameters, &buffer_source_texture);
-#endif
-	const kore_gpu_buffer_parameters buffer_texture_parameters = {
-	    .size        = buffer_size,
-	    .usage_flags = KORE_GPU_BUFFER_USAGE_READ_WRITE,
-	};
-	kore_gpu_device_create_buffer(&device, &buffer_texture_parameters, &buffer_texture);
-#else
-	kore_gpu_texture_parameters texture_parameters;
-	texture_parameters.width                 = 256;
-	texture_parameters.height                = 256;
-	texture_parameters.depth_or_array_layers = 1;
-	texture_parameters.mip_level_count       = 1;
-	texture_parameters.sample_count          = 1;
-	texture_parameters.dimension             = KORE_GPU_TEXTURE_DIMENSION_2D;
-	texture_parameters.format                = KORE_GPU_TEXTURE_FORMAT_RGBA32_FLOAT;
-	texture_parameters.usage                 = KONG_G5_TEXTURE_USAGE_SAMPLE | KONG_G5_TEXTURE_USAGE_READ_WRITE;
 	kore_gpu_device_create_texture(&device, &texture_parameters, &texture);
 
-	kore_gpu_sampler_parameters sampler_parameters;
-	sampler_parameters.address_mode_u = KORE_GPU_ADDRESS_MODE_REPEAT;
-	sampler_parameters.address_mode_v = KORE_GPU_ADDRESS_MODE_REPEAT;
-	sampler_parameters.address_mode_w = KORE_GPU_ADDRESS_MODE_REPEAT;
-	sampler_parameters.mag_filter     = KORE_GPU_FILTER_MODE_LINEAR;
-	sampler_parameters.min_filter     = KORE_GPU_FILTER_MODE_LINEAR;
-	sampler_parameters.mipmap_filter  = KORE_GPU_MIPMAP_FILTER_MODE_NEAREST;
-	sampler_parameters.lod_min_clamp  = 1;
-	sampler_parameters.lod_max_clamp  = 32;
-	sampler_parameters.compare        = KORE_GPU_COMPARE_FUNCTION_ALWAYS;
-	sampler_parameters.max_anisotropy = 1;
+	kore_gpu_sampler_parameters sampler_parameters = {
+	    .address_mode_u = KORE_GPU_ADDRESS_MODE_REPEAT,
+	    .address_mode_v = KORE_GPU_ADDRESS_MODE_REPEAT,
+	    .address_mode_w = KORE_GPU_ADDRESS_MODE_REPEAT,
+	    .mag_filter     = KORE_GPU_FILTER_MODE_LINEAR,
+	    .min_filter     = KORE_GPU_FILTER_MODE_LINEAR,
+	    .mipmap_filter  = KORE_GPU_MIPMAP_FILTER_MODE_NEAREST,
+	    .lod_min_clamp  = 1,
+	    .lod_max_clamp  = 32,
+	    .compare        = KORE_GPU_COMPARE_FUNCTION_ALWAYS,
+	    .max_anisotropy = 1,
+	};
 	kore_gpu_device_create_sampler(&device, &sampler_parameters, &sampler);
-#endif
 
 	kore_gpu_device_create_command_list(&device, KORE_GPU_COMMAND_LIST_TYPE_GRAPHICS, &list);
 
@@ -196,33 +157,33 @@ int kickstart(int argc, char **argv) {
 	constants_type_buffer_create(&device, &constants, 1);
 
 	{
-		everything_parameters parameters = {0};
-		parameters.constants             = &constants;
-#ifdef USE_BUFFER_IMAGE
-		parameters.comp_texture = &buffer_texture;
-#else
-		parameters.comp_texture.texture           = &texture;
-		parameters.comp_texture.base_mip_level    = 0;
-		parameters.comp_texture.mip_level_count   = 1;
-		parameters.comp_texture.array_layer_count = 1;
-		parameters.comp_sampler                   = &sampler;
-#endif
+		everything_parameters parameters = {
+		    .constants = &constants,
+		    .comp_texture =
+		        {
+		            .texture           = &texture,
+		            .base_mip_level    = 0,
+		            .mip_level_count   = 1,
+		            .array_layer_count = 1,
+		        },
+		    .comp_sampler = &sampler,
+		};
 		kong_create_everything_set(&device, &parameters, &everything);
 	}
 
 	compute_constants_type_buffer_create(&device, &compute_constants, 1);
 
 	{
-		compute_parameters parameters = {0};
-		parameters.compute_constants  = &compute_constants;
-#ifdef USE_BUFFER_IMAGE
-		parameters.comp_texture = &buffer_texture;
-#else
-		parameters.dest_texture.texture           = &texture;
-		parameters.dest_texture.base_mip_level    = 0;
-		parameters.dest_texture.mip_level_count   = 1;
-		parameters.dest_texture.array_layer_count = 1;
-#endif
+		compute_parameters parameters = {
+		    .compute_constants = &compute_constants,
+		    .comp_texture =
+		        {
+		            .texture           = &texture,
+		            .base_mip_level    = 0,
+		            .mip_level_count   = 1,
+		            .array_layer_count = 1,
+		        },
+		};
 		kong_create_compute_set(&device, &parameters, &compute);
 	}
 

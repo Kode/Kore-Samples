@@ -13,7 +13,7 @@ const constants: {
 	mvp: float3x3;
 };
 
-#[set(everything)]
+#[set(everything), set(compute)]
 const comp_texture: tex2d;
 
 #[set(everything)]
@@ -54,5 +54,5 @@ fun comp(): void {
 	var store_pos: uint2 = dispatch_thread_id().xy;
 	var local_coef: float = length(float2(int2(group_thread_id().xy) - 8) / 8.0);
 	var global_coef: float = sin(float(group_id().x + group_id().y) * 0.1 + compute_constants.roll) * 0.5;
-	comp_texture[store_pos.x + store_pos.y * 256] = float4(1.0 - global_coef * local_coef, 0.0, 0.0, 1.0);
+	comp_texture[store_pos] = float4(1.0 - global_coef * local_coef, 0.0, 0.0, 1.0);
 }
