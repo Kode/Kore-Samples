@@ -1,4 +1,4 @@
-const project = new Project('ComputeAsync');
+const project = new Project('computeshader_async');
 
 await project.addProject(findKore());
 
