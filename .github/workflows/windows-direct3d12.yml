@@ -323,6 +323,21 @@ jobs:
         name: texturearray image
         path: texturearray/Deployment/test.png
     - name: Copy WARP
+      working-directory: raytracing
+      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
+    - name: Compile raytracing
+      working-directory: raytracing
+      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+    - name: Check raytracing
+      working-directory: raytracing
+      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+    - name: Upload  raytracing failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: raytracing image
+        path: raytracing/Deployment/test.png
+    - name: Copy WARP
       working-directory: bindless
       run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
     - name: Compile bindless
@@ -337,18 +352,3 @@ jobs:
       with:
         name: bindless image
         path: bindless/Deployment/test.png
-    - name: Copy WARP
-      working-directory: computeshader_cpu
-      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
-    - name: Compile computeshader_cpu
-      working-directory: computeshader_cpu
-      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
-    - name: Check computeshader_cpu
-      working-directory: computeshader_cpu
-      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
-    - name: Upload  computeshader_cpu failure image
-      if: failure()
-      uses: actions/upload-artifact@v4
-      with:
-        name: computeshader_cpu image
-        path: computeshader_cpu/Deployment/test.png
