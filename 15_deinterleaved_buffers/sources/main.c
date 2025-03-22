@@ -109,12 +109,12 @@ static float tex_data[] = {
 };
 /* clang-format on */
 
-static float vec4_length(kore_float3 a) {
+static float vec3_length(kore_float3 a) {
 	return sqrtf(a.x * a.x + a.y * a.y + a.z * a.z);
 }
 
-static kore_float3 vec4_normalize(kore_float3 a) {
-	float n = vec4_length(a);
+static kore_float3 vec3_normalize(kore_float3 a) {
+	float n = vec3_length(a);
 	if (n > 0.0) {
 		float inv_n = 1.0f / n;
 		a.x *= inv_n;
@@ -124,7 +124,7 @@ static kore_float3 vec4_normalize(kore_float3 a) {
 	return a;
 }
 
-static kore_float3 vec4_sub(kore_float3 a, kore_float3 b) {
+static kore_float3 vec3_sub(kore_float3 a, kore_float3 b) {
 	kore_float3 v;
 	v.x = a.x - b.x;
 	v.y = a.y - b.y;
@@ -132,7 +132,7 @@ static kore_float3 vec4_sub(kore_float3 a, kore_float3 b) {
 	return v;
 }
 
-static kore_float3 vec4_cross(kore_float3 a, kore_float3 b) {
+static kore_float3 vec3_cross(kore_float3 a, kore_float3 b) {
 	kore_float3 v;
 	v.x = a.y * b.z - a.z * b.y;
 	v.y = a.z * b.x - a.x * b.z;
@@ -140,7 +140,7 @@ static kore_float3 vec4_cross(kore_float3 a, kore_float3 b) {
 	return v;
 }
 
-static float vec4_dot(kore_float3 a, kore_float3 b) {
+static float vec3_dot(kore_float3 a, kore_float3 b) {
 	return a.x * b.x + a.y * b.y + a.z * b.z;
 }
 
@@ -152,9 +152,9 @@ static kore_matrix4x4 matrix4x4_perspective_projection(float fovy, float aspect,
 }
 
 static kore_matrix4x4 matrix4x4_look_at(kore_float3 eye, kore_float3 at, kore_float3 up) {
-	kore_float3    zaxis = vec4_normalize(vec4_sub(at, eye));
-	kore_float3    xaxis = vec4_normalize(vec4_cross(zaxis, up));
-	kore_float3    yaxis = vec4_cross(xaxis, zaxis);
+	kore_float3    zaxis = vec3_normalize(vec4_sub(at, eye));
+	kore_float3    xaxis = vec3_normalize(vec4_cross(zaxis, up));
+	kore_float3    yaxis = vec3_cross(xaxis, zaxis);
 	kore_matrix4x4 m     = {xaxis.x,
 	                        yaxis.x,
 	                        -zaxis.x,
@@ -167,9 +167,9 @@ static kore_matrix4x4 matrix4x4_look_at(kore_float3 eye, kore_float3 at, kore_fl
 	                        yaxis.z,
 	                        -zaxis.z,
 	                        0,
-	                        -vec4_dot(xaxis, eye),
-	                        -vec4_dot(yaxis, eye),
-	                        vec4_dot(zaxis, eye),
+	                        -vec3_dot(xaxis, eye),
+	                        -vec3_dot(yaxis, eye),
+	                        vec3_dot(zaxis, eye),
 	                        1};
 	return m;
 }
