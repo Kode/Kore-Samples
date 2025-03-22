@@ -44,4 +44,5 @@ struct pipeline {
 	depth_stencil_format = TEXTURE_FORMAT_DEPTH32FLOAT;
 	depth_write = true;
 	depth_compare = COMPARE_LESS;
+	format = framebuffer_format();
 }
