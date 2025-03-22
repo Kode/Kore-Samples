@@ -146,11 +146,13 @@ int kickstart(int argc, char **argv) {
 		v[0].pos.z = 0.5f;
 		v[0].tex.x = 0.0f;
 		v[0].tex.y = 1.0f;
+
 		v[1].pos.x = 1.0f;
 		v[1].pos.y = -1.0f;
 		v[1].pos.z = 0.5f;
 		v[1].tex.x = 1.0f;
 		v[1].tex.y = 1.0f;
+
 		v[2].pos.x = -1.0f;
 		v[2].pos.y = 1.0f;
 		v[2].pos.z = 0.5f;
@@ -160,11 +162,14 @@ int kickstart(int argc, char **argv) {
 		kong_vertex_in_buffer_unlock(&vertices);
 	}
 
-	kore_gpu_buffer_parameters params = {
-	    params.size        = 3 * sizeof(uint16_t),
-	    params.usage_flags = KORE_GPU_BUFFER_USAGE_INDEX | KORE_GPU_BUFFER_USAGE_CPU_WRITE,
-	};
-	kore_gpu_device_create_buffer(&device, &params, &indices);
+	{
+		kore_gpu_buffer_parameters parameters = {
+		    .size        = 3 * sizeof(uint16_t),
+		    .usage_flags = KORE_GPU_BUFFER_USAGE_INDEX | KORE_GPU_BUFFER_USAGE_CPU_WRITE,
+		};
+		kore_gpu_device_create_buffer(&device, &parameters, &indices);
+	}
+
 	{
 		uint16_t *id = (uint16_t *)kore_gpu_buffer_lock_all(&indices);
 
@@ -179,12 +184,15 @@ int kickstart(int argc, char **argv) {
 
 	{
 		everything_parameters parameters = {
-		    .constants                      = &constants,
-		    .comp_texture.texture           = &texture,
-		    .comp_texture.base_mip_level    = 0,
-		    .comp_texture.mip_level_count   = 1,
-		    .comp_texture.array_layer_count = 1,
-		    .comp_sampler                   = &sampler,
+		    .constants = &constants,
+		    .comp_texture =
+		        {
+		            .texture           = &texture,
+		            .base_mip_level    = 0,
+		            .mip_level_count   = 1,
+		            .array_layer_count = 1,
+		        },
+		    .comp_sampler = &sampler,
 		};
 		kong_create_everything_set(&device, &parameters, &everything);
 	}
@@ -193,11 +201,14 @@ int kickstart(int argc, char **argv) {
 
 	{
 		compute_parameters parameters = {
-		    .compute_constants              = &compute_constants,
-		    .comp_texture.texture           = &texture,
-		    .comp_texture.base_mip_level    = 0,
-		    .comp_texture.mip_level_count   = 1,
-		    .comp_texture.array_layer_count = 1,
+		    .compute_constants = &compute_constants,
+		    .comp_texture =
+		        {
+		            .texture           = &texture,
+		            .base_mip_level    = 0,
+		            .mip_level_count   = 1,
+		            .array_layer_count = 1,
+		        },
 		};
 		kong_create_compute_set(&device, &parameters, &compute);
 	}
