@@ -152,8 +152,8 @@ static kore_matrix4x4 matrix4x4_perspective_projection(float fovy, float aspect,
 }
 
 static kore_matrix4x4 matrix4x4_look_at(kore_float3 eye, kore_float3 at, kore_float3 up) {
-	kore_float3    zaxis = vec3_normalize(vec4_sub(at, eye));
-	kore_float3    xaxis = vec3_normalize(vec4_cross(zaxis, up));
+	kore_float3    zaxis = vec3_normalize(vec3_sub(at, eye));
+	kore_float3    xaxis = vec3_normalize(vec3_cross(zaxis, up));
 	kore_float3    yaxis = vec3_cross(xaxis, zaxis);
 	kore_matrix4x4 m     = {xaxis.x,
 	                        yaxis.x,
