@@ -38,6 +38,12 @@ jobs:
     - name: Compile 05_camera_controls
       working-directory: 05_camera_controls
       run: ../kore/make ios -g metal --nosigning --debug --compile
+    - name: Compile 06_render_targets
+      working-directory: 06_render_targets
+      run: ../kore/make ios -g metal --nosigning --debug --compile
+    - name: Compile 07_multiple_render_targets
+      working-directory: 07_multiple_render_targets
+      run: ../kore/make ios -g metal --nosigning --debug --compile
     - name: Compile shader
       working-directory: shader
       run: ../kore/make ios -g metal --nosigning --debug --compile
