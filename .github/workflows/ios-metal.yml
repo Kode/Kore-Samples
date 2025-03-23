@@ -47,3 +47,12 @@ jobs:
     - name: Compile shader
       working-directory: shader
       run: ../kore/make ios -g metal --nosigning --debug --compile
+    - name: Compile texture
+      working-directory: texture
+      run: ../kore/make ios -g metal --nosigning --debug --compile
+    - name: Compile computeshader
+      working-directory: computeshader
+      run: ../kore/make ios -g metal --nosigning --debug --compile
+    - name: Compile texturearray
+      working-directory: texturearray
+      run: ../kore/make ios -g metal --nosigning --debug --compile
