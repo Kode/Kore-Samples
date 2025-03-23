@@ -38,7 +38,7 @@ static void update(void *data) {
 	                        .texture           = &render_target,
 	                        .array_layer_count = 1,
 	                        .mip_level_count   = 1,
-	                        .format            = KORE_GPU_TEXTURE_FORMAT_BGRA8_UNORM,
+							.format            = kore_gpu_device_framebuffer_format(&device),
 	                        .dimension         = KORE_GPU_TEXTURE_VIEW_DIMENSION_2D,
 	                    },
 	            },
@@ -95,7 +95,7 @@ int kickstart(int argc, char **argv) {
 	    .mip_level_count       = 1,
 	    .sample_count          = 1,
 	    .dimension             = KORE_GPU_TEXTURE_DIMENSION_2D,
-	    .format                = KORE_GPU_TEXTURE_FORMAT_RGBA8_UNORM,
+		.format                = kore_gpu_device_framebuffer_format(&device),
 	    .usage                 = KORE_GPU_TEXTURE_USAGE_RENDER_ATTACHMENT | KORE_GPU_TEXTURE_USAGE_COPY_SRC,
 	};
 	kore_gpu_device_create_texture(&device, &texture_parameters, &render_target);

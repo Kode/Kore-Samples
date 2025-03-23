@@ -20,12 +20,9 @@ static kore_gpu_texture      texture;
 static kore_gpu_sampler      sampler;
 static everything_set        everything;
 static compute_set           compute;
-static kore_gpu_buffer       image_buffer;
 
 static const int width  = 800;
 static const int height = 600;
-
-static const uint64_t buffer_size = 256 * 256 * sizeof(kore_float4);
 
 void update(void *data) {
 	constants_type *constants_data = constants_type_buffer_lock(&constants, 0, 1);
@@ -55,7 +52,7 @@ void update(void *data) {
 	parameters.color_attachments[0].texture.texture           = framebuffer;
 	parameters.color_attachments[0].texture.array_layer_count = 1;
 	parameters.color_attachments[0].texture.mip_level_count   = 1;
-	parameters.color_attachments[0].texture.format            = KORE_GPU_TEXTURE_FORMAT_BGRA8_UNORM;
+	parameters.color_attachments[0].texture.format            = kore_gpu_device_framebuffer_format(&device);
 	parameters.color_attachments[0].texture.dimension         = KORE_GPU_TEXTURE_VIEW_DIMENSION_2D;
 	kore_gpu_command_list_begin_render_pass(&list, &parameters);
 

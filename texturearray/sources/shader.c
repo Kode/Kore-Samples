@@ -54,6 +54,7 @@ static void update(void *data) {
 			kore_gpu_image_copy_texture destination = {
 			    .texture   = &texture,
 			    .mip_level = 0,
+				.origin_z  = 0,
 			};
 
 			kore_gpu_command_list_copy_buffer_to_texture(&list, &source, &destination, 250, 250, 1);
@@ -97,7 +98,7 @@ static void update(void *data) {
 	                        .texture           = framebuffer,
 	                        .array_layer_count = 1,
 	                        .mip_level_count   = 1,
-	                        .format            = KORE_GPU_TEXTURE_FORMAT_BGRA8_UNORM,
+							.format            = kore_gpu_device_framebuffer_format(&device),
 	                        .dimension         = KORE_GPU_TEXTURE_VIEW_DIMENSION_2D,
 	                    },
 	            },
@@ -144,7 +145,7 @@ int kickstart(int argc, char **argv) {
 		};
 		kore_gpu_device_create_buffer(&device, &buffer_parameters, &image_buffer);
 
-		// kinc_image can not load images with row-alignment directly because stb_image doesn't support that :-(
+		// kore_image can not load images with row-alignment directly because stb_image doesn't support that :-(
 		uint32_t *image_data = (uint32_t *)malloc(250 * 4 * 250);
 		assert(image_data != NULL);
 
@@ -169,7 +170,7 @@ int kickstart(int argc, char **argv) {
 		};
 		kore_gpu_device_create_buffer(&device, &buffer_parameters, &image_buffer2);
 
-		// kinc_image can not load images with row-alignment directly because stb_image doesn't support that :-(
+		// kore_image can not load images with row-alignment directly because stb_image doesn't support that :-(
 		uint32_t *image_data = (uint32_t *)malloc(250 * 4 * 250);
 		assert(image_data != NULL);
 

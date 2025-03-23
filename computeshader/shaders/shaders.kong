@@ -42,6 +42,7 @@ fun pos(input: vertex_in): vertex_out {
 struct pipeline {
 	vertex = pos;
 	fragment = pix;
+	format = framebuffer_format();
 }
 
 #[set(compute)]

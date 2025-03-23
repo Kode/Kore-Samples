@@ -79,7 +79,7 @@ static void update(void *data) {
 	                        .texture           = framebuffer,
 	                        .array_layer_count = 1,
 	                        .mip_level_count   = 1,
-	                        .format            = KORE_GPU_TEXTURE_FORMAT_BGRA8_UNORM,
+							.format            = kore_gpu_device_framebuffer_format(&device),
 	                        .dimension         = KORE_GPU_TEXTURE_VIEW_DIMENSION_2D,
 	                    },
 	            },
