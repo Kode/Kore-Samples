@@ -20,6 +20,24 @@ jobs:
     - name: Get Submodules
       run: ./get_dlc
 
+    - name: Compile 00_empty
+      working-directory: 00_empty
+      run: ../kore/make osx -g metal --debug --compile
+    - name: Compile 01_triangle
+      working-directory: 01_triangle
+      run: ../kore/make osx -g metal --debug --compile
+    - name: Compile 02_matrix
+      working-directory: 02_matrix
+      run: ../kore/make osx -g metal --debug --compile
+    - name: Compile 03_colored_cube
+      working-directory: 03_colored_cube
+      run: ../kore/make osx -g metal --debug --compile
+    - name: Compile 04_textured_cube
+      working-directory: 04_textured_cube
+      run: ../kore/make osx -g metal --debug --compile
+    - name: Compile 05_camera_controls
+      working-directory: 05_camera_controls
+      run: ../kore/make osx -g metal --debug --compile
     - name: Compile shader
       working-directory: shader
       run: ../kore/make osx -g metal --debug --compile
