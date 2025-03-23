@@ -121,7 +121,7 @@ int kickstart(int argc, char **argv) {
 		    .mip_level_count       = 1,
 		    .sample_count          = 1,
 		    .dimension             = KORE_GPU_TEXTURE_DIMENSION_2D,
-			.format                = kore_gpu_device_framebuffer_format(&device),
+		    .format                = kore_gpu_device_framebuffer_format(&device),
 		    .usage                 = KORE_GPU_TEXTURE_USAGE_RENDER_ATTACHMENT | KORE_GPU_TEXTURE_USAGE_COPY_SRC,
 		};
 		kore_gpu_device_create_texture(&device, &texture_parameters, &render_targets[i]);
