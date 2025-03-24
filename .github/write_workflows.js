@@ -383,7 +383,7 @@ const workflows = [
     gfx: 'Vulkan',
     active: true,
     runsOn: 'windows-latest',
-    canExecute: true,
+    canExecute: false,
     vs: 'vs2022',
     env:
 `      env:
