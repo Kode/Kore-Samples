@@ -24,3 +24,17 @@ jobs:
     - name: Get Submodules
       run: ./get_dlc
 
+    - name: Compile shader
+      working-directory: shader
+      run: ../kore/make windows -v vs2022 -g vulkan --debug --option screenshot --run
+      env:
+        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+    - name: Check shader
+      working-directory: shader
+      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+    - name: Upload shader failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: shader image
+        path: shader/Deployment/test.png

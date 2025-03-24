@@ -170,7 +170,7 @@ ${postfixSteps}
 `    - name: Check ${sample}
       working-directory: ${sample}
       run: ${magickCommand} -metric mae ./reference.png ./deployment/test.png difference.png
-    - name: Upload  ${sample} failure image
+    - name: Upload ${sample} failure image
       if: failure()
       uses: actions/upload-artifact@v4
       with:
@@ -395,7 +395,7 @@ const workflows = [
           Invoke-WebRequest -Uri "https://sdk.lunarg.com/sdk/download/1.3.275.0/windows/VulkanSDK-1.3.275.0-Installer.exe" -OutFile VulkanSDK.exe
           $installer = Start-Process -FilePath VulkanSDK.exe -Wait -PassThru -ArgumentList @("--da", "--al", "-c", "in");
           $installer.WaitForExit();`,
-    checked: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    checked: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0]
   }
 ];
 
