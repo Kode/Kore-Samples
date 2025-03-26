@@ -24,6 +24,16 @@ jobs:
     - name: Get Submodules
       run: ./get_dlc
 
+    - name: Compile 00_empty
+      working-directory: 00_empty
+      run: ../kore/make windows -v vs2022 -g vulkan --debug --compile
+      env:
+        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+    - name: Compile 01_triangle
+      working-directory: 01_triangle
+      run: ../kore/make windows -v vs2022 -g vulkan --debug --compile
+      env:
+        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
     - name: Compile shader
       working-directory: shader
       run: ../kore/make windows -v vs2022 -g vulkan --debug --compile
