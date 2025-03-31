@@ -32,11 +32,35 @@ static void *allocate(size_t size) {
 }
 
 static bool first_update = true;
+static bool resized = false;
+
+static void resize_callback(int width, int height, void *data) {
+	if (width == 0 || height == 0) {
+		return;
+	}
+	resized = true;
+}
 
 static void update(void *data) {
 	currentBuffer = (currentBuffer + 1) % BUFFER_COUNT;
 
+	if (resized) {
+		kinc_g5_command_list_wait_for_execution_to_finish(&commandList);
+
+		for (int i = 0; i < BUFFER_COUNT; ++i) {
+			kinc_g5_render_target_destroy(&framebuffers[i]);
+		}
+		currentBuffer = 0;
+	}
+
 	kinc_g5_begin(&framebuffers[currentBuffer], 0);
+
+	if (resized) {
+		for (int i = 0; i < BUFFER_COUNT; ++i) {
+			kinc_g5_render_target_init_framebuffer(&framebuffers[i], kinc_window_width(0), kinc_window_height(0), KINC_G5_RENDER_TARGET_FORMAT_32BIT, 16, 0);
+		}
+		resized = false;
+	}
 
 	kinc_g5_command_list_begin(&commandList);
 
@@ -80,6 +104,8 @@ static void load_shader(const char *filename, kinc_g5_shader_t *shader, kinc_g5_
 int kickstart(int argc, char **argv) {
 	kinc_init("Shader", 1024, 768, NULL, NULL);
 	kinc_set_update_callback(update, NULL);
+
+	kinc_window_set_resize_callback(0, resize_callback, NULL);
 
 	heap = (uint8_t *)malloc(HEAP_SIZE);
 	assert(heap != NULL);
