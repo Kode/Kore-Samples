@@ -327,7 +327,7 @@ const workflows = [
     - name: Apt Update
       run: sudo apt update
     - name: Apt Install
-      run: sudo apt install libasound2-dev libxinerama-dev libxrandr-dev libgl1-mesa-dev libxi-dev libxcursor-dev libudev-dev vulkan-sdk libwayland-dev wayland-protocols libxkbcommon-dev ninja-build --yes --quiet
+      run: sudo apt install libasound2-dev libxinerama-dev libxrandr-dev libgl1-mesa-dev libxi-dev libxcursor-dev libudev-dev vulkan-sdk mesa-vulkan-drivers libvulkan1 vulkan-tools vulkan-validationlayers libwayland-dev wayland-protocols libxkbcommon-dev ninja-build imagemagick xvfb --yes --quiet
 `
   },
   {
