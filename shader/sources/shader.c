@@ -16,8 +16,8 @@ static kore_gpu_command_list list;
 static vertex_in_buffer      vertices;
 static kore_gpu_buffer       indices;
 
-const int width  = 800;
-const int height = 600;
+const uint32_t width  = 800;
+const uint32_t height = 600;
 
 static void update(void *data) {
 	kore_gpu_texture *framebuffer = kore_gpu_device_get_framebuffer(&device);
