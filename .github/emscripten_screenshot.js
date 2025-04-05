@@ -27,6 +27,8 @@ core.info('Starting browser');
 	const browser = await puppeteer.launch({args: ['--no-sandbox']});
 	const page = await browser.newPage();
 
+	page.on('console', msg => core.info('Page: ', msg.text));
+
 	await page.goto('http://localhost:8888');
 
 	const client = await page.target().createCDPSession();

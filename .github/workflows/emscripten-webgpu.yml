@@ -44,8 +44,6 @@ jobs:
     - name: Check dir 3
       working-directory: shader
       run: ls ~/
-    - name: Find
-      run: find / -name 'test.png'
     - name: Check shader
       working-directory: shader
       run: compare-im6 -metric mae ./reference.png ./deployment/test.png difference.png
