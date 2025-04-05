@@ -26,7 +26,7 @@ core.info('Starting browser');
 (async () => {
 	core.info('Default args: ' + puppeteer.defaultArgs());
 
-	const browser = await puppeteer.launch({args: ['--no-sandbox', '--ignore-gpu-blocklist', '--headless=new', '--use-angle=vulkan', '--enable-features=Vulkan', '--disable-vulkan-surface', '--enable-unsafe-webgpu']});
+	const browser = await puppeteer.launch({headless: 'shell', args: ['--no-sandbox', '--enable-gpu', '--ignore-gpu-blocklist', '--headless=new', '--use-angle=vulkan', '--enable-features=Vulkan', '--disable-vulkan-surface', '--enable-unsafe-webgpu']});
 	core.info('Browser version: ' + await browser.version());
 
 	const page = await browser.newPage();
