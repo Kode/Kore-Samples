@@ -1,6 +1,7 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
 
+#include <kore3/log.h>
 #include <kore3/util/align.h>
 
 #ifdef KORE_EMSCRIPTEN
@@ -55,11 +56,16 @@ static void screenshot_take(kore_gpu_device *device, kore_gpu_command_list *list
 
 	kore_gpu_command_list_copy_texture_to_buffer(list, &source, &destination, width, height, 1);
 
+	kore_log(KORE_LOG_LEVEL_INFO, "Execute command list for the screenshot");
 	kore_gpu_device_execute_command_list(device, list);
 
+	kore_log(KORE_LOG_LEVEL_INFO, "Wait for GPU");
 	kore_gpu_device_wait_until_idle(device);
 
+	kore_log(KORE_LOG_LEVEL_INFO, "Wait for buffer");
 	uint8_t *pixels = (uint8_t *)kore_gpu_buffer_lock_all(&screenshot_buffer);
+
+	kore_log(KORE_LOG_LEVEL_INFO, "Done waiting");
 
 	if (kore_gpu_device_framebuffer_format(device) == KORE_GPU_TEXTURE_FORMAT_BGRA8_UNORM ||
 	    kore_gpu_device_framebuffer_format(device) == KORE_GPU_TEXTURE_FORMAT_BGRA8_UNORM_SRGB) {
@@ -76,6 +82,7 @@ static void screenshot_take(kore_gpu_device *device, kore_gpu_command_list *list
 	}
 
 #ifdef KORE_EMSCRIPTEN
+	kore_log(KORE_LOG_LEVEL_INFO, "Write png for Emscripten");
 	png_data = (uint8_t *)malloc(width * height * 4);
 	png_data_size = 0;
 	stbi_write_png_to_func(png_write_func, NULL, width, height, 4, pixels, row_bytes);
