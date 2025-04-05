@@ -23,11 +23,14 @@ server.on('error', (e) => {
 server.listen(8888);
 
 core.info('Starting browser');
+
+let browser = null;
+
 (async () => {
 	try {
 		core.info('Default args: ' + puppeteer.defaultArgs());
 
-		const browser = await puppeteer.launch({headless: 'shell', args: ['--no-sandbox', '--enable-gpu', '--ignore-gpu-blocklist', '--headless=new', '--use-angle=vulkan', '--enable-features=Vulkan', '--disable-vulkan-surface', '--enable-unsafe-webgpu']});
+		browser = await puppeteer.launch({headless: 'shell', args: ['--no-sandbox', '--enable-gpu', '--ignore-gpu-blocklist', '--headless=new', '--use-angle=vulkan', '--enable-features=Vulkan', '--disable-vulkan-surface', '--enable-unsafe-webgpu']});
 		core.info('Browser version: ' + await browser.version());
 
 		const page = await browser.newPage();
@@ -47,7 +50,10 @@ core.info('Starting browser');
 	}
 	finally {
 		setTimeout(async () => {
-			await browser.close();
+			core.info('Closing browser and server');
+			if (browser) {
+				await browser.close();
+			}
 			server.close();
 			core.info('Browser and server closed');
 		}, 5000);
