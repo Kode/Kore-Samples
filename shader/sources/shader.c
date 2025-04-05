@@ -2,8 +2,6 @@
 #include <kore3/io/filereader.h>
 #include <kore3/system.h>
 
-#include <kore3/log.h>
-
 #include <kong.h>
 
 #include <assert.h>
@@ -22,7 +20,6 @@ const uint32_t width  = 800;
 const uint32_t height = 600;
 
 static void update(void *data) {
-	kore_log(KORE_LOG_LEVEL_INFO, "get_framebuffer");
 	kore_gpu_texture *framebuffer = kore_gpu_device_get_framebuffer(&device);
 
 	kore_gpu_color clear_color = {
@@ -50,8 +47,6 @@ static void update(void *data) {
 	            },
 	        },
 	};
-
-	kore_log(KORE_LOG_LEVEL_INFO, "begin_render_pass");
 	kore_gpu_command_list_begin_render_pass(&list, &parameters);
 
 	kong_set_render_pipeline_pipeline(&list);
@@ -63,7 +58,6 @@ static void update(void *data) {
 	kore_gpu_command_list_draw_indexed(&list, 3, 1, 0, 0, 0);
 
 	kore_gpu_command_list_end_render_pass(&list);
-	kore_log(KORE_LOG_LEVEL_INFO, "render pass ended");
 
 #ifdef SCREENSHOT
 	screenshot_take(&device, &list, framebuffer, width, height);
@@ -82,7 +76,6 @@ int kickstart(int argc, char **argv) {
 	kore_gpu_device_create(&device, &wishlist);
 
 	kong_init(&device);
-	kore_log(KORE_LOG_LEVEL_INFO, "Kong initialized");
 
 	kore_gpu_device_create_command_list(&device, KORE_GPU_COMMAND_LIST_TYPE_GRAPHICS, &list);
 
@@ -115,7 +108,6 @@ int kickstart(int argc, char **argv) {
 		kore_gpu_buffer_unlock(&indices);
 	}
 
-	kore_log(KORE_LOG_LEVEL_INFO, "kore_start");
 	kore_start();
 
 	return 0;

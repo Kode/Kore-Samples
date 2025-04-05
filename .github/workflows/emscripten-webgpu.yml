@@ -30,15 +30,6 @@ jobs:
     - name: Run shader
       working-directory: shader
       run: node ../.github/emscripten_screenshot.js
-    - name: Check dir 1
-      working-directory: shader
-      run: ls ./deployment
-    - name: Check dir 2
-      working-directory: shader
-      run: ls ./build/debug/deployment
-    - name: Check dir 3
-      working-directory: shader
-      run: ls ~/
     - name: Check shader
       working-directory: shader
       run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png

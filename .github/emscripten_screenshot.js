@@ -28,8 +28,6 @@ let browser = null;
 
 (async () => {
 	try {
-		core.info('Default args: ' + puppeteer.defaultArgs());
-
 		browser = await puppeteer.launch({args: ['--enable-gpu', '--ignore-gpu-blocklist']});
 		core.info('Browser version: ' + await browser.version());
 
