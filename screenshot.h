@@ -41,6 +41,7 @@ static void screenshot_take(kore_gpu_device *device, kore_gpu_command_list *list
 	    .size        = row_bytes * height,
 	    .usage_flags = KORE_GPU_BUFFER_USAGE_CPU_READ | KORE_GPU_BUFFER_USAGE_COPY_DST,
 	};
+	kore_log(KORE_LOG_LEVEL_INFO, "Create screenshot buffer");
 	kore_gpu_device_create_buffer(device, &buffer_parameters, &screenshot_buffer);
 
 	kore_gpu_image_copy_texture source = {
