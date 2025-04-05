@@ -26,7 +26,7 @@ core.info('Starting browser');
 (async () => {
 	core.info('Default args: ' + puppeteer.defaultArgs());
 
-	const browser = await puppeteer.launch();
+	const browser = await puppeteer.launch({args: ['--enable-unsafe-swiftshader', '--use-webgpu-adapter=swiftshader']});
 	core.info('Browser version: ' + await browser.version());
 
 	const page = await browser.newPage();
