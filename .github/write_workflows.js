@@ -150,11 +150,18 @@ ${postfixSteps}
       run: xvfb-run ../build/debug/${sample}`;
       }
       else {
-        workflowText += ' --option screenshot --run';
+        if (workflow.noCompile) {
+          workflowText += ' --option screenshot';
+        }
+        else{
+          workflowText += ' --option screenshot --run';
+        }
       }
     }
     else {
-      workflowText += ' --compile';
+      if (!workflow.noCompile) {
+        workflowText += ' --compile';
+      }
     }
 
     workflowText += postfix + '\n';
@@ -225,20 +232,21 @@ const workflows = [
     sys: 'Emscripten',
     gfx: 'WebGPU',
     active: true,
-    runsOn: 'ubuntu-latest',
-    canExecute: false,
+    runsOn: 'windows-latest',
+    canExecute: true,
     checked: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0],
-    steps:
-`    - name: Apt Update
-      run: sudo apt update
-    - name: Apt Install
-      run: sudo apt install ninja-build
-`,
-    compilePrefix: '../emsdk/emsdk activate latest && source ../emsdk/emsdk_env.sh && ',
-    compilePostfix: ' && cd build/debug && make',
+    noCompile: true,
+    compilePrefix: '../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ',
+    compilePostfix: ` && cd build/debug && make
+    - name: Run shader
+      working-directory: shader
+      run: node ../.github/emscripten_screenshot.js`,
     postfixSteps:
 `    - name: Setup emscripten
       run: git clone https://github.com/emscripten-core/emsdk.git && cd emsdk && ./emsdk install latest
+    - name: Setup puppeteer
+      working-directory: .github
+      run: npm install puppeteer node-static @actions/core
 `
   },
   {
