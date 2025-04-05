@@ -24,6 +24,8 @@ server.listen(8888);
 
 core.info('Starting browser');
 (async () => {
+	core.info('Default args: ' + puppeteer.defaultArgs());
+	
 	const browser = await puppeteer.launch();
 	const page = await browser.newPage();
 
