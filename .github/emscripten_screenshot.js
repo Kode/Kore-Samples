@@ -30,7 +30,7 @@ let browser = null;
 	try {
 		core.info('Default args: ' + puppeteer.defaultArgs());
 
-		browser = await puppeteer.launch({headless: false, args: ['--enable-gpu', '--ignore-gpu-blocklist']});
+		browser = await puppeteer.launch({args: ['--enable-gpu', '--ignore-gpu-blocklist']});
 		core.info('Browser version: ' + await browser.version());
 
 		const page = await browser.newPage();
