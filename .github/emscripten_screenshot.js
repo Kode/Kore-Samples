@@ -27,7 +27,7 @@ core.info('Starting browser');
 	core.info('Default args: ' + puppeteer.defaultArgs());
 
 	const browser = await puppeteer.launch();
-	core.info('Browser version: ' + browser.version());
+	core.info('Browser version: ' + await browser.version());
 
 	const page = await browser.newPage();
 
