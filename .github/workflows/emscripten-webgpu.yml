@@ -19,7 +19,7 @@ jobs:
     - name: Apt Update
       run: sudo apt update
     - name: Apt Install
-      run: sudo apt install ninja-build
+      run: sudo apt install ninja-build imagemagick
 
     - name: Get Submodules
       run: ./get_dlc
