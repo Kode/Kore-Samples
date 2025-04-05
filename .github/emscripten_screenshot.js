@@ -52,10 +52,16 @@ let browser = null;
 		setTimeout(async () => {
 			core.info('Closing browser and server');
 			if (browser) {
-				await browser.close();
+				browser.close();
 			}
 			server.close();
-			core.info('Browser and server closed');
+			setTimeout(() => {
+				if (browser && browser.process()) {
+					browser.process().kill('SIGINT');
+					core.info('Killed the browser');
+				}
+				core.info('Browser and server closed');
+			}, 2000);
 		}, 5000);
 	}
 })();
