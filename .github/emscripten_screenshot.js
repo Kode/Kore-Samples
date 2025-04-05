@@ -20,7 +20,7 @@ server.on('error', (e) => {
 server.listen(8888);
 
 (async () => {
-	const browser = await puppeteer.launch();
+	const browser = await puppeteer.launch({args: ['--no-sandbox']});
 	const page = await browser.newPage();
 
 	await page.goto('http://localhost:8888');
