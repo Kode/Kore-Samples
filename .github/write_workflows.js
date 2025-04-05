@@ -166,6 +166,14 @@ ${postfixSteps}
 
     workflowText += postfix + '\n';
 
+    if (workflow.emscriptenScreenshot) {
+      workflowText +=
+`    - name: Run ${sample}
+      working-directory: ${sample}
+      run: node ../.github/emscripten_screenshot.js
+`;
+    }
+
     if (workflow.env) {
       workflowText += workflow.env;
     }
@@ -237,10 +245,8 @@ const workflows = [
     checked: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0],
     noCompile: true,
     compilePrefix: '../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ',
-    compilePostfix: ` && cd build/debug && make
-    - name: Run shader
-      working-directory: shader
-      run: node ../.github/emscripten_screenshot.js`,
+    compilePostfix: ' && cd build/debug && make',
+    emscriptenScreenshot: true,
     postfixSteps:
 `    - name: Setup emscripten
       run: git clone https://github.com/emscripten-core/emsdk.git && cd emsdk && ./emsdk install latest
