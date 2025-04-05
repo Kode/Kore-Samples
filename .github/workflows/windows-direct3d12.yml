@@ -24,7 +24,7 @@ jobs:
 
     - name: Copy WARP
       working-directory: 00_empty
-      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
+      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 00_empty
       working-directory: 00_empty
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
@@ -36,10 +36,10 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: 00_empty image
-        path: 00_empty/Deployment/test.png
+        path: 00_empty/deployment/test.png
     - name: Copy WARP
       working-directory: 01_triangle
-      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
+      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 01_triangle
       working-directory: 01_triangle
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
@@ -51,10 +51,10 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: 01_triangle image
-        path: 01_triangle/Deployment/test.png
+        path: 01_triangle/deployment/test.png
     - name: Copy WARP
       working-directory: 02_matrix
-      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
+      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 02_matrix
       working-directory: 02_matrix
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
@@ -66,10 +66,10 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: 02_matrix image
-        path: 02_matrix/Deployment/test.png
+        path: 02_matrix/deployment/test.png
     - name: Copy WARP
       working-directory: 03_colored_cube
-      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
+      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 03_colored_cube
       working-directory: 03_colored_cube
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
@@ -81,10 +81,10 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: 03_colored_cube image
-        path: 03_colored_cube/Deployment/test.png
+        path: 03_colored_cube/deployment/test.png
     - name: Copy WARP
       working-directory: 04_textured_cube
-      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
+      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 04_textured_cube
       working-directory: 04_textured_cube
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
@@ -96,10 +96,10 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: 04_textured_cube image
-        path: 04_textured_cube/Deployment/test.png
+        path: 04_textured_cube/deployment/test.png
     - name: Copy WARP
       working-directory: 05_camera_controls
-      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
+      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 05_camera_controls
       working-directory: 05_camera_controls
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
@@ -111,10 +111,10 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: 05_camera_controls image
-        path: 05_camera_controls/Deployment/test.png
+        path: 05_camera_controls/deployment/test.png
     - name: Copy WARP
       working-directory: 06_render_targets
-      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
+      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 06_render_targets
       working-directory: 06_render_targets
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
@@ -126,10 +126,10 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: 06_render_targets image
-        path: 06_render_targets/Deployment/test.png
+        path: 06_render_targets/deployment/test.png
     - name: Copy WARP
       working-directory: 07_multiple_render_targets
-      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
+      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 07_multiple_render_targets
       working-directory: 07_multiple_render_targets
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
@@ -141,10 +141,10 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: 07_multiple_render_targets image
-        path: 07_multiple_render_targets/Deployment/test.png
+        path: 07_multiple_render_targets/deployment/test.png
     - name: Copy WARP
       working-directory: 08_float_render_targets
-      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
+      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 08_float_render_targets
       working-directory: 08_float_render_targets
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
@@ -156,10 +156,10 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: 08_float_render_targets image
-        path: 08_float_render_targets/Deployment/test.png
+        path: 08_float_render_targets/deployment/test.png
     - name: Copy WARP
       working-directory: 09_depth_render_targets
-      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
+      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 09_depth_render_targets
       working-directory: 09_depth_render_targets
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
@@ -171,10 +171,10 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: 09_depth_render_targets image
-        path: 09_depth_render_targets/Deployment/test.png
+        path: 09_depth_render_targets/deployment/test.png
     - name: Copy WARP
       working-directory: 10_cubemap
-      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
+      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 10_cubemap
       working-directory: 10_cubemap
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
@@ -186,10 +186,10 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: 10_cubemap image
-        path: 10_cubemap/Deployment/test.png
+        path: 10_cubemap/deployment/test.png
     - name: Copy WARP
       working-directory: 11_instanced_rendering
-      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
+      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 11_instanced_rendering
       working-directory: 11_instanced_rendering
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
@@ -201,10 +201,10 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: 11_instanced_rendering image
-        path: 11_instanced_rendering/Deployment/test.png
+        path: 11_instanced_rendering/deployment/test.png
     - name: Copy WARP
       working-directory: 12_set_render_target_depth
-      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
+      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 12_set_render_target_depth
       working-directory: 12_set_render_target_depth
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
@@ -216,10 +216,10 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: 12_set_render_target_depth image
-        path: 12_set_render_target_depth/Deployment/test.png
+        path: 12_set_render_target_depth/deployment/test.png
     - name: Copy WARP
       working-directory: 13_generate_mipmaps
-      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
+      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 13_generate_mipmaps
       working-directory: 13_generate_mipmaps
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
@@ -231,10 +231,10 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: 13_generate_mipmaps image
-        path: 13_generate_mipmaps/Deployment/test.png
+        path: 13_generate_mipmaps/deployment/test.png
     - name: Copy WARP
       working-directory: 14_set_mipmap
-      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
+      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 14_set_mipmap
       working-directory: 14_set_mipmap
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
@@ -246,10 +246,10 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: 14_set_mipmap image
-        path: 14_set_mipmap/Deployment/test.png
+        path: 14_set_mipmap/deployment/test.png
     - name: Copy WARP
       working-directory: 15_deinterleaved_buffers
-      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
+      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 15_deinterleaved_buffers
       working-directory: 15_deinterleaved_buffers
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
@@ -261,10 +261,10 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: 15_deinterleaved_buffers image
-        path: 15_deinterleaved_buffers/Deployment/test.png
+        path: 15_deinterleaved_buffers/deployment/test.png
     - name: Copy WARP
       working-directory: shader
-      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
+      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile shader
       working-directory: shader
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
@@ -276,10 +276,10 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: shader image
-        path: shader/Deployment/test.png
+        path: shader/deployment/test.png
     - name: Copy WARP
       working-directory: texture
-      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
+      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile texture
       working-directory: texture
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
@@ -291,10 +291,10 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: texture image
-        path: texture/Deployment/test.png
+        path: texture/deployment/test.png
     - name: Copy WARP
       working-directory: computeshader
-      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
+      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile computeshader
       working-directory: computeshader
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
@@ -306,10 +306,10 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: computeshader image
-        path: computeshader/Deployment/test.png
+        path: computeshader/deployment/test.png
     - name: Copy WARP
       working-directory: texturearray
-      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
+      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile texturearray
       working-directory: texturearray
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
@@ -321,10 +321,10 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: texturearray image
-        path: texturearray/Deployment/test.png
+        path: texturearray/deployment/test.png
     - name: Copy WARP
       working-directory: raytracing
-      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
+      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile raytracing
       working-directory: raytracing
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
@@ -336,10 +336,10 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: raytracing image
-        path: raytracing/Deployment/test.png
+        path: raytracing/deployment/test.png
     - name: Copy WARP
       working-directory: bindless
-      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll Deployment\d3d10warp.dll
+      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile bindless
       working-directory: bindless
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
@@ -351,4 +351,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: bindless image
-        path: bindless/Deployment/test.png
+        path: bindless/deployment/test.png

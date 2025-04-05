@@ -42,7 +42,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: 00_empty image
-        path: 00_empty/Deployment/test.png
+        path: 00_empty/deployment/test.png
     - name: Compile 01_triangle
       working-directory: 01_triangle
       run: ../kore/make linux -g vulkan --debug --option screenshot --compile
@@ -57,7 +57,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: 01_triangle image
-        path: 01_triangle/Deployment/test.png
+        path: 01_triangle/deployment/test.png
     - name: Compile shader
       working-directory: shader
       run: ../kore/make linux -g vulkan --debug --option screenshot --compile
@@ -72,4 +72,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: shader image
-        path: shader/Deployment/test.png
+        path: shader/deployment/test.png
