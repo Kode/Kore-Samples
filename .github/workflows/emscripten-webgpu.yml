@@ -25,7 +25,22 @@ jobs:
       run: ./get_dlc
     - name: Setup emscripten
       run: git clone https://github.com/emscripten-core/emsdk.git && cd emsdk && ./emsdk install latest
+    - name: Setup puppeteer
+      working-directory: .github
+      run: npm install puppeteer node-static
 
     - name: Compile shader
       working-directory: shader
       run: ../emsdk/emsdk activate latest && source ../emsdk/emsdk_env.sh && ../kore/make emscripten -g webgpu --debug --compile && cd build/debug && make
+    - name: Run shader
+      working-directory: shader
+      run: node ../.github/emscripten_screenshot.js
+    - name: Check shader
+      working-directory: shader
+      run: compare-im6 -metric mae ./reference.png ./deployment/test.png difference.png
+    - name: Upload shader failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: shader image
+        path: shader/deployment/test.png

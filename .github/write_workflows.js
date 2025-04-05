@@ -132,7 +132,7 @@ ${postfixSteps}
       workflowText +=
 `    - name: Copy WARP
       working-directory: ${sample}
-      run: echo F|xcopy D:\\a\\Kore-Samples\\Kore-Samples\\Microsoft.Direct3D.WARP.1.0.13\\build\\native\\bin\\x64\\d3d10warp.dll Deployment\\d3d10warp.dll
+      run: echo F|xcopy D:\\a\\Kore-Samples\\Kore-Samples\\Microsoft.Direct3D.WARP.1.0.13\\build\\native\\bin\\x64\\d3d10warp.dll deployment\\d3d10warp.dll
 `;
     }
 
@@ -175,7 +175,7 @@ ${postfixSteps}
       uses: actions/upload-artifact@v4
       with:
         name: ${sample} image
-        path: ${sample}/Deployment/test.png
+        path: ${sample}/deployment/test.png
 `;
     }
   }

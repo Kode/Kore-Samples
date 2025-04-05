@@ -3,7 +3,7 @@ const nstatic = require('node-static');
 const path = require('path');
 
 console.log('Running server on 8888');
-const fileServer = new nstatic.Server(path.join(__dirname, 'build', 'debug'), { cache: 0 });
+const fileServer = new nstatic.Server(path.join(process.cwd(), 'build', 'debug'), { cache: 0 });
 
 const server = require('http').createServer((request, response) => {
 	request.addListener('end', function () {
@@ -28,7 +28,7 @@ server.listen(8888);
 	const client = await page.target().createCDPSession();
 	await client.send('Page.setDownloadBehavior', {
 		behavior: 'allow',
-		downloadPath: __dirname,
+		downloadPath: path.join(process.cwd(), 'deployment'),
 	});
 
 	setTimeout(async () => {
