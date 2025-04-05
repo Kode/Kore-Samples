@@ -58,6 +58,21 @@ jobs:
       with:
         name: 01_triangle image
         path: 01_triangle/deployment/test.png
+    - name: Compile 02_matrix
+      working-directory: 02_matrix
+      run: ../kore/make linux -g vulkan --debug --option screenshot --compile
+    - name: Run 02_matrix
+      working-directory: 02_matrix/deployment
+      run: xvfb-run ../build/debug/02_matrix
+    - name: Check 02_matrix
+      working-directory: 02_matrix
+      run: compare-im6 -metric mae ./reference.png ./deployment/test.png difference.png
+    - name: Upload 02_matrix failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 02_matrix image
+        path: 02_matrix/deployment/test.png
     - name: Compile shader
       working-directory: shader
       run: ../kore/make linux -g vulkan --debug --option screenshot --compile
