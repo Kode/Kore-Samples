@@ -49,7 +49,7 @@ let browser = null;
 		core.info('Error: ' + e);
 	}
 	finally {
-		setTimeout(async () => {
+		setTimeout(() => {
 			core.info('Closing browser and server');
 			if (browser) {
 				browser.close();
@@ -61,7 +61,7 @@ let browser = null;
 					core.info('Killed the browser');
 				}
 				core.info('Browser and server closed');
-			}, 2000);
-		}, 5000);
+			}, 5000);
+		}, 15000);
 	}
 })();
