@@ -11,15 +11,10 @@ on:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v4
-
-    - name: Apt Update
-      run: sudo apt update
-    - name: Apt Install
-      run: sudo apt install ninja-build imagemagick
 
     - name: Get Submodules
       run: ./get_dlc
@@ -46,7 +41,7 @@ jobs:
       run: ls ~/
     - name: Check shader
       working-directory: shader
-      run: compare-im6 -metric mae ./reference.png ./deployment/test.png difference.png
+      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
     - name: Upload shader failure image
       if: failure()
       uses: actions/upload-artifact@v4

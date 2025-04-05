@@ -24,7 +24,7 @@ server.listen(8888);
 
 core.info('Starting browser');
 (async () => {
-	const browser = await puppeteer.launch({args: ['--no-sandbox', '--enable-unsafe-webgpu', '--enable-features=Vulkan']});
+	const browser = await puppeteer.launch();
 	const page = await browser.newPage();
 
 	page.on('console', msg => core.info('Page: ' + msg.text()));
