@@ -27,7 +27,7 @@ jobs:
       run: git clone https://github.com/emscripten-core/emsdk.git && cd emsdk && ./emsdk install latest
     - name: Setup puppeteer
       working-directory: .github
-      run: npm install puppeteer node-static
+      run: npm install puppeteer node-static @actions/core
 
     - name: Compile shader
       working-directory: shader
