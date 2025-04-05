@@ -24,26 +24,32 @@ server.listen(8888);
 
 core.info('Starting browser');
 (async () => {
-	core.info('Default args: ' + puppeteer.defaultArgs());
+	try {
+		core.info('Default args: ' + puppeteer.defaultArgs());
 
-	const browser = await puppeteer.launch({headless: 'shell', args: ['--no-sandbox', '--enable-gpu', '--ignore-gpu-blocklist', '--headless=new', '--use-angle=vulkan', '--enable-features=Vulkan', '--disable-vulkan-surface', '--enable-unsafe-webgpu']});
-	core.info('Browser version: ' + await browser.version());
+		const browser = await puppeteer.launch({headless: 'shell', args: ['--no-sandbox', '--enable-gpu', '--ignore-gpu-blocklist', '--headless=new', '--use-angle=vulkan', '--enable-features=Vulkan', '--disable-vulkan-surface', '--enable-unsafe-webgpu']});
+		core.info('Browser version: ' + await browser.version());
 
-	const page = await browser.newPage();
+		const page = await browser.newPage();
 
-	page.on('console', msg => core.info('Page: ' + msg.text()));
+		page.on('console', msg => core.info('Page: ' + msg.text()));
 
-	await page.goto('http://localhost:8888');
+		await page.goto('http://localhost:8888');
 
-	const client = await page.target().createCDPSession();
-	await client.send('Page.setDownloadBehavior', {
-		behavior: 'allow',
-		downloadPath: path.join(process.cwd(), 'deployment'),
-	});
-
-	setTimeout(async () => {
-		await browser.close();
-		server.close();
-		core.info('Browser and server closed');
-	}, 10000);
+		const client = await page.target().createCDPSession();
+		await client.send('Page.setDownloadBehavior', {
+			behavior: 'allow',
+			downloadPath: path.join(process.cwd(), 'deployment'),
+		});
+	}
+	catch (e) {
+		core.info('Error: ' + e);
+	}
+	finally {
+		setTimeout(async () => {
+			await browser.close();
+			server.close();
+			core.info('Browser and server closed');
+		}, 5000);
+	}
 })();
