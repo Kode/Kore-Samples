@@ -16,8 +16,14 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Install imagemagick
-      run: 'export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib/"'
+    - name: One
+      run: export MAGICK_HOME="$HOME/imagemagick"
+
+    - name: Two
+      run: export PATH="$MAGICK_HOME/bin:$PATH"
+
+    - name: Three
+      run: export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib/"
 
     - name: Get Submodules
       run: ./get_dlc
