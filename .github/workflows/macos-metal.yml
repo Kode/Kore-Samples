@@ -17,7 +17,7 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: Install imagemagick
-      run: 'brew install imagemagick'
+      run: 'export DYLD_LIBRARY_PATH="$MAGICK_HOME/lib/"'
 
     - name: Get Submodules
       run: ./get_dlc
