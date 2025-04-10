@@ -350,7 +350,11 @@ const workflows = [
     active: true,
     runsOn: 'macos-latest-xlarge',
     canExecute: true,
-    checked: [1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0]
+    checked: [1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0],
+    steps:
+`    - name: Install imagemagick
+      run: 'brew install imagemagick'
+`
   },
   {
     sys: 'macOS',

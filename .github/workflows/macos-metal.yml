@@ -16,6 +16,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Install imagemagick
+      run: 'brew install imagemagick'
 
     - name: Get Submodules
       run: ./get_dlc
