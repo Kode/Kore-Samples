@@ -348,8 +348,8 @@ const workflows = [
     sys: 'macOS',
     gfx: 'Metal',
     active: true,
-    runsOn: 'macOS-latest',
-    canExecute: false,
+    runsOn: 'macos-latest-xlarge',
+    canExecute: true,
     checked: [1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0]
   },
   {

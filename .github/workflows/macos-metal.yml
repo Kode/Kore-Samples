@@ -11,7 +11,7 @@ on:
 jobs:
   build:
 
-    runs-on: macOS-latest
+    runs-on: macos-latest-xlarge
 
     steps:
     - uses: actions/checkout@v4
@@ -22,37 +22,145 @@ jobs:
 
     - name: Compile 00_empty
       working-directory: 00_empty
-      run: ../kore/make osx -g metal --debug --compile
+      run: ../kore/make osx -g metal --debug --option screenshot --run
+    - name: Check 00_empty
+      working-directory: 00_empty
+      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+    - name: Upload 00_empty failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 00_empty image
+        path: 00_empty/deployment/test.png
     - name: Compile 01_triangle
       working-directory: 01_triangle
-      run: ../kore/make osx -g metal --debug --compile
+      run: ../kore/make osx -g metal --debug --option screenshot --run
+    - name: Check 01_triangle
+      working-directory: 01_triangle
+      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+    - name: Upload 01_triangle failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 01_triangle image
+        path: 01_triangle/deployment/test.png
     - name: Compile 02_matrix
       working-directory: 02_matrix
-      run: ../kore/make osx -g metal --debug --compile
+      run: ../kore/make osx -g metal --debug --option screenshot --run
+    - name: Check 02_matrix
+      working-directory: 02_matrix
+      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+    - name: Upload 02_matrix failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 02_matrix image
+        path: 02_matrix/deployment/test.png
     - name: Compile 03_colored_cube
       working-directory: 03_colored_cube
-      run: ../kore/make osx -g metal --debug --compile
+      run: ../kore/make osx -g metal --debug --option screenshot --run
+    - name: Check 03_colored_cube
+      working-directory: 03_colored_cube
+      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+    - name: Upload 03_colored_cube failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 03_colored_cube image
+        path: 03_colored_cube/deployment/test.png
     - name: Compile 04_textured_cube
       working-directory: 04_textured_cube
-      run: ../kore/make osx -g metal --debug --compile
+      run: ../kore/make osx -g metal --debug --option screenshot --run
+    - name: Check 04_textured_cube
+      working-directory: 04_textured_cube
+      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+    - name: Upload 04_textured_cube failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 04_textured_cube image
+        path: 04_textured_cube/deployment/test.png
     - name: Compile 05_camera_controls
       working-directory: 05_camera_controls
-      run: ../kore/make osx -g metal --debug --compile
+      run: ../kore/make osx -g metal --debug --option screenshot --run
+    - name: Check 05_camera_controls
+      working-directory: 05_camera_controls
+      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+    - name: Upload 05_camera_controls failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 05_camera_controls image
+        path: 05_camera_controls/deployment/test.png
     - name: Compile 06_render_targets
       working-directory: 06_render_targets
-      run: ../kore/make osx -g metal --debug --compile
+      run: ../kore/make osx -g metal --debug --option screenshot --run
+    - name: Check 06_render_targets
+      working-directory: 06_render_targets
+      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+    - name: Upload 06_render_targets failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 06_render_targets image
+        path: 06_render_targets/deployment/test.png
     - name: Compile 07_multiple_render_targets
       working-directory: 07_multiple_render_targets
-      run: ../kore/make osx -g metal --debug --compile
+      run: ../kore/make osx -g metal --debug --option screenshot --run
+    - name: Check 07_multiple_render_targets
+      working-directory: 07_multiple_render_targets
+      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+    - name: Upload 07_multiple_render_targets failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 07_multiple_render_targets image
+        path: 07_multiple_render_targets/deployment/test.png
     - name: Compile shader
       working-directory: shader
-      run: ../kore/make osx -g metal --debug --compile
+      run: ../kore/make osx -g metal --debug --option screenshot --run
+    - name: Check shader
+      working-directory: shader
+      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+    - name: Upload shader failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: shader image
+        path: shader/deployment/test.png
     - name: Compile texture
       working-directory: texture
-      run: ../kore/make osx -g metal --debug --compile
+      run: ../kore/make osx -g metal --debug --option screenshot --run
+    - name: Check texture
+      working-directory: texture
+      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+    - name: Upload texture failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: texture image
+        path: texture/deployment/test.png
     - name: Compile computeshader
       working-directory: computeshader
-      run: ../kore/make osx -g metal --debug --compile
+      run: ../kore/make osx -g metal --debug --option screenshot --run
+    - name: Check computeshader
+      working-directory: computeshader
+      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+    - name: Upload computeshader failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: computeshader image
+        path: computeshader/deployment/test.png
     - name: Compile texturearray
       working-directory: texturearray
-      run: ../kore/make osx -g metal --debug --compile
+      run: ../kore/make osx -g metal --debug --option screenshot --run
+    - name: Check texturearray
+      working-directory: texturearray
+      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+    - name: Upload texturearray failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: texturearray image
+        path: texturearray/deployment/test.png
