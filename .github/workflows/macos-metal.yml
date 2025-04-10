@@ -33,7 +33,7 @@ jobs:
       run: ../kore/make osx -g metal --debug --option screenshot --run
     - name: Check 00_empty
       working-directory: 00_empty
-      run: $HOME/imagemagick/magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: $HOME/imagemagick/bin/magick compare -metric mae ./reference.png ./deployment/test.png difference.png
     - name: Upload 00_empty failure image
       if: failure()
       uses: actions/upload-artifact@v4
