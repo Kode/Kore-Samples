@@ -348,8 +348,8 @@ const workflows = [
     sys: 'macOS',
     gfx: 'Metal',
     active: true,
-    runsOn: 'macos-latest-xlarge',
-    canExecute: true,
+    runsOn: 'macOS-latest',
+    canExecute: false,
     checked: [1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0],
     steps:
 `    - name: Install imagemagick
