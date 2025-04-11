@@ -19,8 +19,11 @@ catch (err) {
 	}
 	else {
 		const { stdout, stderr } = err;
+		console.log('Output is ' + stderr + '.');
+
 		const compare = parseFloat(stderr.substring(stderr.indexOf('(') + 1, stderr.indexOf(')')));
 		console.log('Compare value is ' + compare + '.');
+		
 		if (compare > 0.001) {
 			console.log('That\'s not good enough.');
 			process.exit(1);
