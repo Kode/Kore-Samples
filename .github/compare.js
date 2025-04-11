@@ -10,7 +10,8 @@ else if (process.platform === 'darwin') {
 }
 
 try {
-	child_process.execSync(command + ' -metric mae ./reference.png ./test.png difference.png', {stdio: 'pipe', encoding: 'utf8'});
+	child_process.execSync(command + ' -metric mae ./reference.png ./deployment/test.png difference.png', {stdio: 'pipe', encoding: 'utf8'});
+	console.log('Images are identical.');
 }
 catch (err) {
 	if (err.code) {
@@ -22,6 +23,12 @@ catch (err) {
 		console.log('Output is ' + stderr + '.');
 
 		const compare = parseFloat(stderr.substring(stderr.indexOf('(') + 1, stderr.indexOf(')')));
+
+		if (isNaN(compare)) {
+			console.log('Could not find compare value.');
+			process.exit(1);
+		}
+
 		console.log('Compare value is ' + compare + '.');
 		
 		if (compare > 0.001) {
