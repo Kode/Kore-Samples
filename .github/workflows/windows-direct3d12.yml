@@ -30,7 +30,7 @@ jobs:
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
     - name: Check 00_empty
       working-directory: 00_empty
-      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload 00_empty failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -45,7 +45,7 @@ jobs:
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
     - name: Check 01_triangle
       working-directory: 01_triangle
-      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload 01_triangle failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -60,7 +60,7 @@ jobs:
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
     - name: Check 02_matrix
       working-directory: 02_matrix
-      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload 02_matrix failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -75,7 +75,7 @@ jobs:
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
     - name: Check 03_colored_cube
       working-directory: 03_colored_cube
-      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload 03_colored_cube failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -90,7 +90,7 @@ jobs:
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
     - name: Check 04_textured_cube
       working-directory: 04_textured_cube
-      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload 04_textured_cube failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -105,7 +105,7 @@ jobs:
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
     - name: Check 05_camera_controls
       working-directory: 05_camera_controls
-      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload 05_camera_controls failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -120,7 +120,7 @@ jobs:
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
     - name: Check 06_render_targets
       working-directory: 06_render_targets
-      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload 06_render_targets failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -135,7 +135,7 @@ jobs:
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
     - name: Check 07_multiple_render_targets
       working-directory: 07_multiple_render_targets
-      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload 07_multiple_render_targets failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -150,7 +150,7 @@ jobs:
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
     - name: Check 08_float_render_targets
       working-directory: 08_float_render_targets
-      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload 08_float_render_targets failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -165,7 +165,7 @@ jobs:
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
     - name: Check 09_depth_render_targets
       working-directory: 09_depth_render_targets
-      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload 09_depth_render_targets failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -180,7 +180,7 @@ jobs:
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
     - name: Check 10_cubemap
       working-directory: 10_cubemap
-      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload 10_cubemap failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -195,7 +195,7 @@ jobs:
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
     - name: Check 11_instanced_rendering
       working-directory: 11_instanced_rendering
-      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload 11_instanced_rendering failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -210,7 +210,7 @@ jobs:
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
     - name: Check 12_set_render_target_depth
       working-directory: 12_set_render_target_depth
-      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload 12_set_render_target_depth failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -225,7 +225,7 @@ jobs:
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
     - name: Check 13_generate_mipmaps
       working-directory: 13_generate_mipmaps
-      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload 13_generate_mipmaps failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -240,7 +240,7 @@ jobs:
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
     - name: Check 14_set_mipmap
       working-directory: 14_set_mipmap
-      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload 14_set_mipmap failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -255,7 +255,7 @@ jobs:
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
     - name: Check 15_deinterleaved_buffers
       working-directory: 15_deinterleaved_buffers
-      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload 15_deinterleaved_buffers failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -270,7 +270,7 @@ jobs:
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
     - name: Check shader
       working-directory: shader
-      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload shader failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -285,7 +285,7 @@ jobs:
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
     - name: Check texture
       working-directory: texture
-      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload texture failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -300,7 +300,7 @@ jobs:
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
     - name: Check computeshader
       working-directory: computeshader
-      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload computeshader failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -315,7 +315,7 @@ jobs:
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
     - name: Check texturearray
       working-directory: texturearray
-      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload texturearray failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -330,7 +330,7 @@ jobs:
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
     - name: Check raytracing
       working-directory: raytracing
-      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload raytracing failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -345,7 +345,7 @@ jobs:
       run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
     - name: Check bindless
       working-directory: bindless
-      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload bindless failure image
       if: failure()
       uses: actions/upload-artifact@v4

@@ -36,7 +36,7 @@ jobs:
       run: xvfb-run ../build/debug/00_empty
     - name: Check 00_empty
       working-directory: 00_empty
-      run: compare-im6 -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload 00_empty failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -51,7 +51,7 @@ jobs:
       run: xvfb-run ../build/debug/01_triangle
     - name: Check 01_triangle
       working-directory: 01_triangle
-      run: compare-im6 -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload 01_triangle failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -66,7 +66,7 @@ jobs:
       run: xvfb-run ../build/debug/02_matrix
     - name: Check 02_matrix
       working-directory: 02_matrix
-      run: compare-im6 -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload 02_matrix failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -81,7 +81,7 @@ jobs:
       run: xvfb-run ../build/debug/shader
     - name: Check shader
       working-directory: shader
-      run: compare-im6 -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload shader failure image
       if: failure()
       uses: actions/upload-artifact@v4

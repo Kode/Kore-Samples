@@ -178,13 +178,11 @@ ${postfixSteps}
       workflowText += workflow.env;
     }
 
-    const magickCommand = workflow.sys === 'Linux' ? 'compare-im6' : 'magick compare';
- 
     if (workflow.canExecute) {
       workflowText +=
 `    - name: Check ${sample}
       working-directory: ${sample}
-      run: ${magickCommand} -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload ${sample} failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -348,13 +346,9 @@ const workflows = [
     sys: 'macOS',
     gfx: 'Metal',
     active: true,
-    runsOn: 'macos-latest-xlarge',
+    runsOn: '[self-hosted, macOS]',
     canExecute: true,
-    checked: [1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0],
-    steps:
-`    - name: Install imagemagick
-      run: 'brew install imagemagick'
-`
+    checked: [1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0]
   },
   {
     sys: 'macOS',

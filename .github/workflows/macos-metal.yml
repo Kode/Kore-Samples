@@ -16,6 +16,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+
     - name: Get Submodules
       run: ./get_dlc
 
@@ -24,7 +25,7 @@ jobs:
       run: ../kore/make osx -g metal --debug --option screenshot --run
     - name: Check 00_empty
       working-directory: 00_empty
-      run: export DYLD_LIBRARY_PATH="$HOME/imagemagick/lib/" && $HOME/imagemagick/bin/magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload 00_empty failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -36,7 +37,7 @@ jobs:
       run: ../kore/make osx -g metal --debug --option screenshot --run
     - name: Check 01_triangle
       working-directory: 01_triangle
-      run: export DYLD_LIBRARY_PATH="$HOME/imagemagick/lib/" && $HOME/imagemagick/bin/magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload 01_triangle failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -48,7 +49,7 @@ jobs:
       run: ../kore/make osx -g metal --debug --option screenshot --run
     - name: Check 02_matrix
       working-directory: 02_matrix
-      run: export DYLD_LIBRARY_PATH="$HOME/imagemagick/lib/" && $HOME/imagemagick/bin/magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload 02_matrix failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -60,7 +61,7 @@ jobs:
       run: ../kore/make osx -g metal --debug --option screenshot --run
     - name: Check 03_colored_cube
       working-directory: 03_colored_cube
-      run: export DYLD_LIBRARY_PATH="$HOME/imagemagick/lib/" && $HOME/imagemagick/bin/magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload 03_colored_cube failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -72,7 +73,7 @@ jobs:
       run: ../kore/make osx -g metal --debug --option screenshot --run
     - name: Check 04_textured_cube
       working-directory: 04_textured_cube
-      run: export DYLD_LIBRARY_PATH="$HOME/imagemagick/lib/" && $HOME/imagemagick/bin/magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload 04_textured_cube failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -84,7 +85,7 @@ jobs:
       run: ../kore/make osx -g metal --debug --option screenshot --run
     - name: Check 05_camera_controls
       working-directory: 05_camera_controls
-      run: export DYLD_LIBRARY_PATH="$HOME/imagemagick/lib/" && $HOME/imagemagick/bin/magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload 05_camera_controls failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -96,7 +97,7 @@ jobs:
       run: ../kore/make osx -g metal --debug --option screenshot --run
     - name: Check 06_render_targets
       working-directory: 06_render_targets
-      run: export DYLD_LIBRARY_PATH="$HOME/imagemagick/lib/" && $HOME/imagemagick/bin/magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload 06_render_targets failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -108,7 +109,7 @@ jobs:
       run: ../kore/make osx -g metal --debug --option screenshot --run
     - name: Check 07_multiple_render_targets
       working-directory: 07_multiple_render_targets
-      run: export DYLD_LIBRARY_PATH="$HOME/imagemagick/lib/" && $HOME/imagemagick/bin/magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload 07_multiple_render_targets failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -120,7 +121,7 @@ jobs:
       run: ../kore/make osx -g metal --debug --option screenshot --run
     - name: Check shader
       working-directory: shader
-      run: export DYLD_LIBRARY_PATH="$HOME/imagemagick/lib/" && $HOME/imagemagick/bin/magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload shader failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -132,7 +133,7 @@ jobs:
       run: ../kore/make osx -g metal --debug --option screenshot --run
     - name: Check texture
       working-directory: texture
-      run: export DYLD_LIBRARY_PATH="$HOME/imagemagick/lib/" && $HOME/imagemagick/bin/magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload texture failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -144,7 +145,7 @@ jobs:
       run: ../kore/make osx -g metal --debug --option screenshot --run
     - name: Check computeshader
       working-directory: computeshader
-      run: export DYLD_LIBRARY_PATH="$HOME/imagemagick/lib/" && $HOME/imagemagick/bin/magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload computeshader failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -156,7 +157,7 @@ jobs:
       run: ../kore/make osx -g metal --debug --option screenshot --run
     - name: Check texturearray
       working-directory: texturearray
-      run: export DYLD_LIBRARY_PATH="$HOME/imagemagick/lib/" && $HOME/imagemagick/bin/magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload texturearray failure image
       if: failure()
       uses: actions/upload-artifact@v4

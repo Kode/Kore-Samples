@@ -32,7 +32,7 @@ jobs:
       run: xvfb-run ../build/debug/shader
     - name: Check shader
       working-directory: shader
-      run: compare-im6 -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload shader failure image
       if: failure()
       uses: actions/upload-artifact@v4

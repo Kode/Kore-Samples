@@ -1,6 +1,15 @@
 const child_process = require('child_process');
 
-const proc = child_process.spawnSync('magick', ['compare', '-metric', 'mae', './reference.png', './test.png', 'difference.png'], {encoding: 'utf8'});
+let command = 'magick compare';
+
+if (process.platform === 'linux') {
+	command = 'compare-im6';
+}
+else if (process.platform === 'darwin') {
+	command = 'export DYLD_LIBRARY_PATH="$HOME/imagemagick/lib/" && $HOME/imagemagick/bin/magick compare';
+}
+
+const proc = child_process.spawnSync(command, ['-metric', 'mae', './reference.png', './test.png', 'difference.png'], {encoding: 'utf8'});
 if (proc.status !== 0) {
 	const compare = parseFloat(proc.stderr.substring(proc.stderr.indexOf('(') + 1, proc.stderr.indexOf(')')));
 	console.log('Compare value is ' + compare + '.');

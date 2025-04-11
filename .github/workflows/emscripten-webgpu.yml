@@ -33,7 +33,7 @@ jobs:
       run: node ../.github/emscripten_screenshot.js
     - name: Check 00_empty
       working-directory: 00_empty
-      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload 00_empty failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -48,7 +48,7 @@ jobs:
       run: node ../.github/emscripten_screenshot.js
     - name: Check 01_triangle
       working-directory: 01_triangle
-      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload 01_triangle failure image
       if: failure()
       uses: actions/upload-artifact@v4
@@ -63,7 +63,7 @@ jobs:
       run: node ../.github/emscripten_screenshot.js
     - name: Check shader
       working-directory: shader
-      run: magick compare -metric mae ./reference.png ./deployment/test.png difference.png
+      run: node ../.github/compare.js
     - name: Upload shader failure image
       if: failure()
       uses: actions/upload-artifact@v4
