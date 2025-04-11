@@ -30,7 +30,7 @@ const tex: tex2darray;
 const sam: sampler;
 
 fun pix(input: vertex_out): float4 {
-	var color: float4 = sample(tex, sam, float3(input.tex, input.tex.x * 2));
+	var color: float4 = sample(tex, sam, float3(input.tex, floor(input.tex.x * 2.0)));
 	return float4(color.r, color.g, color.b, 1.0);
 }
 
