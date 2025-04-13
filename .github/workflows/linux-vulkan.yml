@@ -103,6 +103,21 @@ jobs:
       with:
         name: 04_textured_cube image
         path: 04_textured_cube/deployment/test.png
+    - name: Compile 05_camera_controls
+      working-directory: 05_camera_controls
+      run: ../kore/make linux -g vulkan --debug --option screenshot --compile
+    - name: Run 05_camera_controls
+      working-directory: 05_camera_controls/deployment
+      run: xvfb-run ../build/debug/05_camera_controls
+    - name: Check 05_camera_controls
+      working-directory: 05_camera_controls
+      run: node ../.github/compare.js
+    - name: Upload 05_camera_controls failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 05_camera_controls image
+        path: 05_camera_controls/deployment/test.png
     - name: Compile shader
       working-directory: shader
       run: ../kore/make linux -g vulkan --debug --option screenshot --compile
@@ -118,3 +133,18 @@ jobs:
       with:
         name: shader image
         path: shader/deployment/test.png
+    - name: Compile texture
+      working-directory: texture
+      run: ../kore/make linux -g vulkan --debug --option screenshot --compile
+    - name: Run texture
+      working-directory: texture/deployment
+      run: xvfb-run ../build/debug/texture
+    - name: Check texture
+      working-directory: texture
+      run: node ../.github/compare.js
+    - name: Upload texture failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: texture image
+        path: texture/deployment/test.png

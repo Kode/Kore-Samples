@@ -378,9 +378,10 @@ int kickstart(int argc, char **argv) {
 
 	kong_init(&device);
 
-	kore_gpu_buffer_parameters buffer_parameters;
-	buffer_parameters.size        = kore_gpu_device_align_texture_row_bytes(&device, 512 * 4) * 512;
-	buffer_parameters.usage_flags = KORE_GPU_BUFFER_USAGE_CPU_WRITE;
+	kore_gpu_buffer_parameters buffer_parameters = {
+	    .size        = kore_gpu_device_align_texture_row_bytes(&device, 512 * 4) * 512,
+	    .usage_flags = KORE_GPU_BUFFER_USAGE_CPU_WRITE | KORE_GPU_BUFFER_USAGE_COPY_SRC,
+	};
 	kore_gpu_device_create_buffer(&device, &buffer_parameters, &image_buffer);
 
 	kore_image image;
