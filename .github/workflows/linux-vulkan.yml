@@ -133,6 +133,21 @@ jobs:
       with:
         name: 06_render_targets image
         path: 06_render_targets/deployment/test.png
+    - name: Compile 07_multiple_render_targets
+      working-directory: 07_multiple_render_targets
+      run: ../kore/make linux -g vulkan --debug --option screenshot --compile
+    - name: Run 07_multiple_render_targets
+      working-directory: 07_multiple_render_targets/deployment
+      run: xvfb-run ../build/debug/07_multiple_render_targets
+    - name: Check 07_multiple_render_targets
+      working-directory: 07_multiple_render_targets
+      run: node ../.github/compare.js
+    - name: Upload 07_multiple_render_targets failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 07_multiple_render_targets image
+        path: 07_multiple_render_targets/deployment/test.png
     - name: Compile shader
       working-directory: shader
       run: ../kore/make linux -g vulkan --debug --option screenshot --compile

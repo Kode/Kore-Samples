@@ -330,7 +330,7 @@ const workflows = [
     runsOn: 'ubuntu-latest',
     canExecute: true,
     xvfb: true,
-    checked: [1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0],
+    checked: [1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0],
     steps:
 `    - name: Get LunarG key
       run: wget -qO- https://packages.lunarg.com/lunarg-signing-key-pub.asc | sudo tee /etc/apt/trusted.gpg.d/lunarg.asc
