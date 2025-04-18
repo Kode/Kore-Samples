@@ -193,3 +193,18 @@ jobs:
       with:
         name: computeshader image
         path: computeshader/deployment/test.png
+    - name: Compile texturearray
+      working-directory: texturearray
+      run: ../kore/make linux -g vulkan --debug --option screenshot --compile
+    - name: Run texturearray
+      working-directory: texturearray/deployment
+      run: xvfb-run ../build/debug/texturearray
+    - name: Check texturearray
+      working-directory: texturearray
+      run: node ../.github/compare.js
+    - name: Upload texturearray failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: texturearray image
+        path: texturearray/deployment/test.png
