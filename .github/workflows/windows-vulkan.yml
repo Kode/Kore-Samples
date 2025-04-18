@@ -34,8 +34,53 @@ jobs:
       run: ../kore/make windows -v vs2022 -g vulkan --debug --compile
       env:
         VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+    - name: Compile 02_matrix
+      working-directory: 02_matrix
+      run: ../kore/make windows -v vs2022 -g vulkan --debug --compile
+      env:
+        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+    - name: Compile 03_colored_cube
+      working-directory: 03_colored_cube
+      run: ../kore/make windows -v vs2022 -g vulkan --debug --compile
+      env:
+        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+    - name: Compile 04_textured_cube
+      working-directory: 04_textured_cube
+      run: ../kore/make windows -v vs2022 -g vulkan --debug --compile
+      env:
+        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+    - name: Compile 05_camera_controls
+      working-directory: 05_camera_controls
+      run: ../kore/make windows -v vs2022 -g vulkan --debug --compile
+      env:
+        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+    - name: Compile 06_render_targets
+      working-directory: 06_render_targets
+      run: ../kore/make windows -v vs2022 -g vulkan --debug --compile
+      env:
+        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+    - name: Compile 07_multiple_render_targets
+      working-directory: 07_multiple_render_targets
+      run: ../kore/make windows -v vs2022 -g vulkan --debug --compile
+      env:
+        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
     - name: Compile shader
       working-directory: shader
+      run: ../kore/make windows -v vs2022 -g vulkan --debug --compile
+      env:
+        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+    - name: Compile texture
+      working-directory: texture
+      run: ../kore/make windows -v vs2022 -g vulkan --debug --compile
+      env:
+        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+    - name: Compile computeshader
+      working-directory: computeshader
+      run: ../kore/make windows -v vs2022 -g vulkan --debug --compile
+      env:
+        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+    - name: Compile texturearray
+      working-directory: texturearray
       run: ../kore/make windows -v vs2022 -g vulkan --debug --compile
       env:
         VULKAN_SDK: C:\VulkanSDK\1.3.275.0
