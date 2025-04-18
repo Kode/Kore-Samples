@@ -18,7 +18,7 @@ EM_JS(void, kore_html5_download_image, (const char *filename, void *data, int si
 	const a = document.createElement('a');
 	a.style = 'display:none';
 	document.body.appendChild(a);
-	const view = new Uint8Array(Module.HEAPU8.buffer, data, size);
+	const view = new Uint8Array(HEAPU8.buffer, data, size);
 	const blob = new Blob([view], {
 		type: 'octet/stream'
 	});
