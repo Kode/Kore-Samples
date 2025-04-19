@@ -107,7 +107,7 @@ int kickstart(int argc, char **argv) {
 	    .mipmap_filter  = KORE_GPU_MIPMAP_FILTER_MODE_NEAREST,
 	    .lod_min_clamp  = 1,
 	    .lod_max_clamp  = 32,
-	    .compare        = KORE_GPU_COMPARE_FUNCTION_ALWAYS,
+	    .compare        = KORE_GPU_COMPARE_FUNCTION_UNDEFINED,
 	    .max_anisotropy = 1,
 	};
 	kore_gpu_device_create_sampler(&device, &sampler_parameters, &sampler);
