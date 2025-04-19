@@ -108,7 +108,7 @@ int kickstart(int argc, char **argv) {
 		texture_parameters.sample_count          = 1;
 		texture_parameters.dimension             = KORE_GPU_TEXTURE_DIMENSION_2D;
 		texture_parameters.format                = KORE_GPU_TEXTURE_FORMAT_RGBA32_FLOAT;
-		texture_parameters.usage                 = KORE_GPU_TEXTURE_USAGE_RENDER_ATTACHMENT;
+		texture_parameters.usage                 = KORE_GPU_TEXTURE_USAGE_RENDER_ATTACHMENT | copy_source_texture_texture_usage_flags();
 		kore_gpu_device_create_texture(&device, &texture_parameters, &float_render_target);
 	}
 
@@ -121,7 +121,7 @@ int kickstart(int argc, char **argv) {
 		texture_parameters.sample_count          = 1;
 		texture_parameters.dimension             = KORE_GPU_TEXTURE_DIMENSION_2D;
 		texture_parameters.format                = KORE_GPU_TEXTURE_FORMAT_RGBA8_UNORM;
-		texture_parameters.usage                 = KORE_GPU_TEXTURE_USAGE_READ_WRITE;
+		texture_parameters.usage                 = KORE_GPU_TEXTURE_USAGE_COPY_SRC | copy_destination_texture_texture_usage_flags();
 		kore_gpu_device_create_texture(&device, &texture_parameters, &render_target);
 	}
 
