@@ -138,7 +138,7 @@ int kickstart(int argc, char **argv) {
 	render_target_parameters.sample_count          = 1;
 	render_target_parameters.dimension             = KORE_GPU_TEXTURE_DIMENSION_2D;
 	render_target_parameters.format                = KORE_GPU_TEXTURE_FORMAT_RGBA8_UNORM;
-	render_target_parameters.usage                 = KORE_GPU_TEXTURE_USAGE_READ_WRITE;
+	render_target_parameters.usage                 = render_target_texture_usage_flags();
 	kore_gpu_device_create_texture(&device, &render_target_parameters, &texture);
 
 	kore_gpu_device_create_command_list(&device, KORE_GPU_COMMAND_LIST_TYPE_GRAPHICS, &list);
