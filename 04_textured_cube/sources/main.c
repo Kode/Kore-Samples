@@ -206,12 +206,15 @@ static void update(void *data) {
 	constants_type_buffer_unlock(&constants);
 
 	if (first_update) {
-		kore_gpu_image_copy_buffer source = {0};
-		source.buffer                     = &image_buffer;
-		source.bytes_per_row              = 512 * 4;
+		kore_gpu_image_copy_buffer source = {
+			.buffer                     = &image_buffer,
+			.bytes_per_row              = 512 * 4,
+			.rows_per_image             = 512,
+		};
 
-		kore_gpu_image_copy_texture destination = {0};
-		destination.texture                     = &texture;
+		kore_gpu_image_copy_texture destination = {
+			.texture                     = &texture,
+		};
 
 		kore_gpu_command_list_copy_buffer_to_texture(&list, &source, &destination, 512, 512, 1);
 
@@ -226,13 +229,7 @@ static void update(void *data) {
 	        {
 	            {
 	                .load_op = KORE_GPU_LOAD_OP_CLEAR,
-	                .clear_value =
-	                    {
-	                        .r = 0.0f,
-	                        .g = 0.0f,
-	                        .b = 0.25f,
-	                        .a = 1.0f,
-	                    },
+	                .clear_value = {0.0f, 0.0f, 0.25f, 1.0f},
 	                .texture.texture           = framebuffer,
 	                .texture.array_layer_count = 1,
 	                .texture.mip_level_count   = 1,
@@ -327,7 +324,7 @@ int kickstart(int argc, char **argv) {
 	    .mipmap_filter  = KORE_GPU_MIPMAP_FILTER_MODE_NEAREST,
 	    .lod_min_clamp  = 1,
 	    .lod_max_clamp  = 32,
-	    .compare        = KORE_GPU_COMPARE_FUNCTION_ALWAYS,
+	    .compare        = KORE_GPU_COMPARE_FUNCTION_UNDEFINED,
 	    .max_anisotropy = 1,
 	};
 	kore_gpu_device_create_sampler(&device, &sampler_parameters, &sampler);
