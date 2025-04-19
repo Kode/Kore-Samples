@@ -70,7 +70,7 @@ const mip_source_texture: tex2d;
 #[set(mip)]
 const mip_source_sampler: sampler;
 
-#[set(mip), write]
+#[set(mip)]
 const mip_destination_texture: tex2d;
 
 #[compute, threads(8, 8, 1)]

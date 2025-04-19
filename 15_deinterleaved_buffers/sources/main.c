@@ -330,7 +330,7 @@ int kickstart(int argc, char **argv) {
 	    .sample_count          = 1,
 	    .dimension             = KORE_GPU_TEXTURE_DIMENSION_2D,
 	    .format                = KORE_GPU_TEXTURE_FORMAT_RGBA8_UNORM,
-	    .usage                 = KORE_GPU_TEXTURE_USAGE_SAMPLE,
+	    .usage                 = tex_texture_usage_flags(),
 	};
 	kore_gpu_device_create_texture(&device, &texture_params, &texture);
 

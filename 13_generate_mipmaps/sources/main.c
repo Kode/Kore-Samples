@@ -152,7 +152,8 @@ int kickstart(int argc, char **argv) {
 		    .sample_count          = 1,
 		    .dimension             = KORE_GPU_TEXTURE_DIMENSION_2D,
 		    .format                = KORE_GPU_TEXTURE_FORMAT_RGBA8_UNORM,
-		    .usage                 = KORE_GPU_TEXTURE_USAGE_RENDER_ATTACHMENT | KORE_GPU_TEXTURE_USAGE_READ_WRITE,
+		    .usage                 = KORE_GPU_TEXTURE_USAGE_RENDER_ATTACHMENT | fs_texture_texture_usage_flags() | mip_source_texture_texture_usage_flags() |
+		             mip_destination_texture_texture_usage_flags(),
 		};
 		kore_gpu_device_create_texture(&device, &texture_parameters, &render_target);
 	}
