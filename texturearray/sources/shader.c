@@ -47,8 +47,9 @@ static void update(void *data) {
 	if (first_update) {
 		{
 			kore_gpu_image_copy_buffer source = {
-			    .buffer        = &image_buffer,
-			    .bytes_per_row = kore_gpu_device_align_texture_row_bytes(&device, 250 * 4),
+			    .buffer         = &image_buffer,
+			    .bytes_per_row  = kore_gpu_device_align_texture_row_bytes(&device, 250 * 4),
+				.rows_per_image = 250,
 			};
 
 			kore_gpu_image_copy_texture destination = {
@@ -62,8 +63,9 @@ static void update(void *data) {
 
 		{
 			kore_gpu_image_copy_buffer source = {
-			    .buffer        = &image_buffer2,
-			    .bytes_per_row = kore_gpu_device_align_texture_row_bytes(&device, 250 * 4),
+			    .buffer         = &image_buffer2,
+			    .bytes_per_row  = kore_gpu_device_align_texture_row_bytes(&device, 250 * 4),
+				.rows_per_image = 250,
 			};
 
 			kore_gpu_image_copy_texture destination = {
