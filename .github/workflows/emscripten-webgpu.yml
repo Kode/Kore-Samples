@@ -175,3 +175,18 @@ jobs:
       with:
         name: texture image
         path: texture/deployment/test.png
+    - name: Compile texturearray
+      working-directory: texturearray
+      run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
+    - name: Run texturearray
+      working-directory: texturearray
+      run: node ../.github/emscripten_screenshot.js
+    - name: Check texturearray
+      working-directory: texturearray
+      run: node ../.github/compare.js
+    - name: Upload texturearray failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: texturearray image
+        path: texturearray/deployment/test.png
