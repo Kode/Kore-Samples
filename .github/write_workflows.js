@@ -99,14 +99,6 @@ ${postfixSteps}
       }
     }
 
-    if (workflow.noCompute && sample === 'ComputeShader') {
-      continue;
-    }
-
-    if (workflow.noTexArray && sample === 'TextureArray') {
-      continue;
-    }
-
     const prefix = workflow.compilePrefix ?? '';
     const postfix = workflow.compilePostfix ?? '';
     const gfx = workflow.gfx ? ((workflow.gfx === 'WebGL') ? ' -g opengl' : ' -g ' + workflow.gfx.toLowerCase().replace(/ /g, '')) : '';
@@ -230,9 +222,7 @@ const workflows = [
     postfixSteps:
 `    - name: Setup emscripten
       run: git clone https://github.com/emscripten-core/emsdk.git && cd emsdk && ./emsdk install latest
-`,
-    noCompute: true,
-    noTexArray: true
+`
   },
   {
     sys: 'Emscripten',
@@ -246,9 +236,9 @@ const workflows = [
     compilePostfix: ' && cd build/debug && make',
     emscriptenScreenshot: true,
     postfixSteps:
-`    - name: Setup emscripten
+`    - name: Setup Emscripten
       run: git clone https://github.com/emscripten-core/emsdk.git && cd emsdk && ./emsdk install latest
-    - name: Setup puppeteer
+    - name: Setup the screenshot script
       working-directory: .github
       run: npm install puppeteer node-static @actions/core
 `
@@ -259,8 +249,6 @@ const workflows = [
     active: true,
     runsOn: 'ubuntu-latest',
     steps: '',
-    noCompute: true,
-    noTexArray: true,
     checked: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     steps:
 `    - name: Apt Update
@@ -297,7 +285,6 @@ const workflows = [
     active: true,
     runsOn: 'macOS-latest',
     options: '--nosigning',
-    noCompute: true,
     checked: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
   },
   {
