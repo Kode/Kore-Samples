@@ -100,6 +100,21 @@ jobs:
       with:
         name: 04_textured_cube image
         path: 04_textured_cube/deployment/test.png
+    - name: Compile 05_camera_controls
+      working-directory: 05_camera_controls
+      run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
+    - name: Run 05_camera_controls
+      working-directory: 05_camera_controls
+      run: node ../.github/emscripten_screenshot.js
+    - name: Check 05_camera_controls
+      working-directory: 05_camera_controls
+      run: node ../.github/compare.js
+    - name: Upload 05_camera_controls failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 05_camera_controls image
+        path: 05_camera_controls/deployment/test.png
     - name: Compile shader
       working-directory: shader
       run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
