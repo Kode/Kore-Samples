@@ -1,4 +1,4 @@
-const project = new Project('Raytracing');
+const project = new Project('raytracing');
 
 await project.addProject(findKore());
 
