@@ -130,6 +130,21 @@ jobs:
       with:
         name: 06_render_targets image
         path: 06_render_targets/deployment/test.png
+    - name: Compile 07_multiple_render_targets
+      working-directory: 07_multiple_render_targets
+      run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
+    - name: Run 07_multiple_render_targets
+      working-directory: 07_multiple_render_targets
+      run: node ../.github/emscripten_screenshot.js
+    - name: Check 07_multiple_render_targets
+      working-directory: 07_multiple_render_targets
+      run: node ../.github/compare.js
+    - name: Upload 07_multiple_render_targets failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 07_multiple_render_targets image
+        path: 07_multiple_render_targets/deployment/test.png
     - name: Compile shader
       working-directory: shader
       run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
