@@ -160,3 +160,18 @@ jobs:
       with:
         name: shader image
         path: shader/deployment/test.png
+    - name: Compile texture
+      working-directory: texture
+      run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
+    - name: Run texture
+      working-directory: texture
+      run: node ../.github/emscripten_screenshot.js
+    - name: Check texture
+      working-directory: texture
+      run: node ../.github/compare.js
+    - name: Upload texture failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: texture image
+        path: texture/deployment/test.png
