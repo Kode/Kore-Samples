@@ -230,7 +230,7 @@ const workflows = [
     active: true,
     runsOn: 'windows-latest',
     canExecute: true,
-    checked: [1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,0,1,0,0,0,0],
+    checked: [1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0],
     noCompile: true,
     compilePrefix: '../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ',
     compilePostfix: ' && cd build/debug && make',

@@ -175,6 +175,21 @@ jobs:
       with:
         name: texture image
         path: texture/deployment/test.png
+    - name: Compile computeshader
+      working-directory: computeshader
+      run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
+    - name: Run computeshader
+      working-directory: computeshader
+      run: node ../.github/emscripten_screenshot.js
+    - name: Check computeshader
+      working-directory: computeshader
+      run: node ../.github/compare.js
+    - name: Upload computeshader failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: computeshader image
+        path: computeshader/deployment/test.png
     - name: Compile texturearray
       working-directory: texturearray
       run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
