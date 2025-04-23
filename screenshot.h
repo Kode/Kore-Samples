@@ -6,8 +6,8 @@
 #ifdef KORE_EMSCRIPTEN
 #include <emscripten.h>
 
-static uint8_t *png_data = NULL;
-static int png_data_size = 0;
+static uint8_t *png_data      = NULL;
+static int      png_data_size = 0;
 
 static void png_write_func(void *context, void *data, int size) {
 	memcpy(&png_data[png_data_size], data, size);
@@ -20,10 +20,11 @@ EM_JS(void, kore_html5_download_image, (const char *filename, void *data, int si
 	document.body.appendChild(a);
 	const view = new Uint8Array(HEAPU8.buffer, data, size);
 	const blob = new Blob([view], {
-		type: 'octet/stream'
+	    type:
+		    'octet/stream'
 	});
-	const url = window.URL.createObjectURL(blob);
-	a.href = url;
+	const url  = window.URL.createObjectURL(blob);
+	a.href     = url;
 	a.download = UTF8ToString(filename);
 	a.click();
 	window.URL.revokeObjectURL(url);
@@ -76,7 +77,7 @@ static void screenshot_take(kore_gpu_device *device, kore_gpu_command_list *list
 	}
 
 #ifdef KORE_EMSCRIPTEN
-	png_data = (uint8_t *)malloc(width * height * 4);
+	png_data      = (uint8_t *)malloc(width * height * 4);
 	png_data_size = 0;
 	stbi_write_png_to_func(png_write_func, NULL, width, height, 4, pixels, row_bytes);
 	kore_html5_download_image("test.png", png_data, png_data_size);

@@ -207,13 +207,13 @@ static void update(void *data) {
 
 	if (first_update) {
 		kore_gpu_image_copy_buffer source = {
-			.buffer                     = &image_buffer,
-			.bytes_per_row              = 512 * 4,
-			.rows_per_image             = 512,
+		    .buffer         = &image_buffer,
+		    .bytes_per_row  = 512 * 4,
+		    .rows_per_image = 512,
 		};
 
 		kore_gpu_image_copy_texture destination = {
-			.texture                     = &texture,
+		    .texture = &texture,
 		};
 
 		kore_gpu_command_list_copy_buffer_to_texture(&list, &source, &destination, 512, 512, 1);
@@ -228,8 +228,8 @@ static void update(void *data) {
 	    .color_attachments =
 	        {
 	            {
-	                .load_op = KORE_GPU_LOAD_OP_CLEAR,
-	                .clear_value = {0.0f, 0.0f, 0.25f, 1.0f},
+	                .load_op                   = KORE_GPU_LOAD_OP_CLEAR,
+	                .clear_value               = {0.0f, 0.0f, 0.25f, 1.0f},
 	                .texture.texture           = framebuffer,
 	                .texture.array_layer_count = 1,
 	                .texture.mip_level_count   = 1,
