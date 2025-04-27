@@ -24,6 +24,51 @@ jobs:
     - name: Get Submodules
       run: ./get_dlc
 
+    - name: Compile 00_empty
+      working-directory: 00_empty
+      run: ../kore/make linux -g opengl --debug --option screenshot --compile
+    - name: Run 00_empty
+      working-directory: 00_empty/deployment
+      run: xvfb-run ../build/debug/00_empty
+    - name: Check 00_empty
+      working-directory: 00_empty
+      run: node ../.github/compare.js
+    - name: Upload 00_empty failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 00_empty image
+        path: 00_empty/deployment/test.png
+    - name: Compile 01_triangle
+      working-directory: 01_triangle
+      run: ../kore/make linux -g opengl --debug --option screenshot --compile
+    - name: Run 01_triangle
+      working-directory: 01_triangle/deployment
+      run: xvfb-run ../build/debug/01_triangle
+    - name: Check 01_triangle
+      working-directory: 01_triangle
+      run: node ../.github/compare.js
+    - name: Upload 01_triangle failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 01_triangle image
+        path: 01_triangle/deployment/test.png
+    - name: Compile 02_matrix
+      working-directory: 02_matrix
+      run: ../kore/make linux -g opengl --debug --option screenshot --compile
+    - name: Run 02_matrix
+      working-directory: 02_matrix/deployment
+      run: xvfb-run ../build/debug/02_matrix
+    - name: Check 02_matrix
+      working-directory: 02_matrix
+      run: node ../.github/compare.js
+    - name: Upload 02_matrix failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 02_matrix image
+        path: 02_matrix/deployment/test.png
     - name: Compile shader
       working-directory: shader
       run: ../kore/make linux -g opengl --debug --option screenshot --compile
