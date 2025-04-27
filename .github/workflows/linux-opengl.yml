@@ -69,6 +69,21 @@ jobs:
       with:
         name: 02_matrix image
         path: 02_matrix/deployment/test.png
+    - name: Compile 03_colored_cube
+      working-directory: 03_colored_cube
+      run: ../kore/make linux -g opengl --debug --option screenshot --compile
+    - name: Run 03_colored_cube
+      working-directory: 03_colored_cube/deployment
+      run: xvfb-run ../build/debug/03_colored_cube
+    - name: Check 03_colored_cube
+      working-directory: 03_colored_cube
+      run: node ../.github/compare.js
+    - name: Upload 03_colored_cube failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 03_colored_cube image
+        path: 03_colored_cube/deployment/test.png
     - name: Compile shader
       working-directory: shader
       run: ../kore/make linux -g opengl --debug --option screenshot --compile
