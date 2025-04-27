@@ -75,7 +75,7 @@ ${steps}
 
 if (workflow.sys === 'Windows' && workflow.gfx === 'Direct3D 12') {
     workflowText +=
-`    - name: Install WARP 1.0.13
+`    - name: Install WARP 1.0.14
       run: nuget install Microsoft.Direct3D.WARP
 `;
 }
@@ -124,7 +124,7 @@ ${postfixSteps}
       workflowText +=
 `    - name: Copy WARP
       working-directory: ${sample}
-      run: echo F|xcopy D:\\a\\Kore-Samples\\Kore-Samples\\Microsoft.Direct3D.WARP.1.0.13\\build\\native\\bin\\x64\\d3d10warp.dll deployment\\d3d10warp.dll
+      run: echo F|xcopy D:\\a\\Kore-Samples\\Kore-Samples\\Microsoft.Direct3D.WARP.1.0.14\\build\\native\\bin\\x64\\d3d10warp.dll deployment\\d3d10warp.dll
 `;
     }
 
