@@ -310,7 +310,7 @@ const workflows = [
       run: sudo apt-get install libasound2-dev libxinerama-dev libxrandr-dev libgl1-mesa-dev libxi-dev libxcursor-dev libudev-dev libwayland-dev wayland-protocols libxkbcommon-dev ninja-build imagemagick xvfb --yes --quiet
 `,
     RuntimeShaderCompilation: true,
-    checked: [1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0]
+    checked: [1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0]
   },
   {
     sys: 'Linux',

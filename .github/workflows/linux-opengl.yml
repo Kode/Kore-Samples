@@ -84,6 +84,36 @@ jobs:
       with:
         name: 03_colored_cube image
         path: 03_colored_cube/deployment/test.png
+    - name: Compile 04_textured_cube
+      working-directory: 04_textured_cube
+      run: ../kore/make linux -g opengl --debug --option screenshot --compile
+    - name: Run 04_textured_cube
+      working-directory: 04_textured_cube/deployment
+      run: xvfb-run ../build/debug/04_textured_cube
+    - name: Check 04_textured_cube
+      working-directory: 04_textured_cube
+      run: node ../.github/compare.js
+    - name: Upload 04_textured_cube failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 04_textured_cube image
+        path: 04_textured_cube/deployment/test.png
+    - name: Compile 05_camera_controls
+      working-directory: 05_camera_controls
+      run: ../kore/make linux -g opengl --debug --option screenshot --compile
+    - name: Run 05_camera_controls
+      working-directory: 05_camera_controls/deployment
+      run: xvfb-run ../build/debug/05_camera_controls
+    - name: Check 05_camera_controls
+      working-directory: 05_camera_controls
+      run: node ../.github/compare.js
+    - name: Upload 05_camera_controls failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 05_camera_controls image
+        path: 05_camera_controls/deployment/test.png
     - name: Compile shader
       working-directory: shader
       run: ../kore/make linux -g opengl --debug --option screenshot --compile
