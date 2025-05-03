@@ -114,6 +114,21 @@ jobs:
       with:
         name: 05_camera_controls image
         path: 05_camera_controls/deployment/test.png
+    - name: Compile 06_render_targets
+      working-directory: 06_render_targets
+      run: ../kore/make linux -g opengl --debug --option screenshot --compile
+    - name: Run 06_render_targets
+      working-directory: 06_render_targets/deployment
+      run: xvfb-run ../build/debug/06_render_targets
+    - name: Check 06_render_targets
+      working-directory: 06_render_targets
+      run: node ../.github/compare.js
+    - name: Upload 06_render_targets failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 06_render_targets image
+        path: 06_render_targets/deployment/test.png
     - name: Compile shader
       working-directory: shader
       run: ../kore/make linux -g opengl --debug --option screenshot --compile
