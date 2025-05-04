@@ -31,7 +31,10 @@ catch (err) {
 
 		console.log('Compare value is ' + compare + '.');
 		
-		if (compare > 0.001) {
+		if (compare < 0.001) {
+			console.log('That\'s pretty good.');
+		}
+		else {
 			console.log('That\'s not good enough.');
 			process.exit(1);
 		}
