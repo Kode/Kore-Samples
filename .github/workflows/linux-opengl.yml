@@ -159,3 +159,18 @@ jobs:
       with:
         name: shader image
         path: shader/deployment/test.png
+    - name: Compile texture
+      working-directory: texture
+      run: ../kore/make linux -g opengl --debug --option screenshot --compile
+    - name: Run texture
+      working-directory: texture/deployment
+      run: xvfb-run ../build/debug/texture
+    - name: Check texture
+      working-directory: texture
+      run: node ../.github/compare.js
+    - name: Upload texture failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: texture image
+        path: texture/deployment/test.png
