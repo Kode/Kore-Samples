@@ -174,18 +174,18 @@ jobs:
       with:
         name: texture image
         path: texture/deployment/test.png
-    - name: Compile computeshader
-      working-directory: computeshader
+    - name: Compile texturearray
+      working-directory: texturearray
       run: ../kore/make linux -g opengl --debug --option screenshot --compile
-    - name: Run computeshader
-      working-directory: computeshader/deployment
-      run: xvfb-run ../build/debug/computeshader
-    - name: Check computeshader
-      working-directory: computeshader
+    - name: Run texturearray
+      working-directory: texturearray/deployment
+      run: xvfb-run ../build/debug/texturearray
+    - name: Check texturearray
+      working-directory: texturearray
       run: node ../.github/compare.js
-    - name: Upload computeshader failure image
+    - name: Upload texturearray failure image
       if: failure()
       uses: actions/upload-artifact@v4
       with:
-        name: computeshader image
-        path: computeshader/deployment/test.png
+        name: texturearray image
+        path: texturearray/deployment/test.png
