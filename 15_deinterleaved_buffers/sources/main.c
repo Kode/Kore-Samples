@@ -255,7 +255,7 @@ static void update(void *data) {
 
 	kong_set_vertex_buffer_vertex_tex_in(&list, &tex_vertices);
 
-	kore_gpu_command_list_set_index_buffer(&list, &indices, KORE_GPU_INDEX_FORMAT_UINT16, 0, vertex_count * sizeof(uint16_t));
+	kore_gpu_command_list_set_index_buffer(&list, &indices, KORE_GPU_INDEX_FORMAT_UINT16, 0);
 
 	kore_gpu_command_list_draw_indexed(&list, (uint32_t)vertex_count, 1, 0, 0, 0);
 

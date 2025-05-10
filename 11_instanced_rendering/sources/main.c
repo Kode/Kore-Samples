@@ -55,7 +55,7 @@ static void update(void *data) {
 
 	kong_set_vertex_buffer_vertex_offset_in(&list, &vertices_inst);
 
-	kore_gpu_command_list_set_index_buffer(&list, &indices, KORE_GPU_INDEX_FORMAT_UINT16, 0, 3 * sizeof(uint16_t));
+	kore_gpu_command_list_set_index_buffer(&list, &indices, KORE_GPU_INDEX_FORMAT_UINT16, 0);
 
 	kore_gpu_command_list_draw_indexed(&list, 3, 4, 0, 0, 0);
 

@@ -24,6 +24,26 @@ static const int width  = 800;
 static const int height = 600;
 
 static void update(void *data) {
+	kore_gpu_texture *framebuffer = kore_gpu_device_get_framebuffer(&device);
+
+	if (framebuffer->width != depth.width || framebuffer->height != depth.height) {
+		kore_gpu_device_wait_until_idle(&device);
+		kore_gpu_texture_destroy(&depth);
+
+		const kore_gpu_texture_parameters texture_parameters = {
+		    .format                = KORE_GPU_TEXTURE_FORMAT_DEPTH32FLOAT,
+		    .width                 = framebuffer->width,
+		    .height                = framebuffer->height,
+		    .depth_or_array_layers = 1,
+		    .dimension             = KORE_GPU_TEXTURE_DIMENSION_2D,
+		    .mip_level_count       = 1,
+		    .sample_count          = 1,
+		    .usage                 = KORE_GPU_TEXTURE_USAGE_RENDER_ATTACHMENT,
+		};
+
+		kore_gpu_device_create_texture(&device, &texture_parameters, &target_depth);
+	}
+
 	{
 		kore_gpu_render_pass_parameters parameters = {
 		    .color_attachments_count = 0,
@@ -40,14 +60,12 @@ static void update(void *data) {
 
 		kong_set_vertex_buffer_vertex_in(&list, &vertices);
 
-		kore_gpu_command_list_set_index_buffer(&list, &indices, KORE_GPU_INDEX_FORMAT_UINT16, 0, 3 * sizeof(uint16_t));
+		kore_gpu_command_list_set_index_buffer(&list, &indices, KORE_GPU_INDEX_FORMAT_UINT16, 0);
 
 		kore_gpu_command_list_draw_indexed(&list, 3, 1, 0, 0, 0);
 
 		kore_gpu_command_list_end_render_pass(&list);
 	}
-
-	kore_gpu_texture *framebuffer = kore_gpu_device_get_framebuffer(&device);
 
 	{
 		kore_gpu_render_pass_parameters parameters = {
