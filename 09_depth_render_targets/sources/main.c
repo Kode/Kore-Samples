@@ -25,9 +25,9 @@ static const uint32_t height = 600;
 static void update(void *data) {
 	kore_gpu_texture *framebuffer = kore_gpu_device_get_framebuffer(&device);
 
-	if (framebuffer->width != depth.width || framebuffer->height != depth.height) {
+	if (framebuffer->width != render_target.width || framebuffer->height != render_target.height) {
 		kore_gpu_device_wait_until_idle(&device);
-		kore_gpu_texture_destroy(&depth);
+		kore_gpu_texture_destroy(&render_target);
 
 		const kore_gpu_texture_parameters texture_parameters = {
 		    .format                = KORE_GPU_TEXTURE_FORMAT_DEPTH32FLOAT,
@@ -95,7 +95,7 @@ static void update(void *data) {
 
 		kong_set_vertex_buffer_fs_vertex_in(&list, &vertices_fs);
 
-		kore_gpu_command_list_set_index_buffer(&list, &indices, KORE_GPU_INDEX_FORMAT_UINT16, 0, 3 * sizeof(uint16_t));
+		kore_gpu_command_list_set_index_buffer(&list, &indices, KORE_GPU_INDEX_FORMAT_UINT16, 0);
 
 		kore_gpu_command_list_draw_indexed(&list, 3, 1, 0, 0, 0);
 
