@@ -199,6 +199,24 @@ static void update(void *data) {
 
 	kore_gpu_texture *framebuffer = kore_gpu_device_get_framebuffer(&device);
 
+	if (framebuffer->width != depth.width || framebuffer->height != depth.height) {
+		kore_gpu_device_wait_until_idle(&device);
+		kore_gpu_texture_destroy(&depth);
+
+		const kore_gpu_texture_parameters texture_parameters = {
+		    .format                = KORE_GPU_TEXTURE_FORMAT_DEPTH32FLOAT,
+		    .width                 = framebuffer->width,
+		    .height                = framebuffer->height,
+		    .depth_or_array_layers = 1,
+		    .dimension             = KORE_GPU_TEXTURE_DIMENSION_2D,
+		    .mip_level_count       = 1,
+		    .sample_count          = 1,
+		    .usage                 = KORE_GPU_TEXTURE_USAGE_RENDER_ATTACHMENT,
+		};
+
+		kore_gpu_device_create_texture(&device, &texture_parameters, &depth);
+	}
+
 	kore_gpu_render_pass_parameters parameters = {
 	    .color_attachments_count = 1,
 	    .color_attachments =
