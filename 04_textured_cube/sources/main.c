@@ -268,7 +268,7 @@ static void update(void *data) {
 
 	kong_set_vertex_buffer_vertex_in(&list, &vertices);
 
-	kore_gpu_command_list_set_index_buffer(&list, &indices, KORE_GPU_INDEX_FORMAT_UINT16, 0;
+	kore_gpu_command_list_set_index_buffer(&list, &indices, KORE_GPU_INDEX_FORMAT_UINT16, 0);
 
 	kong_set_descriptor_set_everything(&list, &everything);
 
