@@ -1,4 +1,4 @@
-name: Format Code
+name: Format Code for v2
 
 on:
   schedule:
@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        ref: main
+        ref: v3
         fetch-depth: 0
 
     - name: Set name
