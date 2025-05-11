@@ -57,10 +57,10 @@ function writeWorkflow(workflow) {
 on:
   push:
     branches:
-    - v3
+    - main
   pull_request:
     branches:
-    - v3
+    - main
 
 jobs:
   build:
