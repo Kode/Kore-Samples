@@ -116,6 +116,18 @@ jobs:
       with:
         name: 07_multiple_render_targets image
         path: 07_multiple_render_targets/deployment/test.png
+    - name: Compile 08_float_render_targets
+      working-directory: 08_float_render_targets
+      run: ../kore/make osx -g metal --debug --option screenshot --run
+    - name: Check 08_float_render_targets
+      working-directory: 08_float_render_targets
+      run: node ../.github/compare.js
+    - name: Upload 08_float_render_targets failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 08_float_render_targets image
+        path: 08_float_render_targets/deployment/test.png
     - name: Compile shader
       working-directory: shader
       run: ../kore/make osx -g metal --debug --option screenshot --run
