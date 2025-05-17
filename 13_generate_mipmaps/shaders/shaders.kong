@@ -21,6 +21,7 @@ fun pixel(input: vertex_out): float4 {
 struct pipeline {
 	vertex = pos;
 	fragment = pixel;
+	format = framebuffer_format();
 }
 
 struct fs_vertex_in {
@@ -57,7 +58,7 @@ fun fs_pixel(input: fs_vertex_out): float4 {
 struct fs_pipeline {
 	vertex = fs_pos;
 	fragment = fs_pixel;
-	format = framebuffer_format();
+	format = TEXTURE_FORMAT_RGBA8_UNORM;
 }
 
 #[root_constants]
