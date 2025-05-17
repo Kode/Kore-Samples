@@ -67,7 +67,7 @@ const fs_texture: tex2d;
 const fs_sampler: sampler;
 
 fun fs_pix(input: fs_vertex_out): float4 {
-	return sample_lod(fs_texture, fs_sampler, input.tex_coord, 0.0);
+	return float4(sample_lod(fs_texture, fs_sampler, input.tex_coord, 0.0).r, 0.0, 0.0, 1.0);
 }
 
 #[pipe]
