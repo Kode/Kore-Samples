@@ -60,4 +60,5 @@ fun fs_pixel(input: fs_vertex_out): float4 {
 struct fs_pipeline {
 	vertex = fs_pos;
 	fragment = fs_pixel;
+	format = framebuffer_format();
 }

@@ -39,4 +39,5 @@ fun pix(input: vertex_out): float4 {
 struct pipeline {
 	vertex = pos;
 	fragment = pix;
+	format = framebuffer_format();
 }
