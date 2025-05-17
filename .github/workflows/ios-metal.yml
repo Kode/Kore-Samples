@@ -44,6 +44,12 @@ jobs:
     - name: Compile 07_multiple_render_targets
       working-directory: 07_multiple_render_targets
       run: ../kore/make ios -g metal --nosigning --debug --compile
+    - name: Compile 08_float_render_targets
+      working-directory: 08_float_render_targets
+      run: ../kore/make ios -g metal --nosigning --debug --compile
+    - name: Compile 09_depth_render_targets
+      working-directory: 09_depth_render_targets
+      run: ../kore/make ios -g metal --nosigning --debug --compile
     - name: Compile shader
       working-directory: shader
       run: ../kore/make ios -g metal --nosigning --debug --compile
