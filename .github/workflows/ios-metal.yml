@@ -53,6 +53,9 @@ jobs:
     - name: Compile 10_cubemap
       working-directory: 10_cubemap
       run: ../kore/make ios -g metal --nosigning --debug --compile
+    - name: Compile 11_instanced_rendering
+      working-directory: 11_instanced_rendering
+      run: ../kore/make ios -g metal --nosigning --debug --compile
     - name: Compile shader
       working-directory: shader
       run: ../kore/make ios -g metal --nosigning --debug --compile

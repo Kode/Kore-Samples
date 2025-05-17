@@ -152,6 +152,18 @@ jobs:
       with:
         name: 10_cubemap image
         path: 10_cubemap/deployment/test.png
+    - name: Compile 11_instanced_rendering
+      working-directory: 11_instanced_rendering
+      run: ../kore/make osx -g metal --debug --option screenshot --run
+    - name: Check 11_instanced_rendering
+      working-directory: 11_instanced_rendering
+      run: node ../.github/compare.js
+    - name: Upload 11_instanced_rendering failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 11_instanced_rendering image
+        path: 11_instanced_rendering/deployment/test.png
     - name: Compile shader
       working-directory: shader
       run: ../kore/make osx -g metal --debug --option screenshot --run
