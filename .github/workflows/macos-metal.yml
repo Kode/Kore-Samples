@@ -140,6 +140,18 @@ jobs:
       with:
         name: 09_depth_render_targets image
         path: 09_depth_render_targets/deployment/test.png
+    - name: Compile 10_cubemap
+      working-directory: 10_cubemap
+      run: ../kore/make osx -g metal --debug --option screenshot --run
+    - name: Check 10_cubemap
+      working-directory: 10_cubemap
+      run: node ../.github/compare.js
+    - name: Upload 10_cubemap failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 10_cubemap image
+        path: 10_cubemap/deployment/test.png
     - name: Compile shader
       working-directory: shader
       run: ../kore/make osx -g metal --debug --option screenshot --run
