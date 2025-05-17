@@ -74,4 +74,5 @@ fun fs_pix(input: fs_vertex_out): float4 {
 struct fs_pipeline {
 	vertex = fs_pos;
 	fragment = fs_pix;
+	format = framebuffer_format();
 }
