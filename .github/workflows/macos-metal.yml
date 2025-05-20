@@ -164,6 +164,54 @@ jobs:
       with:
         name: 11_instanced_rendering image
         path: 11_instanced_rendering/deployment/test.png
+    - name: Compile 12_set_render_target_depth
+      working-directory: 12_set_render_target_depth
+      run: ../kore/make osx -g metal --debug --option screenshot --run
+    - name: Check 12_set_render_target_depth
+      working-directory: 12_set_render_target_depth
+      run: node ../.github/compare.js
+    - name: Upload 12_set_render_target_depth failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 12_set_render_target_depth image
+        path: 12_set_render_target_depth/deployment/test.png
+    - name: Compile 13_generate_mipmaps
+      working-directory: 13_generate_mipmaps
+      run: ../kore/make osx -g metal --debug --option screenshot --run
+    - name: Check 13_generate_mipmaps
+      working-directory: 13_generate_mipmaps
+      run: node ../.github/compare.js
+    - name: Upload 13_generate_mipmaps failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 13_generate_mipmaps image
+        path: 13_generate_mipmaps/deployment/test.png
+    - name: Compile 14_set_mipmap
+      working-directory: 14_set_mipmap
+      run: ../kore/make osx -g metal --debug --option screenshot --run
+    - name: Check 14_set_mipmap
+      working-directory: 14_set_mipmap
+      run: node ../.github/compare.js
+    - name: Upload 14_set_mipmap failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 14_set_mipmap image
+        path: 14_set_mipmap/deployment/test.png
+    - name: Compile 15_deinterleaved_buffers
+      working-directory: 15_deinterleaved_buffers
+      run: ../kore/make osx -g metal --debug --option screenshot --run
+    - name: Check 15_deinterleaved_buffers
+      working-directory: 15_deinterleaved_buffers
+      run: node ../.github/compare.js
+    - name: Upload 15_deinterleaved_buffers failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 15_deinterleaved_buffers image
+        path: 15_deinterleaved_buffers/deployment/test.png
     - name: Compile shader
       working-directory: shader
       run: ../kore/make osx -g metal --debug --option screenshot --run
