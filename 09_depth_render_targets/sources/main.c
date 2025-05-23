@@ -37,7 +37,7 @@ static void update(void *data) {
 		    .dimension             = KORE_GPU_TEXTURE_DIMENSION_2D,
 		    .mip_level_count       = 1,
 		    .sample_count          = 1,
-		    .usage                 = KORE_GPU_TEXTURE_USAGE_RENDER_ATTACHMENT,
+		    .usage                 = KORE_GPU_TEXTURE_USAGE_RENDER_ATTACHMENT | fs_texture_texture_usage_flags(),
 		};
 
 		kore_gpu_device_create_texture(&device, &texture_parameters, &render_target);
@@ -130,7 +130,7 @@ int kickstart(int argc, char **argv) {
 	    .sample_count          = 1,
 	    .dimension             = KORE_GPU_TEXTURE_DIMENSION_2D,
 	    .format                = KORE_GPU_TEXTURE_FORMAT_DEPTH16_UNORM,
-	    .usage                 = KORE_GPU_TEXTURE_USAGE_RENDER_ATTACHMENT | KORE_GPU_TEXTURE_USAGE_COPY_SRC,
+	    .usage                 = KORE_GPU_TEXTURE_USAGE_RENDER_ATTACHMENT | KORE_GPU_TEXTURE_USAGE_COPY_SRC | fs_texture_texture_usage_flags(),
 	};
 	kore_gpu_device_create_texture(&device, &texture_parameters, &render_target);
 
