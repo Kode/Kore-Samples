@@ -135,7 +135,7 @@ int kickstart(int argc, char **argv) {
 	    .dimension             = KORE_GPU_TEXTURE_DIMENSION_2D,
 	    .mip_level_count       = 1,
 	    .sample_count          = 1,
-	    .usage                 = KORE_GPU_TEXTURE_USAGE_RENDER_ATTACHMENT,
+	    .usage                 = KORE_GPU_TEXTURE_USAGE_RENDER_ATTACHMENT | fs_texture_texture_usage_flags(),
 	};
 	kore_gpu_device_create_texture(&device, &texture_params, &target_depth);
 
