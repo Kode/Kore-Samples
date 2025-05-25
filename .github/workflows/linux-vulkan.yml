@@ -178,6 +178,21 @@ jobs:
       with:
         name: 10_cubemap image
         path: 10_cubemap/deployment/test.png
+    - name: Compile 12_set_render_target_depth
+      working-directory: 12_set_render_target_depth
+      run: ../kore/make linux -g vulkan --debug --option screenshot --compile
+    - name: Run 12_set_render_target_depth
+      working-directory: 12_set_render_target_depth/deployment
+      run: xvfb-run ../build/debug/12_set_render_target_depth
+    - name: Check 12_set_render_target_depth
+      working-directory: 12_set_render_target_depth
+      run: node ../.github/compare.js
+    - name: Upload 12_set_render_target_depth failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 12_set_render_target_depth image
+        path: 12_set_render_target_depth/deployment/test.png
     - name: Compile 14_set_mipmap
       working-directory: 14_set_mipmap
       run: ../kore/make linux -g vulkan --debug --option screenshot --compile
