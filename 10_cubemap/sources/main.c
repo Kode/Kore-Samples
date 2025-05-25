@@ -41,7 +41,7 @@ static void update(void *data) {
 			parameters.color_attachments[i].texture.array_layer_count = 1;
 			parameters.color_attachments[i].texture.base_array_layer  = i;
 			parameters.color_attachments[i].texture.mip_level_count   = 1;
-			parameters.color_attachments[i].texture.format            = KORE_GPU_TEXTURE_FORMAT_BGRA8_UNORM;
+			parameters.color_attachments[i].texture.format            = KORE_GPU_TEXTURE_FORMAT_RGBA8_UNORM;
 			parameters.color_attachments[i].texture.dimension         = KORE_GPU_TEXTURE_VIEW_DIMENSION_2D;
 		}
 		kore_gpu_command_list_begin_render_pass(&list, &parameters);
@@ -124,7 +124,7 @@ int kickstart(int argc, char **argv) {
 	    .sample_count          = 1,
 	    .dimension             = KORE_GPU_TEXTURE_DIMENSION_2D,
 	    .format                = KORE_GPU_TEXTURE_FORMAT_RGBA8_UNORM,
-	    .usage                 = KORE_GPU_TEXTURE_USAGE_RENDER_ATTACHMENT,
+	    .usage                 = KORE_GPU_TEXTURE_USAGE_RENDER_ATTACHMENT | fs_texture_texture_usage_flags(),
 	};
 	kore_gpu_device_create_texture(&device, &texture_parameters, &render_target);
 
