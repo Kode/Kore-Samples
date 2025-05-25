@@ -79,7 +79,7 @@ const mip_destination_texture: tex2d;
 fun comp(): void {
 	var index: uint2 = dispatch_thread_id().xy;
 	if (index.x < mip_constants.size.x && index.y < mip_constants.size.y) {
-		var color: float4 = sample_lod(mip_source_texture, mip_source_sampler, float2(index.x / float(mip_constants.size.x), index.y / float(mip_constants.size.x)), 0);
+		var color: float4 = sample_lod(mip_source_texture, mip_source_sampler, float2(index.x / float(mip_constants.size.x), index.y / float(mip_constants.size.y)), 0);
 		mip_destination_texture[index] = color;
 	}
 }

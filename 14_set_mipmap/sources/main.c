@@ -121,7 +121,7 @@ int kickstart(int argc, char **argv) {
 	{
 		kore_gpu_buffer_parameters buffer_parameters = {
 		    .size        = kore_gpu_device_align_texture_row_bytes(&device, 512 * 4) * 512,
-		    .usage_flags = KORE_GPU_BUFFER_USAGE_CPU_WRITE,
+		    .usage_flags = KORE_GPU_BUFFER_USAGE_CPU_WRITE | KORE_GPU_BUFFER_USAGE_COPY_SRC,
 		};
 		kore_gpu_device_create_buffer(&device, &buffer_parameters, &image_buffer0);
 
@@ -135,7 +135,7 @@ int kickstart(int argc, char **argv) {
 	{
 		kore_gpu_buffer_parameters buffer_parameters = {
 		    .size        = kore_gpu_device_align_texture_row_bytes(&device, 256 * 4) * 256,
-		    .usage_flags = KORE_GPU_BUFFER_USAGE_CPU_WRITE,
+		    .usage_flags = KORE_GPU_BUFFER_USAGE_CPU_WRITE | KORE_GPU_BUFFER_USAGE_COPY_SRC,
 		};
 		kore_gpu_device_create_buffer(&device, &buffer_parameters, &image_buffer1);
 
