@@ -208,6 +208,21 @@ jobs:
       with:
         name: 12_set_render_target_depth image
         path: 12_set_render_target_depth/deployment/test.png
+    - name: Compile 13_generate_mipmaps
+      working-directory: 13_generate_mipmaps
+      run: ../kore/make linux -g vulkan --debug --option screenshot --compile
+    - name: Run 13_generate_mipmaps
+      working-directory: 13_generate_mipmaps/deployment
+      run: xvfb-run ../build/debug/13_generate_mipmaps
+    - name: Check 13_generate_mipmaps
+      working-directory: 13_generate_mipmaps
+      run: node ../.github/compare.js
+    - name: Upload 13_generate_mipmaps failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 13_generate_mipmaps image
+        path: 13_generate_mipmaps/deployment/test.png
     - name: Compile 14_set_mipmap
       working-directory: 14_set_mipmap
       run: ../kore/make linux -g vulkan --debug --option screenshot --compile
