@@ -18,10 +18,67 @@ static kore_gpu_texture      float_render_target;
 static kore_gpu_texture      render_target; // intermediate target because D3D12 doesn't seem to like uav framebuffer access
 static compute_set           set;
 
-const static int width  = 800;
-const static int height = 600;
+static int width  = 800;
+static int height = 600;
 
 static void update(void *data) {
+	kore_gpu_texture *framebuffer = kore_gpu_device_get_framebuffer(&device);
+
+	if (framebuffer->width != width || framebuffer->height != height) {
+		kore_gpu_device_wait_until_idle(&device);
+		kore_gpu_texture_destroy(&float_render_target);
+		kore_gpu_texture_destroy(&render_target);
+
+		width  = framebuffer->width;
+		height = framebuffer->height;
+
+		{
+			kore_gpu_texture_parameters texture_parameters;
+			texture_parameters.width                 = width;
+			texture_parameters.height                = height;
+			texture_parameters.depth_or_array_layers = 1;
+			texture_parameters.mip_level_count       = 1;
+			texture_parameters.sample_count          = 1;
+			texture_parameters.dimension             = KORE_GPU_TEXTURE_DIMENSION_2D;
+			texture_parameters.format                = KORE_GPU_TEXTURE_FORMAT_RGBA32_FLOAT;
+			texture_parameters.usage                 = KORE_GPU_TEXTURE_USAGE_RENDER_ATTACHMENT | copy_source_texture_texture_usage_flags();
+			kore_gpu_device_create_texture(&device, &texture_parameters, &float_render_target);
+		}
+
+		{
+			kore_gpu_texture_parameters texture_parameters;
+			texture_parameters.width                 = width;
+			texture_parameters.height                = height;
+			texture_parameters.depth_or_array_layers = 1;
+			texture_parameters.mip_level_count       = 1;
+			texture_parameters.sample_count          = 1;
+			texture_parameters.dimension             = KORE_GPU_TEXTURE_DIMENSION_2D;
+			texture_parameters.format                = kore_gpu_device_framebuffer_format(&device);
+			texture_parameters.usage                 = KORE_GPU_TEXTURE_USAGE_COPY_SRC | copy_destination_texture_texture_usage_flags();
+			kore_gpu_device_create_texture(&device, &texture_parameters, &render_target);
+		}
+
+		compute_parameters cparams = {
+		    .copy_source_texture =
+		        {
+		            .texture           = &float_render_target,
+		            .base_mip_level    = 0,
+		            .mip_level_count   = 1,
+		            .base_array_layer  = 0,
+		            .array_layer_count = 1,
+		        },
+		    .copy_destination_texture =
+		        {
+		            .texture           = &render_target,
+		            .base_mip_level    = 0,
+		            .mip_level_count   = 1,
+		            .base_array_layer  = 0,
+		            .array_layer_count = 1,
+		        },
+		};
+		kong_create_compute_set(&device, &cparams, &set);
+	}
+
 	kore_gpu_render_pass_parameters parameters = {
 	    .color_attachments =
 	        {
@@ -57,8 +114,6 @@ static void update(void *data) {
 	kore_gpu_command_list_draw_indexed(&list, 3, 1, 0, 0, 0);
 
 	kore_gpu_command_list_end_render_pass(&list);
-
-	kore_gpu_texture *framebuffer = kore_gpu_device_get_framebuffer(&device);
 
 	kong_set_compute_shader_comp(&list);
 
@@ -144,9 +199,10 @@ int kickstart(int argc, char **argv) {
 		kong_vertex_in_buffer_unlock(&vertices);
 	}
 
-	kore_gpu_buffer_parameters params;
-	params.size        = 3 * sizeof(uint16_t);
-	params.usage_flags = KORE_GPU_BUFFER_USAGE_INDEX | KORE_GPU_BUFFER_USAGE_CPU_WRITE;
+	kore_gpu_buffer_parameters params = {
+	    .size        = 3 * sizeof(uint16_t),
+	    .usage_flags = KORE_GPU_BUFFER_USAGE_INDEX | KORE_GPU_BUFFER_USAGE_CPU_WRITE,
+	};
 	kore_gpu_device_create_buffer(&device, &params, &indices);
 	{
 		uint16_t *i = (uint16_t *)kore_gpu_buffer_lock_all(&indices);
@@ -158,17 +214,24 @@ int kickstart(int argc, char **argv) {
 		kore_gpu_buffer_unlock(&indices);
 	}
 
-	compute_parameters cparams                         = {0};
-	cparams.copy_source_texture.texture                = &float_render_target;
-	cparams.copy_source_texture.base_mip_level         = 0;
-	cparams.copy_source_texture.mip_level_count        = 1;
-	cparams.copy_source_texture.base_array_layer       = 0;
-	cparams.copy_source_texture.array_layer_count      = 1;
-	cparams.copy_destination_texture.texture           = &render_target;
-	cparams.copy_destination_texture.base_mip_level    = 0;
-	cparams.copy_destination_texture.mip_level_count   = 1;
-	cparams.copy_destination_texture.base_array_layer  = 0;
-	cparams.copy_destination_texture.array_layer_count = 1;
+	compute_parameters cparams = {
+	    .copy_source_texture =
+	        {
+	            .texture           = &float_render_target,
+	            .base_mip_level    = 0,
+	            .mip_level_count   = 1,
+	            .base_array_layer  = 0,
+	            .array_layer_count = 1,
+	        },
+	    .copy_destination_texture =
+	        {
+	            .texture           = &render_target,
+	            .base_mip_level    = 0,
+	            .mip_level_count   = 1,
+	            .base_array_layer  = 0,
+	            .array_layer_count = 1,
+	        },
+	};
 	kong_create_compute_set(&device, &cparams, &set);
 
 	kore_start();
