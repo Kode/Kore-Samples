@@ -193,6 +193,21 @@ jobs:
       with:
         name: 10_cubemap image
         path: 10_cubemap/deployment/test.png
+    - name: Compile 11_instanced_rendering
+      working-directory: 11_instanced_rendering
+      run: ../kore/make linux -g vulkan --debug --option screenshot --compile
+    - name: Run 11_instanced_rendering
+      working-directory: 11_instanced_rendering/deployment
+      run: xvfb-run ../build/debug/11_instanced_rendering
+    - name: Check 11_instanced_rendering
+      working-directory: 11_instanced_rendering
+      run: node ../.github/compare.js
+    - name: Upload 11_instanced_rendering failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 11_instanced_rendering image
+        path: 11_instanced_rendering/deployment/test.png
     - name: Compile 12_set_render_target_depth
       working-directory: 12_set_render_target_depth
       run: ../kore/make linux -g vulkan --debug --option screenshot --compile
@@ -238,6 +253,21 @@ jobs:
       with:
         name: 14_set_mipmap image
         path: 14_set_mipmap/deployment/test.png
+    - name: Compile 15_deinterleaved_buffers
+      working-directory: 15_deinterleaved_buffers
+      run: ../kore/make linux -g vulkan --debug --option screenshot --compile
+    - name: Run 15_deinterleaved_buffers
+      working-directory: 15_deinterleaved_buffers/deployment
+      run: xvfb-run ../build/debug/15_deinterleaved_buffers
+    - name: Check 15_deinterleaved_buffers
+      working-directory: 15_deinterleaved_buffers
+      run: node ../.github/compare.js
+    - name: Upload 15_deinterleaved_buffers failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 15_deinterleaved_buffers image
+        path: 15_deinterleaved_buffers/deployment/test.png
     - name: Compile shader
       working-directory: shader
       run: ../kore/make linux -g vulkan --debug --option screenshot --compile

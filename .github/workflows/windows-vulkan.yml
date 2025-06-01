@@ -64,6 +64,46 @@ jobs:
       run: ../kore/make windows -v vs2022 -g vulkan --debug --compile
       env:
         VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+    - name: Compile 08_float_render_targets
+      working-directory: 08_float_render_targets
+      run: ../kore/make windows -v vs2022 -g vulkan --debug --compile
+      env:
+        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+    - name: Compile 09_depth_render_targets
+      working-directory: 09_depth_render_targets
+      run: ../kore/make windows -v vs2022 -g vulkan --debug --compile
+      env:
+        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+    - name: Compile 10_cubemap
+      working-directory: 10_cubemap
+      run: ../kore/make windows -v vs2022 -g vulkan --debug --compile
+      env:
+        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+    - name: Compile 11_instanced_rendering
+      working-directory: 11_instanced_rendering
+      run: ../kore/make windows -v vs2022 -g vulkan --debug --compile
+      env:
+        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+    - name: Compile 12_set_render_target_depth
+      working-directory: 12_set_render_target_depth
+      run: ../kore/make windows -v vs2022 -g vulkan --debug --compile
+      env:
+        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+    - name: Compile 13_generate_mipmaps
+      working-directory: 13_generate_mipmaps
+      run: ../kore/make windows -v vs2022 -g vulkan --debug --compile
+      env:
+        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+    - name: Compile 14_set_mipmap
+      working-directory: 14_set_mipmap
+      run: ../kore/make windows -v vs2022 -g vulkan --debug --compile
+      env:
+        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+    - name: Compile 15_deinterleaved_buffers
+      working-directory: 15_deinterleaved_buffers
+      run: ../kore/make windows -v vs2022 -g vulkan --debug --compile
+      env:
+        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
     - name: Compile shader
       working-directory: shader
       run: ../kore/make windows -v vs2022 -g vulkan --debug --compile
