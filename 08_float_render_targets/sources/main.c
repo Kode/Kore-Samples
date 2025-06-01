@@ -39,7 +39,7 @@ static void update(void *data) {
 	                        .texture           = &float_render_target,
 	                        .array_layer_count = 1,
 	                        .mip_level_count   = 1,
-	                        .format            = KORE_GPU_TEXTURE_FORMAT_BGRA8_UNORM,
+	                        .format            = KORE_GPU_TEXTURE_FORMAT_RGBA32_FLOAT,
 	                        .dimension         = KORE_GPU_TEXTURE_VIEW_DIMENSION_2D,
 	                    },
 	            },
