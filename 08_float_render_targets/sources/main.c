@@ -33,28 +33,30 @@ static void update(void *data) {
 		height = framebuffer->height;
 
 		{
-			kore_gpu_texture_parameters texture_parameters;
-			texture_parameters.width                 = width;
-			texture_parameters.height                = height;
-			texture_parameters.depth_or_array_layers = 1;
-			texture_parameters.mip_level_count       = 1;
-			texture_parameters.sample_count          = 1;
-			texture_parameters.dimension             = KORE_GPU_TEXTURE_DIMENSION_2D;
-			texture_parameters.format                = KORE_GPU_TEXTURE_FORMAT_RGBA32_FLOAT;
-			texture_parameters.usage                 = KORE_GPU_TEXTURE_USAGE_RENDER_ATTACHMENT | copy_source_texture_texture_usage_flags();
+			kore_gpu_texture_parameters texture_parameters = {
+			    .width                 = width,
+			    .height                = height,
+			    .depth_or_array_layers = 1,
+			    .mip_level_count       = 1,
+			    .sample_count          = 1,
+			    .dimension             = KORE_GPU_TEXTURE_DIMENSION_2D,
+			    .format                = KORE_GPU_TEXTURE_FORMAT_RGBA32_FLOAT,
+			    .usage                 = KORE_GPU_TEXTURE_USAGE_RENDER_ATTACHMENT | copy_source_texture_texture_usage_flags(),
+			};
 			kore_gpu_device_create_texture(&device, &texture_parameters, &float_render_target);
 		}
 
 		{
-			kore_gpu_texture_parameters texture_parameters;
-			texture_parameters.width                 = width;
-			texture_parameters.height                = height;
-			texture_parameters.depth_or_array_layers = 1;
-			texture_parameters.mip_level_count       = 1;
-			texture_parameters.sample_count          = 1;
-			texture_parameters.dimension             = KORE_GPU_TEXTURE_DIMENSION_2D;
-			texture_parameters.format                = kore_gpu_device_framebuffer_format(&device);
-			texture_parameters.usage                 = KORE_GPU_TEXTURE_USAGE_COPY_SRC | copy_destination_texture_texture_usage_flags();
+			kore_gpu_texture_parameters texture_parameters = {
+			    .width                 = width,
+			    .height                = height,
+			    .depth_or_array_layers = 1,
+			    .mip_level_count       = 1,
+			    .sample_count          = 1,
+			    .dimension             = KORE_GPU_TEXTURE_DIMENSION_2D,
+			    .format                = kore_gpu_device_framebuffer_format(&device),
+			    .usage                 = KORE_GPU_TEXTURE_USAGE_COPY_SRC | copy_destination_texture_texture_usage_flags(),
+			};
 			kore_gpu_device_create_texture(&device, &texture_parameters, &render_target);
 		}
 
@@ -119,18 +121,24 @@ static void update(void *data) {
 
 	kong_set_descriptor_set_compute(&list, &set);
 
-	copy_constants_type copy_constants;
-	copy_constants.size.x = width;
-	copy_constants.size.y = height;
+	copy_constants_type copy_constants = {
+	    .size =
+	        {
+	            .x = width,
+	            .y = height,
+	        },
+	};
 	kong_set_root_constants_copy_constants(&list, &copy_constants);
 
 	kore_gpu_command_list_compute(&list, (width + 7) / 8, (height + 7) / 8, 1);
 
-	kore_gpu_image_copy_texture source = {0};
-	source.texture                     = &render_target;
+	kore_gpu_image_copy_texture source = {
+	    .texture = &render_target,
+	};
 
-	kore_gpu_image_copy_texture destination = {0};
-	destination.texture                     = framebuffer;
+	kore_gpu_image_copy_texture destination = {
+	    .texture = framebuffer,
+	};
 
 	kore_gpu_command_list_copy_texture_to_texture(&list, &source, &destination, width, height, 1);
 
@@ -155,28 +163,30 @@ int kickstart(int argc, char **argv) {
 	kore_gpu_device_create_command_list(&device, KORE_GPU_COMMAND_LIST_TYPE_GRAPHICS, &list);
 
 	{
-		kore_gpu_texture_parameters texture_parameters;
-		texture_parameters.width                 = width;
-		texture_parameters.height                = height;
-		texture_parameters.depth_or_array_layers = 1;
-		texture_parameters.mip_level_count       = 1;
-		texture_parameters.sample_count          = 1;
-		texture_parameters.dimension             = KORE_GPU_TEXTURE_DIMENSION_2D;
-		texture_parameters.format                = KORE_GPU_TEXTURE_FORMAT_RGBA32_FLOAT;
-		texture_parameters.usage                 = KORE_GPU_TEXTURE_USAGE_RENDER_ATTACHMENT | copy_source_texture_texture_usage_flags();
+		kore_gpu_texture_parameters texture_parameters = {
+		    .width                 = width,
+		    .height                = height,
+		    .depth_or_array_layers = 1,
+		    .mip_level_count       = 1,
+		    .sample_count          = 1,
+		    .dimension             = KORE_GPU_TEXTURE_DIMENSION_2D,
+		    .format                = KORE_GPU_TEXTURE_FORMAT_RGBA32_FLOAT,
+		    .usage                 = KORE_GPU_TEXTURE_USAGE_RENDER_ATTACHMENT | copy_source_texture_texture_usage_flags(),
+		};
 		kore_gpu_device_create_texture(&device, &texture_parameters, &float_render_target);
 	}
 
 	{
-		kore_gpu_texture_parameters texture_parameters;
-		texture_parameters.width                 = width;
-		texture_parameters.height                = height;
-		texture_parameters.depth_or_array_layers = 1;
-		texture_parameters.mip_level_count       = 1;
-		texture_parameters.sample_count          = 1;
-		texture_parameters.dimension             = KORE_GPU_TEXTURE_DIMENSION_2D;
-		texture_parameters.format                = kore_gpu_device_framebuffer_format(&device);
-		texture_parameters.usage                 = KORE_GPU_TEXTURE_USAGE_COPY_SRC | copy_destination_texture_texture_usage_flags();
+		kore_gpu_texture_parameters texture_parameters = {
+		    .width                 = width,
+		    .height                = height,
+		    .depth_or_array_layers = 1,
+		    .mip_level_count       = 1,
+		    .sample_count          = 1,
+		    .dimension             = KORE_GPU_TEXTURE_DIMENSION_2D,
+		    .format                = kore_gpu_device_framebuffer_format(&device),
+		    .usage                 = KORE_GPU_TEXTURE_USAGE_COPY_SRC | copy_destination_texture_texture_usage_flags(),
+		};
 		kore_gpu_device_create_texture(&device, &texture_parameters, &render_target);
 	}
 
