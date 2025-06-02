@@ -145,6 +145,21 @@ jobs:
       with:
         name: 07_multiple_render_targets image
         path: 07_multiple_render_targets/deployment/test.png
+    - name: Compile 14_set_mipmap
+      working-directory: 14_set_mipmap
+      run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
+    - name: Run 14_set_mipmap
+      working-directory: 14_set_mipmap
+      run: node ../.github/emscripten_screenshot.js
+    - name: Check 14_set_mipmap
+      working-directory: 14_set_mipmap
+      run: node ../.github/compare.js
+    - name: Upload 14_set_mipmap failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 14_set_mipmap image
+        path: 14_set_mipmap/deployment/test.png
     - name: Compile shader
       working-directory: shader
       run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
