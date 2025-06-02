@@ -145,6 +145,21 @@ jobs:
       with:
         name: 07_multiple_render_targets image
         path: 07_multiple_render_targets/deployment/test.png
+    - name: Compile 11_instanced_rendering
+      working-directory: 11_instanced_rendering
+      run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
+    - name: Run 11_instanced_rendering
+      working-directory: 11_instanced_rendering
+      run: node ../.github/emscripten_screenshot.js
+    - name: Check 11_instanced_rendering
+      working-directory: 11_instanced_rendering
+      run: node ../.github/compare.js
+    - name: Upload 11_instanced_rendering failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 11_instanced_rendering image
+        path: 11_instanced_rendering/deployment/test.png
     - name: Compile 14_set_mipmap
       working-directory: 14_set_mipmap
       run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
@@ -160,6 +175,21 @@ jobs:
       with:
         name: 14_set_mipmap image
         path: 14_set_mipmap/deployment/test.png
+    - name: Compile 15_deinterleaved_buffers
+      working-directory: 15_deinterleaved_buffers
+      run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
+    - name: Run 15_deinterleaved_buffers
+      working-directory: 15_deinterleaved_buffers
+      run: node ../.github/emscripten_screenshot.js
+    - name: Check 15_deinterleaved_buffers
+      working-directory: 15_deinterleaved_buffers
+      run: node ../.github/compare.js
+    - name: Upload 15_deinterleaved_buffers failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 15_deinterleaved_buffers image
+        path: 15_deinterleaved_buffers/deployment/test.png
     - name: Compile shader
       working-directory: shader
       run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
