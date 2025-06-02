@@ -207,6 +207,7 @@ static void update(void *data) {
 		kore_gpu_image_copy_buffer source = {
 		    .buffer        = &image_buffer,
 		    .bytes_per_row = 4 * 512,
+			.rows_per_image = 512,
 		};
 
 		kore_gpu_image_copy_texture destination = {
