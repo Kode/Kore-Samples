@@ -112,7 +112,7 @@ int kickstart(int argc, char **argv) {
 	v[12] = 0.5f;
 	v[13] = 0.0f;
 	v[14] = 0.0f;
-	
+
 	v[15] = 1.0f;
 	v[16] = 1.0f;
 	v[17] = 0.5f;
