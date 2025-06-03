@@ -145,6 +145,21 @@ jobs:
       with:
         name: 07_multiple_render_targets image
         path: 07_multiple_render_targets/deployment/test.png
+    - name: Compile 10_cubemap
+      working-directory: 10_cubemap
+      run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
+    - name: Run 10_cubemap
+      working-directory: 10_cubemap
+      run: node ../.github/emscripten_screenshot.js
+    - name: Check 10_cubemap
+      working-directory: 10_cubemap
+      run: node ../.github/compare.js
+    - name: Upload 10_cubemap failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 10_cubemap image
+        path: 10_cubemap/deployment/test.png
     - name: Compile 11_instanced_rendering
       working-directory: 11_instanced_rendering
       run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
