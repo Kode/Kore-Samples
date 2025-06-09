@@ -228,7 +228,7 @@ static void update(void *data) {
 		kore_gpu_texture_destroy(&depth);
 
 		const kore_gpu_texture_parameters texture_parameters = {
-		    .format                = KORE_GPU_TEXTURE_FORMAT_DEPTH32FLOAT,
+		    .format                = KORE_GPU_TEXTURE_FORMAT_DEPTH32_FLOAT,
 		    .width                 = framebuffer->width,
 		    .height                = framebuffer->height,
 		    .depth_or_array_layers = 1,
@@ -307,7 +307,7 @@ int kickstart(int argc, char **argv) {
 
 	{
 		kore_gpu_texture_parameters texture_params = {
-		    .format                = KORE_GPU_TEXTURE_FORMAT_DEPTH32FLOAT,
+		    .format                = KORE_GPU_TEXTURE_FORMAT_DEPTH32_FLOAT,
 		    .width                 = width,
 		    .height                = height,
 		    .depth_or_array_layers = 1,

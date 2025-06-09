@@ -30,7 +30,7 @@ static void update(void *data) {
 		kore_gpu_texture_destroy(&render_target);
 
 		const kore_gpu_texture_parameters texture_parameters = {
-		    .format                = KORE_GPU_TEXTURE_FORMAT_DEPTH32FLOAT,
+		    .format                = KORE_GPU_TEXTURE_FORMAT_DEPTH32_FLOAT,
 		    .width                 = framebuffer->width,
 		    .height                = framebuffer->height,
 		    .depth_or_array_layers = 1,
