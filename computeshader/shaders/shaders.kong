@@ -14,7 +14,7 @@ const constants: {
 };
 
 #[set(everything), set(compute)]
-const comp_texture: tex2d;
+const comp_texture: tex2d<TEXTURE_FORMAT_RGBA32_FLOAT>;
 
 #[set(everything)]
 const comp_sampler: sampler;
