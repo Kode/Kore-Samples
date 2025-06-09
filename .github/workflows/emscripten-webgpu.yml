@@ -145,6 +145,21 @@ jobs:
       with:
         name: 07_multiple_render_targets image
         path: 07_multiple_render_targets/deployment/test.png
+    - name: Compile 08_float_render_targets
+      working-directory: 08_float_render_targets
+      run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
+    - name: Run 08_float_render_targets
+      working-directory: 08_float_render_targets
+      run: node ../.github/emscripten_screenshot.js
+    - name: Check 08_float_render_targets
+      working-directory: 08_float_render_targets
+      run: node ../.github/compare.js
+    - name: Upload 08_float_render_targets failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 08_float_render_targets image
+        path: 08_float_render_targets/deployment/test.png
     - name: Compile 10_cubemap
       working-directory: 10_cubemap
       run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make

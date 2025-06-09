@@ -42,7 +42,7 @@ const copy_constants: {
 const copy_source_texture: tex2d;
 
 #[set(compute)]
-const copy_destination_texture: tex2d;
+const copy_destination_texture: tex2d<framebuffer_format()>;
 
 #[compute, threads(8, 8, 1)]
 fun comp(): void {
