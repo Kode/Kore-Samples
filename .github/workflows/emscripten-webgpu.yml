@@ -190,6 +190,21 @@ jobs:
       with:
         name: 11_instanced_rendering image
         path: 11_instanced_rendering/deployment/test.png
+    - name: Compile 13_generate_mipmaps
+      working-directory: 13_generate_mipmaps
+      run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
+    - name: Run 13_generate_mipmaps
+      working-directory: 13_generate_mipmaps
+      run: node ../.github/emscripten_screenshot.js
+    - name: Check 13_generate_mipmaps
+      working-directory: 13_generate_mipmaps
+      run: node ../.github/compare.js
+    - name: Upload 13_generate_mipmaps failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 13_generate_mipmaps image
+        path: 13_generate_mipmaps/deployment/test.png
     - name: Compile 14_set_mipmap
       working-directory: 14_set_mipmap
       run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
