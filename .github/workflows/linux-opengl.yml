@@ -144,6 +144,21 @@ jobs:
       with:
         name: 07_multiple_render_targets image
         path: 07_multiple_render_targets/deployment/test.png
+    - name: Compile 11_instanced_rendering
+      working-directory: 11_instanced_rendering
+      run: ../kore/make linux -g opengl --debug --option screenshot --compile
+    - name: Run 11_instanced_rendering
+      working-directory: 11_instanced_rendering/deployment
+      run: xvfb-run ../build/debug/11_instanced_rendering
+    - name: Check 11_instanced_rendering
+      working-directory: 11_instanced_rendering
+      run: node ../.github/compare.js
+    - name: Upload 11_instanced_rendering failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 11_instanced_rendering image
+        path: 11_instanced_rendering/deployment/test.png
     - name: Compile 15_deinterleaved_buffers
       working-directory: 15_deinterleaved_buffers
       run: ../kore/make linux -g opengl --debug --option screenshot --compile
