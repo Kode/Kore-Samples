@@ -144,6 +144,21 @@ jobs:
       with:
         name: 07_multiple_render_targets image
         path: 07_multiple_render_targets/deployment/test.png
+    - name: Compile 15_deinterleaved_buffers
+      working-directory: 15_deinterleaved_buffers
+      run: ../kore/make linux -g opengl --debug --option screenshot --compile
+    - name: Run 15_deinterleaved_buffers
+      working-directory: 15_deinterleaved_buffers/deployment
+      run: xvfb-run ../build/debug/15_deinterleaved_buffers
+    - name: Check 15_deinterleaved_buffers
+      working-directory: 15_deinterleaved_buffers
+      run: node ../.github/compare.js
+    - name: Upload 15_deinterleaved_buffers failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 15_deinterleaved_buffers image
+        path: 15_deinterleaved_buffers/deployment/test.png
     - name: Compile shader
       working-directory: shader
       run: ../kore/make linux -g opengl --debug --option screenshot --compile
