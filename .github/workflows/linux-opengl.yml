@@ -144,6 +144,21 @@ jobs:
       with:
         name: 07_multiple_render_targets image
         path: 07_multiple_render_targets/deployment/test.png
+    - name: Compile 10_cubemap
+      working-directory: 10_cubemap
+      run: ../kore/make linux -g opengl --debug --option screenshot --compile
+    - name: Run 10_cubemap
+      working-directory: 10_cubemap/deployment
+      run: xvfb-run ../build/debug/10_cubemap
+    - name: Check 10_cubemap
+      working-directory: 10_cubemap
+      run: node ../.github/compare.js
+    - name: Upload 10_cubemap failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: 10_cubemap image
+        path: 10_cubemap/deployment/test.png
     - name: Compile 11_instanced_rendering
       working-directory: 11_instanced_rendering
       run: ../kore/make linux -g opengl --debug --option screenshot --compile
