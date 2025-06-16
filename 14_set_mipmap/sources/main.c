@@ -162,9 +162,11 @@ int kickstart(int argc, char **argv) {
 		kore_gpu_device_create_texture(&device, &texture_parameters, &texture);
 	}
 
-	kore_gpu_sampler_parameters sampler_params = {0};
-	sampler_params.lod_min_clamp               = 0;
-	sampler_params.lod_max_clamp               = 1;
+	kore_gpu_sampler_parameters sampler_params = {
+	    .lod_min_clamp  = 0,
+	    .lod_max_clamp  = 1,
+	    .max_anisotropy = 1,
+	};
 	kore_gpu_device_create_sampler(&device, &sampler_params, &sampler);
 
 	kong_create_buffer_fs_vertex_in(&device, 3, &vertices_fs);
