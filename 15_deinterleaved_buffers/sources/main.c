@@ -336,8 +336,9 @@ int kickstart(int argc, char **argv) {
 	kore_gpu_device_create_texture(&device, &texture_params, &texture);
 
 	kore_gpu_sampler_parameters sampler_params = {
-	    .lod_min_clamp = 0,
-	    .lod_max_clamp = 0,
+	    .lod_min_clamp  = 0,
+	    .lod_max_clamp  = 0,
+	    .max_anisotropy = 1,
 	};
 	kore_gpu_device_create_sampler(&device, &sampler_params, &sampler);
 
