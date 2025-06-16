@@ -183,7 +183,9 @@ int kickstart(int argc, char **argv) {
 		kong_fs_vertex_in_buffer_unlock(&vertices_fs);
 	}
 
-	kore_gpu_sampler_parameters sampler_params = {0};
+	kore_gpu_sampler_parameters sampler_params = {
+	    .max_anisotropy = 1,
+	};
 	kore_gpu_device_create_sampler(&device, &sampler_params, &sampler);
 
 	fs_parameters fs_params                = {0};
