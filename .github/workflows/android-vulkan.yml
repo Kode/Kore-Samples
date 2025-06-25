@@ -21,29 +21,20 @@ jobs:
         distribution: 'oracle'
         java-version: '17'
 
-    - name: Enable core-dumps
-      run: |
-        ulimit -c unlimited
-        echo 'core.%p' | sudo tee /proc/sys/kernel/core_pattern
-        echo '1'       | sudo tee /proc/sys/kernel/core_uses_pid
-
     - name: Get Submodules
       run: ./get_dlc
 
     - name: Compile 00_empty
       working-directory: 00_empty
-      continue-on-error: true
       run: |
-        ../kore/make android -g vulkan --debug --compile
-    - name: Find core
-      run: |
-        sudo coredumpctl --no-pager --output kmake.core dump /usr/bin/kmake || true
-        ls -lh kmake.core || echo "No core found"
+        sudo sh -c 'echo "core.%p" > /proc/sys/kernel/core_pattern'
+        ulimit -c unlimited
+        ../kore/make android -g vulkan --debug --compile || true
     - name: Upload core
       uses: actions/upload-artifact@v4
       with:
-        name: kmake-core
-        path: kmake.core
+        name: core
+        path: '**/core.*'
     - name: Compile 01_triangle
       working-directory: 01_triangle
       run: ../kore/make android -g vulkan --debug --compile
