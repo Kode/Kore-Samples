@@ -1,0 +1,25 @@
+struct vertex_in {
+	pos: float3;
+}
+
+struct vertex_out {
+	pos: float4;
+}
+
+fun pos(input: vertex_in): vertex_out {
+	var output: vertex_out;
+	output.pos = float4(input.pos.x, input.pos.y, 0.5, 1.0);
+	return output;
+}
+
+fun pixel(input: vertex_out): float4 {
+	var color: float4 = float4(1.0, 0.0, 0.0, 1.0);
+	return color;
+}
+
+#[pipe]
+struct pipeline {
+	vertex = pos;
+	fragment = pixel;
+	format = framebuffer_format();
+}
