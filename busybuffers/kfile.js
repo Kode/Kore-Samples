@@ -1,4 +1,4 @@
-const project = new Project('busybuffer');
+const project = new Project('busybuffers');
 
 await project.addProject(findKore());
 

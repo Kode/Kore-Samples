@@ -157,7 +157,7 @@ static void update(void *data) {
 }
 
 int kickstart(int argc, char **argv) {
-	kore_init("busybuffer", width, height, NULL, NULL);
+	kore_init("busybuffers", width, height, NULL, NULL);
 	kore_set_update_callback(update, NULL);
 
 	kore_gpu_device_wishlist wishlist = {0};
