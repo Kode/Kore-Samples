@@ -27,7 +27,8 @@ const samples = [
   'raytracing',
   'bindless',
   'computeshader_cpu',
-  'computeshader_async'
+  'computeshader_async',
+  'busybuffers'
 ];
 
 const workflowsDir = path.join('workflows');
@@ -201,7 +202,7 @@ const workflows = [
     active: true,
     runsOn: 'ubuntu-latest',
     java: true,
-    checked: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    checked: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
   },
   {
     sys: 'Android',
@@ -210,14 +211,14 @@ const workflows = [
     runsOn: 'ubuntu-latest',
     java: true,
     canExecute: false,
-    checked: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0]
+    checked: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1]
   },
   {
     sys: 'Emscripten',
     gfx: 'WebGL',
     active: true,
     runsOn: 'ubuntu-latest',
-    checked: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    checked: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     steps: '',
     compilePrefix: '../emsdk/emsdk activate latest && source ../emsdk/emsdk_env.sh && ',
     compilePostfix: ' && cd build/debug && make',
@@ -232,7 +233,7 @@ const workflows = [
     active: true,
     runsOn: 'windows-latest',
     canExecute: true,
-    checked: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0],
+    checked: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1],
     noCompile: true,
     compilePrefix: '../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ',
     compilePostfix: ' && cd build/debug && make',
@@ -251,7 +252,7 @@ const workflows = [
     active: true,
     runsOn: 'ubuntu-latest',
     steps: '',
-    checked: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    checked: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     steps:
 `    - name: Apt Update
       run: sudo apt update
@@ -264,7 +265,7 @@ const workflows = [
     gfx: 'WebGPU',
     runsOn: 'ubuntu-latest',
     canExecute: false,
-    checked: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
+    checked: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     steps:
 `    - name: Apt Update
       run: sudo apt update
@@ -279,7 +280,7 @@ const workflows = [
     runsOn: 'macOS-latest',
     options: '--nosigning',
     canExecute: false,
-    checked: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0]
+    checked: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0]
   },
   {
     sys: 'iOS',
@@ -287,14 +288,14 @@ const workflows = [
     active: true,
     runsOn: 'macOS-latest',
     options: '--nosigning',
-    checked: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    checked: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
   },
   {
     sys: 'Linux',
     gfx: 'OpenGL',
     cpu: 'ARM',
     active: true,
-    checked: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    checked: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
   },
   {
     sys: 'Linux',
@@ -310,7 +311,7 @@ const workflows = [
       run: sudo apt-get install libasound2-dev libxinerama-dev libxrandr-dev libgl1-mesa-dev libxi-dev libxcursor-dev libudev-dev libwayland-dev wayland-protocols libxkbcommon-dev ninja-build imagemagick xvfb --yes --quiet
 `,
     RuntimeShaderCompilation: true,
-    checked: [1,1,1,1,1,1,1,1,0,1,1,1,1,0,1,1,1,1,0,1,0,0,0,0]
+    checked: [1,1,1,1,1,1,1,1,0,1,1,1,1,0,1,1,1,1,0,1,0,0,0,0,1]
   },
   {
     sys: 'Linux',
@@ -319,7 +320,7 @@ const workflows = [
     runsOn: 'ubuntu-latest',
     canExecute: true,
     xvfb: true,
-    checked: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0],
+    checked: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0],
     steps:
 `    - name: Get LunarG key
       run: wget -qO- https://packages.lunarg.com/lunarg-signing-key-pub.asc | sudo tee /etc/apt/trusted.gpg.d/lunarg.asc
@@ -337,21 +338,21 @@ const workflows = [
     active: true,
     runsOn: '[self-hosted, macOS]',
     canExecute: true,
-    checked: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0]
+    checked: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0]
   },
   {
     sys: 'macOS',
     gfx: 'OpenGL',
     active: true,
     runsOn: 'macOS-latest',
-    checked: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    checked: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
   },
   {
     sys: 'UWP',
     active: true,
     runsOn: 'windows-latest',
     vs: 'vs2022',
-    checked: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    checked: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
   },
   {
     sys: 'Windows',
@@ -360,7 +361,7 @@ const workflows = [
     runsOn: 'windows-latest',
     RuntimeShaderCompilation: true,
     vs: 'vs2022',
-    checked: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    checked: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
   },
   {
     sys: 'Windows',
@@ -369,7 +370,7 @@ const workflows = [
     runsOn: 'windows-latest',
     canExecute: true,
     vs: 'vs2022',
-    checked: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0]
+    checked: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1]
   },
   {
     sys: 'Windows',
@@ -378,7 +379,7 @@ const workflows = [
     runsOn: 'windows-latest',
     canExecute: false,
     vs: 'vs2022',
-    checked: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0]
+    checked: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0]
   },
   {
     sys: 'Windows',
@@ -397,7 +398,7 @@ const workflows = [
           Invoke-WebRequest -Uri "https://sdk.lunarg.com/sdk/download/1.3.275.0/windows/VulkanSDK-1.3.275.0-Installer.exe" -OutFile VulkanSDK.exe
           $installer = Start-Process -FilePath VulkanSDK.exe -Wait -PassThru -ArgumentList @("--da", "--al", "-c", "in");
           $installer.WaitForExit();`,
-    checked: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0]
+    checked: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0]
   }
 ];
 

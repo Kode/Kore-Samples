@@ -325,3 +325,18 @@ jobs:
       with:
         name: texturearray image
         path: texturearray/deployment/test.png
+    - name: Compile busybuffers
+      working-directory: busybuffers
+      run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
+    - name: Run busybuffers
+      working-directory: busybuffers
+      run: node ../.github/emscripten_screenshot.js
+    - name: Check busybuffers
+      working-directory: busybuffers
+      run: node ../.github/compare.js
+    - name: Upload busybuffers failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: busybuffers image
+        path: busybuffers/deployment/test.png

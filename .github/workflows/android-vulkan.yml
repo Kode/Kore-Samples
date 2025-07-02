@@ -85,3 +85,6 @@ jobs:
     - name: Compile texturearray
       working-directory: texturearray
       run: ../kore/make android -g vulkan --debug --compile
+    - name: Compile busybuffers
+      working-directory: busybuffers
+      run: ../kore/make android -g vulkan --debug --compile

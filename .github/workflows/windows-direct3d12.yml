@@ -352,3 +352,18 @@ jobs:
       with:
         name: bindless image
         path: bindless/deployment/test.png
+    - name: Copy WARP
+      working-directory: busybuffers
+      run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
+    - name: Compile busybuffers
+      working-directory: busybuffers
+      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+    - name: Check busybuffers
+      working-directory: busybuffers
+      run: node ../.github/compare.js
+    - name: Upload busybuffers failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: busybuffers image
+        path: busybuffers/deployment/test.png
