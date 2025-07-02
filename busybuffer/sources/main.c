@@ -18,6 +18,8 @@ static kore_gpu_device       device;
 static kore_gpu_command_list list;
 static vertex_in_buffer      vertices;
 static kore_gpu_buffer       indices;
+static kore_gpu_buffer       constants;
+static everything_set        everything;
 
 static const int width  = 800;
 static const int height = 600;
@@ -75,6 +77,10 @@ static void update(void *data) {
 			v[2].pos.y = 0.5f;
 			v[2].pos.z = 0.5f;
 
+			v[3].pos.x = -0.5f + 0.5f * draw_index;
+			v[3].pos.y = 0.5f;
+			v[3].pos.z = 0.5f;
+
 			kong_vertex_in_buffer_unlock(&vertices);
 		}
 
@@ -87,12 +93,54 @@ static void update(void *data) {
 			i[1] = 1;
 			i[2] = 2;
 
+			if (draw_index % 2 == 0) {
+				i[3] = 0;
+				i[4] = 1;
+				i[5] = 2;
+			}
+			else {
+				i[3] = 1;
+				i[4] = 2;
+				i[5] = 3;
+			}
+
 			kore_gpu_buffer_unlock(&indices);
 		}
 
 		kore_gpu_command_list_set_index_buffer(&list, &indices, KORE_GPU_INDEX_FORMAT_UINT16, 0);
 
-		kore_gpu_command_list_draw_indexed(&list, 3, 1, 0, 0, 0);
+		constants_type *constants_data = constants_type_buffer_lock(&constants, 0, 1);
+		switch (draw_index) {
+		case 0:
+			constants_data->color.x = 1.0f;
+			constants_data->color.y = 0.0f;
+			constants_data->color.z = 0.0f;
+			constants_data->color.w = 1.0f;
+			break;
+		case 1:
+			constants_data->color.x = 0.0f;
+			constants_data->color.y = 1.0f;
+			constants_data->color.z = 0.0f;
+			constants_data->color.w = 1.0f;
+			break;
+		case 2:
+			constants_data->color.x = 0.0f;
+			constants_data->color.y = 0.0f;
+			constants_data->color.z = 1.0f;
+			constants_data->color.w = 1.0f;
+			break;
+		case 3:
+			constants_data->color.x = 1.0f;
+			constants_data->color.y = 1.0f;
+			constants_data->color.z = 0.0f;
+			constants_data->color.w = 1.0f;
+			break;
+		}
+		constants_type_buffer_unlock(&constants);
+
+		kong_set_descriptor_set_everything(&list, &everything);
+
+		kore_gpu_command_list_draw_indexed(&list, 6, 1, 0, 0, 0);
 
 		kore_gpu_command_list_end_render_pass(&list);
 
@@ -119,13 +167,21 @@ int kickstart(int argc, char **argv) {
 
 	kore_gpu_device_create_command_list(&device, KORE_GPU_COMMAND_LIST_TYPE_GRAPHICS, &list);
 
-	kong_create_buffer_vertex_in(&device, 3, &vertices);
+	kong_create_buffer_vertex_in(&device, 4, &vertices);
 
 	kore_gpu_buffer_parameters params = {
-	    .size        = 3 * sizeof(uint16_t),
+	    .size        = 6 * sizeof(uint16_t),
 	    .usage_flags = KORE_GPU_BUFFER_USAGE_INDEX | KORE_GPU_BUFFER_USAGE_CPU_WRITE,
 	};
 	kore_gpu_device_create_buffer(&device, &params, &indices);
+
+	constants_type_buffer_create(&device, &constants, 1);
+
+	{
+		everything_parameters parameters;
+		parameters.constants = &constants;
+		kong_create_everything_set(&device, &parameters, &everything);
+	}
 
 	kore_start();
 

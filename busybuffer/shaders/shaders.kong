@@ -6,6 +6,11 @@ struct vertex_out {
 	pos: float4;
 }
 
+#[set(everything)]
+const constants: {
+	color: float4;
+};
+
 fun pos(input: vertex_in): vertex_out {
 	var output: vertex_out;
 	output.pos = float4(input.pos.x, input.pos.y, 0.5, 1.0);
@@ -13,8 +18,7 @@ fun pos(input: vertex_in): vertex_out {
 }
 
 fun pixel(input: vertex_out): float4 {
-	var color: float4 = float4(1.0, 0.0, 0.0, 1.0);
-	return color;
+	return constants.color;
 }
 
 #[pipe]
