@@ -260,3 +260,15 @@ jobs:
       with:
         name: texturearray image
         path: texturearray/deployment/test.png
+    - name: Compile busybuffers
+      working-directory: busybuffers
+      run: ../kore/make osx -g metal --debug --option screenshot --run
+    - name: Check busybuffers
+      working-directory: busybuffers
+      run: node ../.github/compare.js
+    - name: Upload busybuffers failure image
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: busybuffers image
+        path: busybuffers/deployment/test.png

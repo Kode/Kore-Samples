@@ -80,3 +80,6 @@ jobs:
     - name: Compile texturearray
       working-directory: texturearray
       run: ../kore/make ios -g metal --nosigning --debug --compile
+    - name: Compile busybuffers
+      working-directory: busybuffers
+      run: ../kore/make ios -g metal --nosigning --debug --compile

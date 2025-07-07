@@ -280,7 +280,7 @@ const workflows = [
     runsOn: 'macOS-latest',
     options: '--nosigning',
     canExecute: false,
-    checked: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0]
+    checked: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1]
   },
   {
     sys: 'iOS',
@@ -338,7 +338,7 @@ const workflows = [
     active: true,
     runsOn: '[self-hosted, macOS]',
     canExecute: true,
-    checked: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0]
+    checked: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1]
   },
   {
     sys: 'macOS',
