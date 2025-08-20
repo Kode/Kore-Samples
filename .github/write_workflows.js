@@ -49,6 +49,15 @@ function writeWorkflow(workflow) {
 :
 '';
 
+  const xcodeVersion = workflow.xcodeVersion
+?
+`
+    - uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: '16.3'`
+:
+'';
+
   const steps = workflow.steps ?? '';
   const postfixSteps = workflow.postfixSteps ?? '';
 
@@ -70,7 +79,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-${java}
+${xcodeVersion}${java}
 ${steps}
 `;
 
@@ -279,6 +288,7 @@ const workflows = [
     active: true,
     runsOn: 'macOS-latest',
     options: '--nosigning',
+    xcodeVersion: true,
     canExecute: false,
     checked: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1]
   },
@@ -288,6 +298,7 @@ const workflows = [
     active: true,
     runsOn: 'macOS-latest',
     options: '--nosigning',
+    xcodeVersion: true,
     checked: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
   },
   {
