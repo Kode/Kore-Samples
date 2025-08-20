@@ -46,6 +46,15 @@ function writeWorkflow(workflow) {
 :
 '';
 
+  const xcodeVersion = workflow.xcodeVersion
+?
+`
+    - uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: '16.3'`
+:
+'';
+
   const steps = workflow.steps ?? '';
   const postfixSteps = workflow.postfixSteps ?? '';
 
@@ -69,7 +78,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-${java}
+${xcodeVersion}${java}
 ${steps}
     - name: Get Submodules
       run: ./get_dlc
@@ -157,13 +166,15 @@ const workflows = [
     sys: 'iOS',
     gfx: 'Metal',
     runsOn: 'macOS-latest',
-    options: '--nosigning'
+    options: '--nosigning',
+    xcodeVersion: true
   },
   {
     sys: 'iOS',
     gfx: 'OpenGL',
     runsOn: 'macOS-latest',
     options: '--nosigning',
+    xcodeVersion: true,
     noCompute: true
   },
   {
