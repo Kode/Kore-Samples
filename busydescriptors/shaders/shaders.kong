@@ -8,12 +8,13 @@ struct vertex_out {
 
 #[set(everything)]
 const constants: {
+	offset: float2;
 	color: float4;
 };
 
 fun pos(input: vertex_in): vertex_out {
 	var output: vertex_out;
-	output.pos = float4(input.pos.x, input.pos.y, 0.5, 1.0);
+	output.pos = float4(input.pos.x + constants.offset.x, input.pos.y + constants.offset.y, 0.5, 1.0);
 	return output;
 }
 

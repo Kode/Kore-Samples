@@ -70,7 +70,8 @@ static void update(void *data) {
 		};
 		kong_update_everything_set(&everything, &update, 1);
 
-		kong_set_descriptor_set_everything(&list, &everything);
+		kong_set_descriptor_set_everything(
+		    &list, &everything); // at this point the set is already considered to be in use because in WebGPU we can't change it anymore
 
 		kore_gpu_command_list_draw_indexed(&list, 6, 1, 0, 0, 0);
 
@@ -149,28 +150,36 @@ int kickstart(int argc, char **argv) {
 		constants_type *constants_data = constants_type_buffer_lock(&constants[constants_index], 0, 1);
 		switch (constants_index) {
 		case 0:
-			constants_data->color.x = 1.0f;
-			constants_data->color.y = 0.0f;
-			constants_data->color.z = 0.0f;
-			constants_data->color.w = 1.0f;
+			constants_data->offset.x = 0.0f;
+			constants_data->offset.y = 0.0f;
+			constants_data->color.x  = 1.0f;
+			constants_data->color.y  = 0.0f;
+			constants_data->color.z  = 0.0f;
+			constants_data->color.w  = 1.0f;
 			break;
 		case 1:
-			constants_data->color.x = 0.0f;
-			constants_data->color.y = 1.0f;
-			constants_data->color.z = 0.0f;
-			constants_data->color.w = 1.0f;
+			constants_data->offset.x = 0.5f;
+			constants_data->offset.y = 0.0f;
+			constants_data->color.x  = 0.0f;
+			constants_data->color.y  = 1.0f;
+			constants_data->color.z  = 0.0f;
+			constants_data->color.w  = 1.0f;
 			break;
 		case 2:
-			constants_data->color.x = 0.0f;
-			constants_data->color.y = 0.0f;
-			constants_data->color.z = 1.0f;
-			constants_data->color.w = 1.0f;
+			constants_data->offset.x = 1.0f;
+			constants_data->offset.y = 0.0f;
+			constants_data->color.x  = 0.0f;
+			constants_data->color.y  = 0.0f;
+			constants_data->color.z  = 1.0f;
+			constants_data->color.w  = 1.0f;
 			break;
 		case 3:
-			constants_data->color.x = 1.0f;
-			constants_data->color.y = 1.0f;
-			constants_data->color.z = 0.0f;
-			constants_data->color.w = 1.0f;
+			constants_data->offset.x = 1.5f;
+			constants_data->offset.y = 0.0f;
+			constants_data->color.x  = 1.0f;
+			constants_data->color.y  = 1.0f;
+			constants_data->color.z  = 0.0f;
+			constants_data->color.w  = 1.0f;
 			break;
 		}
 		constants_type_buffer_unlock(&constants[constants_index]);
