@@ -112,5 +112,13 @@ int kickstart(int argc, char **argv) {
 
 	kore_start();
 
+	kore_gpu_buffer_destroy(&indices);
+
+	kong_destroy_buffer_vertex_in(&vertices);
+
+	kore_gpu_command_list_destroy(&list);
+
+	kore_gpu_device_destroy(&device);
+
 	return 0;
 }

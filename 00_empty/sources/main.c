@@ -70,5 +70,9 @@ int kickstart(int argc, char **argv) {
 
 	kore_start();
 
+	kore_gpu_command_list_destroy(&list);
+
+	kore_gpu_device_destroy(&device);
+
 	return 0;
 }
