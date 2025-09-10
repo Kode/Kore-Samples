@@ -73,25 +73,25 @@ static void update(void *data) {
 	    .origin_z  = 0,
 	};
 
-	kore_gpu_command_list_copy_texture_to_texture(&list, &source, &destination, width / 2, height / 2, 1);
+	kore_gpu_command_list_copy_texture_to_texture(&list, &source, &destination, framebuffer->width / 2, framebuffer->height / 2, 1);
 
 	destination.origin_x = width / 2;
 	destination.origin_y = 0;
 	source.texture       = &render_targets[1];
 
-	kore_gpu_command_list_copy_texture_to_texture(&list, &source, &destination, width / 2, height / 2, 1);
+	kore_gpu_command_list_copy_texture_to_texture(&list, &source, &destination, framebuffer->width / 2, framebuffer->height / 2, 1);
 
 	destination.origin_x = 0;
 	destination.origin_y = height / 2;
 	source.texture       = &render_targets[2];
 
-	kore_gpu_command_list_copy_texture_to_texture(&list, &source, &destination, width / 2, height / 2, 1);
+	kore_gpu_command_list_copy_texture_to_texture(&list, &source, &destination, framebuffer->width / 2, framebuffer->height / 2, 1);
 
 	destination.origin_x = width / 2;
 	destination.origin_y = height / 2;
 	source.texture       = &render_targets[3];
 
-	kore_gpu_command_list_copy_texture_to_texture(&list, &source, &destination, width / 2, height / 2, 1);
+	kore_gpu_command_list_copy_texture_to_texture(&list, &source, &destination, framebuffer->width / 2, framebuffer->height / 2, 1);
 
 #ifdef SCREENSHOT
 	screenshot_take(&device, &list, framebuffer, width, height);
@@ -162,6 +162,14 @@ int kickstart(int argc, char **argv) {
 	}
 
 	kore_start();
+
+	kore_gpu_buffer_destroy(&indices);
+	kong_destroy_buffer_vertex_in(&vertices);
+	for (uint32_t i = 0; i < 4; ++i) {
+		kore_gpu_texture_destroy(&render_targets[i]);
+	}
+	kore_gpu_command_list_destroy(&list);
+	kore_gpu_device_destroy(&device);
 
 	return 0;
 }

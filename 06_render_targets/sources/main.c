@@ -66,7 +66,7 @@ static void update(void *data) {
 	    .texture = framebuffer,
 	};
 
-	kore_gpu_command_list_copy_texture_to_texture(&list, &source, &destination, width, height, 1);
+	kore_gpu_command_list_copy_texture_to_texture(&list, &source, &destination, framebuffer->width, framebuffer->height, 1);
 
 #ifdef SCREENSHOT
 	screenshot_take(&device, &list, framebuffer, width, height);
@@ -132,6 +132,12 @@ int kickstart(int argc, char **argv) {
 	}
 
 	kore_start();
+
+	kore_gpu_buffer_destroy(&indices);
+	kong_destroy_buffer_vertex_in(&vertices);
+	kore_gpu_texture_destroy(&render_target);
+	kore_gpu_command_list_destroy(&list);
+	kore_gpu_device_destroy(&device);
 
 	return 0;
 }

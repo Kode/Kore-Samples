@@ -28,6 +28,7 @@ static void update(void *data) {
 		kore_gpu_device_wait_until_idle(&device);
 		kore_gpu_texture_destroy(&float_render_target);
 		kore_gpu_texture_destroy(&render_target);
+		kong_destroy_compute_set(&set);
 
 		width  = framebuffer->width;
 		height = framebuffer->height;
@@ -245,6 +246,14 @@ int kickstart(int argc, char **argv) {
 	kong_create_compute_set(&device, &cparams, &set);
 
 	kore_start();
+
+	kong_destroy_compute_set(&set);
+	kore_gpu_buffer_destroy(&indices);
+	kong_destroy_buffer_vertex_in(&vertices);
+	kore_gpu_texture_destroy(&render_target);
+	kore_gpu_texture_destroy(&float_render_target);
+	kore_gpu_command_list_destroy(&list);
+	kore_gpu_device_destroy(&device);
 
 	return 0;
 }
