@@ -186,5 +186,15 @@ int kickstart(int argc, char **argv) {
 
 	kore_start();
 
+	kong_destroy_compute_set(&compute);
+	compute_constants_type_buffer_destroy(&compute_constants);
+	kong_destroy_everything_set(&everything);
+	constants_type_buffer_destroy(&constants);
+	kore_gpu_buffer_destroy(&indices);
+	kong_destroy_buffer_vertex_in(&vertices);
+	kore_gpu_command_list_destroy(&list);
+	kore_gpu_texture_destroy(&texture);
+	kore_gpu_device_destroy(&device);
+
 	return 0;
 }
