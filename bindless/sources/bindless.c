@@ -64,7 +64,6 @@ static void update(void *data) {
 
 			kore_gpu_command_list_copy_buffer_to_texture(&list, &source, &destination, image_width, image_height, 1);
 		}
-		first_update = false;
 	}
 
 	kore_gpu_texture *framebuffer = kore_gpu_device_get_framebuffer(&device);
@@ -114,6 +113,13 @@ static void update(void *data) {
 	kore_gpu_command_list_present(&list);
 
 	kore_gpu_device_execute_command_list(&device, &list);
+
+	if (first_update) {
+		for (int i = 0; i < 9; ++i) {
+			kore_gpu_buffer_destroy(&image_buffers[i]);
+		}
+		first_update = false;
+	}
 
 	update_index += 1;
 }
@@ -232,6 +238,16 @@ int kickstart(int argc, char **argv) {
 	}
 
 	kore_start();
+
+	kong_destroy_everything_set(&everything);
+	constants_type_buffer_destroy(&constants);
+	kore_gpu_buffer_destroy(&indices);
+	kong_destroy_buffer_vertex_in(&vertices);
+	for (int i = 0; i < 9; ++i) {
+		kore_gpu_texture_destroy(&textures[i]);
+	}
+	kore_gpu_command_list_destroy(&list);
+	kore_gpu_device_destroy(&device);
 
 	return 0;
 }
