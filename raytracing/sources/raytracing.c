@@ -130,15 +130,16 @@ int kickstart(int argc, char **argv) {
 
 	kong_init(&device);
 
-	kore_gpu_texture_parameters render_target_parameters;
-	render_target_parameters.width                 = width;
-	render_target_parameters.height                = height;
-	render_target_parameters.depth_or_array_layers = 1;
-	render_target_parameters.mip_level_count       = 1;
-	render_target_parameters.sample_count          = 1;
-	render_target_parameters.dimension             = KORE_GPU_TEXTURE_DIMENSION_2D;
-	render_target_parameters.format                = KORE_GPU_TEXTURE_FORMAT_RGBA8_UNORM;
-	render_target_parameters.usage                 = render_target_texture_usage_flags();
+	kore_gpu_texture_parameters render_target_parameters = {
+	    .width                 = width,
+	    .height                = height,
+	    .depth_or_array_layers = 1,
+	    .mip_level_count       = 1,
+	    .sample_count          = 1,
+	    .dimension             = KORE_GPU_TEXTURE_DIMENSION_2D,
+	    .format                = KORE_GPU_TEXTURE_FORMAT_RGBA8_UNORM,
+	    .usage                 = render_target_texture_usage_flags(),
+	};
 	kore_gpu_device_create_texture(&device, &render_target_parameters, &texture);
 
 	kore_gpu_device_create_command_list(&device, KORE_GPU_COMMAND_LIST_TYPE_GRAPHICS, &list);
@@ -190,17 +191,32 @@ int kickstart(int argc, char **argv) {
 	kore_gpu_device_create_raytracing_hierarchy(&device, volumes, transforms, 3, &hierarchy);
 
 	{
-		rayset_parameters parameters               = {0};
-		parameters.scene                           = &hierarchy;
-		parameters.render_target.texture           = &texture;
-		parameters.render_target.base_mip_level    = 0;
-		parameters.render_target.mip_level_count   = 1;
-		parameters.render_target.base_array_layer  = 0;
-		parameters.render_target.array_layer_count = 1;
+		rayset_parameters parameters = {
+		    .scene = &hierarchy,
+		    .render_target =
+		        {
+		            .texture           = &texture,
+		            .base_mip_level    = 0,
+		            .mip_level_count   = 1,
+		            .base_array_layer  = 0,
+		            .array_layer_count = 1,
+		        },
+		};
 		kong_create_rayset_set(&device, &parameters, &rayset);
 	}
 
 	kore_start();
+
+	kong_destroy_rayset_set(&rayset);
+	kore_gpu_raytracing_hierarchy_destroy(&hierarchy);
+	kore_gpu_raytracing_volume_destroy(&cubeBlas);
+	kore_gpu_buffer_destroy(&cubeIB);
+	kore_gpu_buffer_destroy(&cubeVB);
+	kore_gpu_raytracing_volume_destroy(&quadBlas);
+	kore_gpu_buffer_destroy(&quadVB);
+	kore_gpu_command_list_destroy(&list);
+	kore_gpu_texture_destroy(&texture);
+	kore_gpu_device_destroy(&device);
 
 	return 0;
 }
