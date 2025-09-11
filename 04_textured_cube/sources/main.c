@@ -403,6 +403,7 @@ int kickstart(int argc, char **argv) {
 
 	kore_gpu_texture_destroy(&depth);
 	kore_gpu_texture_destroy(&texture);
+	kore_gpu_sampler_destroy(&sampler);
 	kore_gpu_command_list_destroy(&list);
 	kong_destroy_buffer_vertex_in(&vertices);
 	kore_gpu_buffer_destroy(&indices);

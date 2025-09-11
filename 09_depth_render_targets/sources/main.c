@@ -200,6 +200,7 @@ int kickstart(int argc, char **argv) {
 	kore_start();
 
 	kong_destroy_fs_set(&set);
+	kore_gpu_sampler_destroy(&sampler);
 	kong_destroy_buffer_fs_vertex_in(&vertices_fs);
 	kore_gpu_buffer_destroy(&indices);
 	kong_destroy_buffer_vertex_in(&vertices);

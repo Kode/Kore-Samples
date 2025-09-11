@@ -242,6 +242,7 @@ int kickstart(int argc, char **argv) {
 	kong_destroy_everything_set(&everything);
 	constants_type_buffer_destroy(&constants);
 	kore_gpu_buffer_destroy(&indices);
+	kore_gpu_sampler_destroy(&sampler);
 	kong_destroy_buffer_vertex_in(&vertices);
 	for (int i = 0; i < 9; ++i) {
 		kore_gpu_texture_destroy(&textures[i]);

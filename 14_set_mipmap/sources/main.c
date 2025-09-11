@@ -222,6 +222,7 @@ int kickstart(int argc, char **argv) {
 	kong_destroy_fs_set(&set);
 	kore_gpu_buffer_destroy(&indices);
 	kong_destroy_buffer_fs_vertex_in(&vertices_fs);
+	kore_gpu_sampler_destroy(&sampler);
 	kore_gpu_texture_destroy(&texture);
 	kore_gpu_command_list_destroy(&list);
 	kore_gpu_device_destroy(&device);
