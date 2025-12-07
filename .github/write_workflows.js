@@ -146,11 +146,11 @@ const workflows = [
     gfx: 'WebGPU',
     runsOn: 'ubuntu-latest',
     steps: '',
-    compilePrefix: '../emsdk/emsdk activate latest && source ../emsdk/emsdk_env.sh && ',
+    compilePrefix: '../emsdk/emsdk activate 3.1.64 && source ../emsdk/emsdk_env.sh && ',
     compilePostfix: ' && cd build/release && make',
     postfixSteps:
 `    - name: Setup emscripten
-      run: git clone https://github.com/emscripten-core/emsdk.git && cd emsdk && ./emsdk install latest
+      run: git clone https://github.com/emscripten-core/emsdk.git && cd emsdk && ./emsdk install 3.1.64
 `
   },
   {

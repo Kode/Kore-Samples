@@ -20,71 +20,71 @@ jobs:
     - name: Get Submodules
       run: ./get_dlc
     - name: Setup emscripten
-      run: git clone https://github.com/emscripten-core/emsdk.git && cd emsdk && ./emsdk install latest
+      run: git clone https://github.com/emscripten-core/emsdk.git && cd emsdk && ./emsdk install 3.1.64
 
     - name: Compile Shader
       working-directory: Shader
-      run: ../emsdk/emsdk activate latest && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
+      run: ../emsdk/emsdk activate 3.1.64 && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
     - name: Compile Texture
       working-directory: Texture
-      run: ../emsdk/emsdk activate latest && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
+      run: ../emsdk/emsdk activate 3.1.64 && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
     - name: Compile MultiWindow
       working-directory: MultiWindow
-      run: ../emsdk/emsdk activate latest && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
+      run: ../emsdk/emsdk activate 3.1.64 && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
     - name: Compile ComputeShader
       working-directory: ComputeShader
-      run: ../emsdk/emsdk activate latest && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
+      run: ../emsdk/emsdk activate 3.1.64 && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
     - name: Compile TextureArray
       working-directory: TextureArray
-      run: ../emsdk/emsdk activate latest && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
+      run: ../emsdk/emsdk activate 3.1.64 && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
     - name: Compile ShaderG5
       working-directory: ShaderG5
-      run: ../emsdk/emsdk activate latest && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
+      run: ../emsdk/emsdk activate 3.1.64 && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
     - name: Compile 00_empty
       working-directory: 00_empty
-      run: ../emsdk/emsdk activate latest && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
+      run: ../emsdk/emsdk activate 3.1.64 && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
     - name: Compile 01_triangle
       working-directory: 01_triangle
-      run: ../emsdk/emsdk activate latest && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
+      run: ../emsdk/emsdk activate 3.1.64 && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
     - name: Compile 02_matrix
       working-directory: 02_matrix
-      run: ../emsdk/emsdk activate latest && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
+      run: ../emsdk/emsdk activate 3.1.64 && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
     - name: Compile 03_colored_cube
       working-directory: 03_colored_cube
-      run: ../emsdk/emsdk activate latest && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
+      run: ../emsdk/emsdk activate 3.1.64 && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
     - name: Compile 04_textured_cube
       working-directory: 04_textured_cube
-      run: ../emsdk/emsdk activate latest && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
+      run: ../emsdk/emsdk activate 3.1.64 && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
     - name: Compile 05_camera_controls
       working-directory: 05_camera_controls
-      run: ../emsdk/emsdk activate latest && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
+      run: ../emsdk/emsdk activate 3.1.64 && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
     - name: Compile 06_render_targets
       working-directory: 06_render_targets
-      run: ../emsdk/emsdk activate latest && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
+      run: ../emsdk/emsdk activate 3.1.64 && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
     - name: Compile 07_multiple_render_targets
       working-directory: 07_multiple_render_targets
-      run: ../emsdk/emsdk activate latest && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
+      run: ../emsdk/emsdk activate 3.1.64 && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
     - name: Compile 08_float_render_targets
       working-directory: 08_float_render_targets
-      run: ../emsdk/emsdk activate latest && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
+      run: ../emsdk/emsdk activate 3.1.64 && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
     - name: Compile 09_depth_render_targets
       working-directory: 09_depth_render_targets
-      run: ../emsdk/emsdk activate latest && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
+      run: ../emsdk/emsdk activate 3.1.64 && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
     - name: Compile 10_cubemap
       working-directory: 10_cubemap
-      run: ../emsdk/emsdk activate latest && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
+      run: ../emsdk/emsdk activate 3.1.64 && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
     - name: Compile 11_instanced_rendering
       working-directory: 11_instanced_rendering
-      run: ../emsdk/emsdk activate latest && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
+      run: ../emsdk/emsdk activate 3.1.64 && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
     - name: Compile 12_set_render_target_depth
       working-directory: 12_set_render_target_depth
-      run: ../emsdk/emsdk activate latest && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
+      run: ../emsdk/emsdk activate 3.1.64 && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
     - name: Compile 13_generate_mipmaps
       working-directory: 13_generate_mipmaps
-      run: ../emsdk/emsdk activate latest && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
+      run: ../emsdk/emsdk activate 3.1.64 && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
     - name: Compile 14_set_mipmap
       working-directory: 14_set_mipmap
-      run: ../emsdk/emsdk activate latest && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
+      run: ../emsdk/emsdk activate 3.1.64 && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
     - name: Compile 15_deinterleaved_buffers
       working-directory: 15_deinterleaved_buffers
-      run: ../emsdk/emsdk activate latest && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
+      run: ../emsdk/emsdk activate 3.1.64 && source ../emsdk/emsdk_env.sh && ../Kore/make emscripten -g webgpu --compile && cd build/release && make
