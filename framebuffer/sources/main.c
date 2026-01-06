@@ -31,7 +31,7 @@ int kickstart(int argc, char **argv) {
 	kore_init("framebuffer", width, height, NULL, NULL);
 	kore_set_update_callback(update, NULL);
 
-	kore_fb_init(width, height);
+	kore_fb_init();
 
 	kore_start();
 
