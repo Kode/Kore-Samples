@@ -30,7 +30,7 @@ jobs:
       run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
     - name: Run 00_empty
       working-directory: 00_empty
-      run: node ../.github/emscripten_screenshot.js
+      run: node ../.github/emscripten_screenshot.mjs
     - name: Check 00_empty
       working-directory: 00_empty
       run: node ../.github/compare.js
@@ -45,7 +45,7 @@ jobs:
       run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
     - name: Run 01_triangle
       working-directory: 01_triangle
-      run: node ../.github/emscripten_screenshot.js
+      run: node ../.github/emscripten_screenshot.mjs
     - name: Check 01_triangle
       working-directory: 01_triangle
       run: node ../.github/compare.js
@@ -60,7 +60,7 @@ jobs:
       run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
     - name: Run 02_matrix
       working-directory: 02_matrix
-      run: node ../.github/emscripten_screenshot.js
+      run: node ../.github/emscripten_screenshot.mjs
     - name: Check 02_matrix
       working-directory: 02_matrix
       run: node ../.github/compare.js
@@ -75,7 +75,7 @@ jobs:
       run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
     - name: Run 03_colored_cube
       working-directory: 03_colored_cube
-      run: node ../.github/emscripten_screenshot.js
+      run: node ../.github/emscripten_screenshot.mjs
     - name: Check 03_colored_cube
       working-directory: 03_colored_cube
       run: node ../.github/compare.js
@@ -90,7 +90,7 @@ jobs:
       run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
     - name: Run 04_textured_cube
       working-directory: 04_textured_cube
-      run: node ../.github/emscripten_screenshot.js
+      run: node ../.github/emscripten_screenshot.mjs
     - name: Check 04_textured_cube
       working-directory: 04_textured_cube
       run: node ../.github/compare.js
@@ -105,7 +105,7 @@ jobs:
       run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
     - name: Run 05_camera_controls
       working-directory: 05_camera_controls
-      run: node ../.github/emscripten_screenshot.js
+      run: node ../.github/emscripten_screenshot.mjs
     - name: Check 05_camera_controls
       working-directory: 05_camera_controls
       run: node ../.github/compare.js
@@ -120,7 +120,7 @@ jobs:
       run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
     - name: Run 06_render_targets
       working-directory: 06_render_targets
-      run: node ../.github/emscripten_screenshot.js
+      run: node ../.github/emscripten_screenshot.mjs
     - name: Check 06_render_targets
       working-directory: 06_render_targets
       run: node ../.github/compare.js
@@ -135,7 +135,7 @@ jobs:
       run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
     - name: Run 07_multiple_render_targets
       working-directory: 07_multiple_render_targets
-      run: node ../.github/emscripten_screenshot.js
+      run: node ../.github/emscripten_screenshot.mjs
     - name: Check 07_multiple_render_targets
       working-directory: 07_multiple_render_targets
       run: node ../.github/compare.js
@@ -150,7 +150,7 @@ jobs:
       run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
     - name: Run 08_float_render_targets
       working-directory: 08_float_render_targets
-      run: node ../.github/emscripten_screenshot.js
+      run: node ../.github/emscripten_screenshot.mjs
     - name: Check 08_float_render_targets
       working-directory: 08_float_render_targets
       run: node ../.github/compare.js
@@ -165,7 +165,7 @@ jobs:
       run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
     - name: Run 09_depth_render_targets
       working-directory: 09_depth_render_targets
-      run: node ../.github/emscripten_screenshot.js
+      run: node ../.github/emscripten_screenshot.mjs
     - name: Check 09_depth_render_targets
       working-directory: 09_depth_render_targets
       run: node ../.github/compare.js
@@ -180,7 +180,7 @@ jobs:
       run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
     - name: Run 10_cubemap
       working-directory: 10_cubemap
-      run: node ../.github/emscripten_screenshot.js
+      run: node ../.github/emscripten_screenshot.mjs
     - name: Check 10_cubemap
       working-directory: 10_cubemap
       run: node ../.github/compare.js
@@ -195,7 +195,7 @@ jobs:
       run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
     - name: Run 11_instanced_rendering
       working-directory: 11_instanced_rendering
-      run: node ../.github/emscripten_screenshot.js
+      run: node ../.github/emscripten_screenshot.mjs
     - name: Check 11_instanced_rendering
       working-directory: 11_instanced_rendering
       run: node ../.github/compare.js
@@ -210,7 +210,7 @@ jobs:
       run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
     - name: Run 12_set_render_target_depth
       working-directory: 12_set_render_target_depth
-      run: node ../.github/emscripten_screenshot.js
+      run: node ../.github/emscripten_screenshot.mjs
     - name: Check 12_set_render_target_depth
       working-directory: 12_set_render_target_depth
       run: node ../.github/compare.js
@@ -225,7 +225,7 @@ jobs:
       run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
     - name: Run 13_generate_mipmaps
       working-directory: 13_generate_mipmaps
-      run: node ../.github/emscripten_screenshot.js
+      run: node ../.github/emscripten_screenshot.mjs
     - name: Check 13_generate_mipmaps
       working-directory: 13_generate_mipmaps
       run: node ../.github/compare.js
@@ -240,7 +240,7 @@ jobs:
       run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
     - name: Run 14_set_mipmap
       working-directory: 14_set_mipmap
-      run: node ../.github/emscripten_screenshot.js
+      run: node ../.github/emscripten_screenshot.mjs
     - name: Check 14_set_mipmap
       working-directory: 14_set_mipmap
       run: node ../.github/compare.js
@@ -255,7 +255,7 @@ jobs:
       run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
     - name: Run 15_deinterleaved_buffers
       working-directory: 15_deinterleaved_buffers
-      run: node ../.github/emscripten_screenshot.js
+      run: node ../.github/emscripten_screenshot.mjs
     - name: Check 15_deinterleaved_buffers
       working-directory: 15_deinterleaved_buffers
       run: node ../.github/compare.js
@@ -270,7 +270,7 @@ jobs:
       run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
     - name: Run shader
       working-directory: shader
-      run: node ../.github/emscripten_screenshot.js
+      run: node ../.github/emscripten_screenshot.mjs
     - name: Check shader
       working-directory: shader
       run: node ../.github/compare.js
@@ -285,7 +285,7 @@ jobs:
       run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
     - name: Run texture
       working-directory: texture
-      run: node ../.github/emscripten_screenshot.js
+      run: node ../.github/emscripten_screenshot.mjs
     - name: Check texture
       working-directory: texture
       run: node ../.github/compare.js
@@ -300,7 +300,7 @@ jobs:
       run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
     - name: Run computeshader
       working-directory: computeshader
-      run: node ../.github/emscripten_screenshot.js
+      run: node ../.github/emscripten_screenshot.mjs
     - name: Check computeshader
       working-directory: computeshader
       run: node ../.github/compare.js
@@ -315,7 +315,7 @@ jobs:
       run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
     - name: Run texturearray
       working-directory: texturearray
-      run: node ../.github/emscripten_screenshot.js
+      run: node ../.github/emscripten_screenshot.mjs
     - name: Check texturearray
       working-directory: texturearray
       run: node ../.github/compare.js
@@ -330,7 +330,7 @@ jobs:
       run: ../emsdk/emsdk activate latest && ../emsdk/emsdk_env.bat && ../kore/make emscripten -g webgpu --debug --option screenshot && cd build/debug && make
     - name: Run busybuffers
       working-directory: busybuffers
-      run: node ../.github/emscripten_screenshot.js
+      run: node ../.github/emscripten_screenshot.mjs
     - name: Check busybuffers
       working-directory: busybuffers
       run: node ../.github/compare.js

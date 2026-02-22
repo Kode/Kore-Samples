@@ -166,7 +166,7 @@ ${postfixSteps}
       workflowText +=
 `    - name: Run ${sample}
       working-directory: ${sample}
-      run: node ../.github/emscripten_screenshot.js
+      run: node ../.github/emscripten_screenshot.mjs
 `;
     }
 

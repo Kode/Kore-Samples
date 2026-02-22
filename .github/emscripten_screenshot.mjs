@@ -1,14 +1,14 @@
-const puppeteer = require("puppeteer");
-const nstatic = require('node-static');
-const core = require('@actions/core');
-
-const fs = require('fs');
-const path = require('path');
+import puppeteer from 'puppeteer';
+import nstatic from 'node-static';
+import * as core from '@actions/core';
+import fs from 'fs';
+import path from 'path';
+import http from 'http';
 
 core.info('Running server on 8888');
 const fileServer = new nstatic.Server(path.join(process.cwd(), 'build', 'debug'), { cache: 0 });
 
-const server = require('http').createServer((request, response) => {
+const server = http.createServer((request, response) => {
 	request.addListener('end', function () {
 		fileServer.serve(request, response);
 	}).resume();
