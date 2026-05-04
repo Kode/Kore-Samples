@@ -1,0 +1,49 @@
+struct vertex_in {
+	pos: float3;
+}
+
+struct vertex_out {
+	pos: float4;
+	tex: float2;
+}
+
+#[set(everything)]
+const constants: {
+	time: float;
+};
+
+fun pos(input: vertex_in): vertex_out {
+	var output: vertex_out;
+	output.pos = float4(input.pos.x, input.pos.y, 0.5, 1.0);
+	output.tex = float2((input.pos.x + 1.0) / 2.0, (input.pos.y + 1.0) / 2.0);
+	return output;
+}
+
+fun pixel(input: vertex_out): float4 {
+	var uv: float2 = input.tex * 2.0 - 1.0;
+    
+	var intensity: float = 0.0;
+
+	/*for (var i: int = 1; i <= 8; i += 1) {
+		var radius: float = float(i) * 0.1 + sin(constants.time + float(i)) * 0.02;
+		var ring: float = 0.01 / abs(length(uv) - radius);
+        intensity += ring;
+    }*/
+
+    var i: int = 1;
+    while (i <= 8) {
+    	var radius: float = float(i) * 0.1 + sin(constants.time + float(i)) * 0.02;
+		var ring: float = 0.01 / abs(length(uv) - radius);
+        intensity += ring;
+        i = i + 1;
+    }
+
+	return float4(float3(0.1, 0.5, 1.0) * intensity, 1.0);
+}
+
+#[pipe]
+struct pipeline {
+	vertex = pos;
+	fragment = pixel;
+	format = framebuffer_format();
+}
