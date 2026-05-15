@@ -391,12 +391,12 @@ const workflows = [
     vs: 'vs2022',
     env:
 `      env:
-        VULKAN_SDK: C:\\VulkanSDK\\1.3.275.0
+        VULKAN_SDK: C:\\VulkanSDK\\1.4.350.0
 `,
     steps:
 `    - name: Setup Vulkan
       run: |
-          Invoke-WebRequest -Uri "https://sdk.lunarg.com/sdk/download/1.3.275.0/windows/VulkanSDK-1.3.275.0-Installer.exe" -OutFile VulkanSDK.exe
+          Invoke-WebRequest -Uri "https://sdk.lunarg.com/sdk/download/1.4.350.0/windows/vulkansdk-windows-X64-1.4.350.0.exe" -OutFile VulkanSDK.exe
           $installer = Start-Process -FilePath VulkanSDK.exe -Wait -PassThru -ArgumentList @("--da", "--al", "-c", "in");
           $installer.WaitForExit();`,
     checked: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,1,0]
