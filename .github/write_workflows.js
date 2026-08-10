@@ -263,7 +263,7 @@ const workflows = [
     steps:
 `    - name: Setup Vulkan
       run: |
-          Invoke-WebRequest -Uri "https://sdk.lunarg.com/sdk/download/1.4.357.0/windows/VulkanSDK-1.4.357.0-Installer.exe" -OutFile VulkanSDK.exe
+          Invoke-WebRequest -Uri "https://sdk.lunarg.com/sdk/download/1.4.357.0/windows/vulkansdk-windows-X64-1.4.357.0.exe" -OutFile VulkanSDK.exe
           $installer = Start-Process -FilePath VulkanSDK.exe -Wait -PassThru -ArgumentList @("--da", "--al", "-c", "in");
           $installer.WaitForExit();`
   }
