@@ -219,7 +219,7 @@ const workflows = [
   {
     sys: 'UWP',
     runsOn: 'windows-latest',
-    vs: 'vs2022'
+    vs: 'vs2026'
   },
   {
     sys: 'Windows',
@@ -227,7 +227,7 @@ const workflows = [
     runsOn: 'windows-latest',
     noCompute: true,
     noTexArray: true,
-    vs: 'vs2022',
+    vs: 'vs2026',
     postfixSteps:
 `    - name: Install DirectX
       run: choco install -y directx --no-progress`
@@ -237,33 +237,33 @@ const workflows = [
     gfx: 'Direct3D 11',
     runsOn: 'windows-latest',
     RuntimeShaderCompilation: true,
-    vs: 'vs2022'
+    vs: 'vs2026'
   },
   {
     sys: 'Windows',
     gfx: 'Direct3D 12',
     runsOn: 'windows-latest',
-    vs: 'vs2022'
+    vs: 'vs2026'
   },
   {
     sys: 'Windows',
     gfx: 'OpenGL',
     runsOn: 'windows-latest',
-    vs: 'vs2022'
+    vs: 'vs2026'
   },
   {
     sys: 'Windows',
     gfx: 'Vulkan',
     runsOn: 'windows-latest',
-    vs: 'vs2022',
+    vs: 'vs2026',
     env:
 `      env:
-        VULKAN_SDK: C:\\VulkanSDK\\1.3.275.0
+        VULKAN_SDK: C:\\VulkanSDK\\1.4.357.0
 `,
     steps:
 `    - name: Setup Vulkan
       run: |
-          Invoke-WebRequest -Uri "https://sdk.lunarg.com/sdk/download/1.3.275.0/windows/VulkanSDK-1.3.275.0-Installer.exe" -OutFile VulkanSDK.exe
+          Invoke-WebRequest -Uri "https://sdk.lunarg.com/sdk/download/1.4.357.0/windows/VulkanSDK-1.4.357.0-Installer.exe" -OutFile VulkanSDK.exe
           $installer = Start-Process -FilePath VulkanSDK.exe -Wait -PassThru -ArgumentList @("--da", "--al", "-c", "in");
           $installer.WaitForExit();`
   }

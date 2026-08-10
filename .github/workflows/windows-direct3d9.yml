@@ -23,61 +23,61 @@ jobs:
       run: choco install -y directx --no-progress
     - name: Compile Shader
       working-directory: Shader
-      run: ../Kore/make windows -v vs2022 -g direct3d9 --compile
+      run: ../Kore/make windows -v vs2026 -g direct3d9 --compile
     - name: Compile Texture
       working-directory: Texture
-      run: ../Kore/make windows -v vs2022 -g direct3d9 --compile
+      run: ../Kore/make windows -v vs2026 -g direct3d9 --compile
     - name: Compile MultiWindow
       working-directory: MultiWindow
-      run: ../Kore/make windows -v vs2022 -g direct3d9 --compile
+      run: ../Kore/make windows -v vs2026 -g direct3d9 --compile
     - name: Compile ShaderG5
       working-directory: ShaderG5
-      run: ../Kore/make windows -v vs2022 -g direct3d9 --compile
+      run: ../Kore/make windows -v vs2026 -g direct3d9 --compile
     - name: Compile 00_empty
       working-directory: 00_empty
-      run: ../Kore/make windows -v vs2022 -g direct3d9 --compile
+      run: ../Kore/make windows -v vs2026 -g direct3d9 --compile
     - name: Compile 01_triangle
       working-directory: 01_triangle
-      run: ../Kore/make windows -v vs2022 -g direct3d9 --compile
+      run: ../Kore/make windows -v vs2026 -g direct3d9 --compile
     - name: Compile 02_matrix
       working-directory: 02_matrix
-      run: ../Kore/make windows -v vs2022 -g direct3d9 --compile
+      run: ../Kore/make windows -v vs2026 -g direct3d9 --compile
     - name: Compile 03_colored_cube
       working-directory: 03_colored_cube
-      run: ../Kore/make windows -v vs2022 -g direct3d9 --compile
+      run: ../Kore/make windows -v vs2026 -g direct3d9 --compile
     - name: Compile 04_textured_cube
       working-directory: 04_textured_cube
-      run: ../Kore/make windows -v vs2022 -g direct3d9 --compile
+      run: ../Kore/make windows -v vs2026 -g direct3d9 --compile
     - name: Compile 05_camera_controls
       working-directory: 05_camera_controls
-      run: ../Kore/make windows -v vs2022 -g direct3d9 --compile
+      run: ../Kore/make windows -v vs2026 -g direct3d9 --compile
     - name: Compile 06_render_targets
       working-directory: 06_render_targets
-      run: ../Kore/make windows -v vs2022 -g direct3d9 --compile
+      run: ../Kore/make windows -v vs2026 -g direct3d9 --compile
     - name: Compile 07_multiple_render_targets
       working-directory: 07_multiple_render_targets
-      run: ../Kore/make windows -v vs2022 -g direct3d9 --compile
+      run: ../Kore/make windows -v vs2026 -g direct3d9 --compile
     - name: Compile 08_float_render_targets
       working-directory: 08_float_render_targets
-      run: ../Kore/make windows -v vs2022 -g direct3d9 --compile
+      run: ../Kore/make windows -v vs2026 -g direct3d9 --compile
     - name: Compile 09_depth_render_targets
       working-directory: 09_depth_render_targets
-      run: ../Kore/make windows -v vs2022 -g direct3d9 --compile
+      run: ../Kore/make windows -v vs2026 -g direct3d9 --compile
     - name: Compile 10_cubemap
       working-directory: 10_cubemap
-      run: ../Kore/make windows -v vs2022 -g direct3d9 --compile
+      run: ../Kore/make windows -v vs2026 -g direct3d9 --compile
     - name: Compile 11_instanced_rendering
       working-directory: 11_instanced_rendering
-      run: ../Kore/make windows -v vs2022 -g direct3d9 --compile
+      run: ../Kore/make windows -v vs2026 -g direct3d9 --compile
     - name: Compile 12_set_render_target_depth
       working-directory: 12_set_render_target_depth
-      run: ../Kore/make windows -v vs2022 -g direct3d9 --compile
+      run: ../Kore/make windows -v vs2026 -g direct3d9 --compile
     - name: Compile 13_generate_mipmaps
       working-directory: 13_generate_mipmaps
-      run: ../Kore/make windows -v vs2022 -g direct3d9 --compile
+      run: ../Kore/make windows -v vs2026 -g direct3d9 --compile
     - name: Compile 14_set_mipmap
       working-directory: 14_set_mipmap
-      run: ../Kore/make windows -v vs2022 -g direct3d9 --compile
+      run: ../Kore/make windows -v vs2026 -g direct3d9 --compile
     - name: Compile 15_deinterleaved_buffers
       working-directory: 15_deinterleaved_buffers
-      run: ../Kore/make windows -v vs2022 -g direct3d9 --compile
+      run: ../Kore/make windows -v vs2026 -g direct3d9 --compile

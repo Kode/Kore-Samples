@@ -18,7 +18,7 @@ jobs:
 
     - name: Setup Vulkan
       run: |
-          Invoke-WebRequest -Uri "https://sdk.lunarg.com/sdk/download/1.3.275.0/windows/VulkanSDK-1.3.275.0-Installer.exe" -OutFile VulkanSDK.exe
+          Invoke-WebRequest -Uri "https://sdk.lunarg.com/sdk/download/1.4.357.0/windows/VulkanSDK-1.4.357.0-Installer.exe" -OutFile VulkanSDK.exe
           $installer = Start-Process -FilePath VulkanSDK.exe -Wait -PassThru -ArgumentList @("--da", "--al", "-c", "in");
           $installer.WaitForExit();
     - name: Get Submodules
@@ -26,111 +26,111 @@ jobs:
 
     - name: Compile Shader
       working-directory: Shader
-      run: ../Kore/make windows -v vs2022 -g vulkan --compile
+      run: ../Kore/make windows -v vs2026 -g vulkan --compile
       env:
-        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+        VULKAN_SDK: C:\VulkanSDK\1.4.357.0
     - name: Compile Texture
       working-directory: Texture
-      run: ../Kore/make windows -v vs2022 -g vulkan --compile
+      run: ../Kore/make windows -v vs2026 -g vulkan --compile
       env:
-        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+        VULKAN_SDK: C:\VulkanSDK\1.4.357.0
     - name: Compile MultiWindow
       working-directory: MultiWindow
-      run: ../Kore/make windows -v vs2022 -g vulkan --compile
+      run: ../Kore/make windows -v vs2026 -g vulkan --compile
       env:
-        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+        VULKAN_SDK: C:\VulkanSDK\1.4.357.0
     - name: Compile ComputeShader
       working-directory: ComputeShader
-      run: ../Kore/make windows -v vs2022 -g vulkan --compile
+      run: ../Kore/make windows -v vs2026 -g vulkan --compile
       env:
-        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+        VULKAN_SDK: C:\VulkanSDK\1.4.357.0
     - name: Compile TextureArray
       working-directory: TextureArray
-      run: ../Kore/make windows -v vs2022 -g vulkan --compile
+      run: ../Kore/make windows -v vs2026 -g vulkan --compile
       env:
-        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+        VULKAN_SDK: C:\VulkanSDK\1.4.357.0
     - name: Compile ShaderG5
       working-directory: ShaderG5
-      run: ../Kore/make windows -v vs2022 -g vulkan --compile
+      run: ../Kore/make windows -v vs2026 -g vulkan --compile
       env:
-        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+        VULKAN_SDK: C:\VulkanSDK\1.4.357.0
     - name: Compile 00_empty
       working-directory: 00_empty
-      run: ../Kore/make windows -v vs2022 -g vulkan --compile
+      run: ../Kore/make windows -v vs2026 -g vulkan --compile
       env:
-        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+        VULKAN_SDK: C:\VulkanSDK\1.4.357.0
     - name: Compile 01_triangle
       working-directory: 01_triangle
-      run: ../Kore/make windows -v vs2022 -g vulkan --compile
+      run: ../Kore/make windows -v vs2026 -g vulkan --compile
       env:
-        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+        VULKAN_SDK: C:\VulkanSDK\1.4.357.0
     - name: Compile 02_matrix
       working-directory: 02_matrix
-      run: ../Kore/make windows -v vs2022 -g vulkan --compile
+      run: ../Kore/make windows -v vs2026 -g vulkan --compile
       env:
-        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+        VULKAN_SDK: C:\VulkanSDK\1.4.357.0
     - name: Compile 03_colored_cube
       working-directory: 03_colored_cube
-      run: ../Kore/make windows -v vs2022 -g vulkan --compile
+      run: ../Kore/make windows -v vs2026 -g vulkan --compile
       env:
-        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+        VULKAN_SDK: C:\VulkanSDK\1.4.357.0
     - name: Compile 04_textured_cube
       working-directory: 04_textured_cube
-      run: ../Kore/make windows -v vs2022 -g vulkan --compile
+      run: ../Kore/make windows -v vs2026 -g vulkan --compile
       env:
-        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+        VULKAN_SDK: C:\VulkanSDK\1.4.357.0
     - name: Compile 05_camera_controls
       working-directory: 05_camera_controls
-      run: ../Kore/make windows -v vs2022 -g vulkan --compile
+      run: ../Kore/make windows -v vs2026 -g vulkan --compile
       env:
-        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+        VULKAN_SDK: C:\VulkanSDK\1.4.357.0
     - name: Compile 06_render_targets
       working-directory: 06_render_targets
-      run: ../Kore/make windows -v vs2022 -g vulkan --compile
+      run: ../Kore/make windows -v vs2026 -g vulkan --compile
       env:
-        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+        VULKAN_SDK: C:\VulkanSDK\1.4.357.0
     - name: Compile 07_multiple_render_targets
       working-directory: 07_multiple_render_targets
-      run: ../Kore/make windows -v vs2022 -g vulkan --compile
+      run: ../Kore/make windows -v vs2026 -g vulkan --compile
       env:
-        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+        VULKAN_SDK: C:\VulkanSDK\1.4.357.0
     - name: Compile 08_float_render_targets
       working-directory: 08_float_render_targets
-      run: ../Kore/make windows -v vs2022 -g vulkan --compile
+      run: ../Kore/make windows -v vs2026 -g vulkan --compile
       env:
-        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+        VULKAN_SDK: C:\VulkanSDK\1.4.357.0
     - name: Compile 09_depth_render_targets
       working-directory: 09_depth_render_targets
-      run: ../Kore/make windows -v vs2022 -g vulkan --compile
+      run: ../Kore/make windows -v vs2026 -g vulkan --compile
       env:
-        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+        VULKAN_SDK: C:\VulkanSDK\1.4.357.0
     - name: Compile 10_cubemap
       working-directory: 10_cubemap
-      run: ../Kore/make windows -v vs2022 -g vulkan --compile
+      run: ../Kore/make windows -v vs2026 -g vulkan --compile
       env:
-        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+        VULKAN_SDK: C:\VulkanSDK\1.4.357.0
     - name: Compile 11_instanced_rendering
       working-directory: 11_instanced_rendering
-      run: ../Kore/make windows -v vs2022 -g vulkan --compile
+      run: ../Kore/make windows -v vs2026 -g vulkan --compile
       env:
-        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+        VULKAN_SDK: C:\VulkanSDK\1.4.357.0
     - name: Compile 12_set_render_target_depth
       working-directory: 12_set_render_target_depth
-      run: ../Kore/make windows -v vs2022 -g vulkan --compile
+      run: ../Kore/make windows -v vs2026 -g vulkan --compile
       env:
-        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+        VULKAN_SDK: C:\VulkanSDK\1.4.357.0
     - name: Compile 13_generate_mipmaps
       working-directory: 13_generate_mipmaps
-      run: ../Kore/make windows -v vs2022 -g vulkan --compile
+      run: ../Kore/make windows -v vs2026 -g vulkan --compile
       env:
-        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+        VULKAN_SDK: C:\VulkanSDK\1.4.357.0
     - name: Compile 14_set_mipmap
       working-directory: 14_set_mipmap
-      run: ../Kore/make windows -v vs2022 -g vulkan --compile
+      run: ../Kore/make windows -v vs2026 -g vulkan --compile
       env:
-        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+        VULKAN_SDK: C:\VulkanSDK\1.4.357.0
     - name: Compile 15_deinterleaved_buffers
       working-directory: 15_deinterleaved_buffers
-      run: ../Kore/make windows -v vs2022 -g vulkan --compile
+      run: ../Kore/make windows -v vs2026 -g vulkan --compile
       env:
-        VULKAN_SDK: C:\VulkanSDK\1.3.275.0
+        VULKAN_SDK: C:\VulkanSDK\1.4.357.0
