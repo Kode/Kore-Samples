@@ -352,7 +352,7 @@ const workflows = [
     sys: 'UWP',
     active: true,
     runsOn: 'windows-latest',
-    vs: 'vs2022',
+    vs: 'vs2026',
     checked: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
   },
   {
@@ -361,7 +361,7 @@ const workflows = [
     active: true,
     runsOn: 'windows-latest',
     RuntimeShaderCompilation: true,
-    vs: 'vs2022',
+    vs: 'vs2026',
     checked: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
   },
   {
@@ -370,7 +370,7 @@ const workflows = [
     active: true,
     runsOn: 'windows-latest',
     canExecute: true,
-    vs: 'vs2022',
+    vs: 'vs2026',
     checked: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,1,1]
   },
   {
@@ -379,7 +379,7 @@ const workflows = [
     active: true,
     runsOn: 'windows-latest',
     canExecute: false,
-    vs: 'vs2022',
+    vs: 'vs2026',
     checked: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0]
   },
   {
@@ -388,7 +388,7 @@ const workflows = [
     active: true,
     runsOn: 'windows-latest',
     canExecute: false,
-    vs: 'vs2022',
+    vs: 'vs2026',
     env:
 `      env:
         VULKAN_SDK: C:\\VulkanSDK\\1.4.350.0

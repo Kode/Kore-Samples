@@ -22,4 +22,4 @@ jobs:
 
     - name: Compile shader
       working-directory: shader
-      run: ../kore/make windows -v vs2022 -g opengl --debug --compile
+      run: ../kore/make windows -v vs2026 -g opengl --debug --compile

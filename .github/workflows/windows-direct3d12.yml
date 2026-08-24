@@ -27,7 +27,7 @@ jobs:
       run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 00_empty
       working-directory: 00_empty
-      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+      run: ../kore/make windows -v vs2026 -g direct3d12 --debug --option screenshot --run
     - name: Check 00_empty
       working-directory: 00_empty
       run: node ../.github/compare.js
@@ -42,7 +42,7 @@ jobs:
       run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 01_triangle
       working-directory: 01_triangle
-      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+      run: ../kore/make windows -v vs2026 -g direct3d12 --debug --option screenshot --run
     - name: Check 01_triangle
       working-directory: 01_triangle
       run: node ../.github/compare.js
@@ -57,7 +57,7 @@ jobs:
       run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 02_matrix
       working-directory: 02_matrix
-      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+      run: ../kore/make windows -v vs2026 -g direct3d12 --debug --option screenshot --run
     - name: Check 02_matrix
       working-directory: 02_matrix
       run: node ../.github/compare.js
@@ -72,7 +72,7 @@ jobs:
       run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 03_colored_cube
       working-directory: 03_colored_cube
-      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+      run: ../kore/make windows -v vs2026 -g direct3d12 --debug --option screenshot --run
     - name: Check 03_colored_cube
       working-directory: 03_colored_cube
       run: node ../.github/compare.js
@@ -87,7 +87,7 @@ jobs:
       run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 04_textured_cube
       working-directory: 04_textured_cube
-      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+      run: ../kore/make windows -v vs2026 -g direct3d12 --debug --option screenshot --run
     - name: Check 04_textured_cube
       working-directory: 04_textured_cube
       run: node ../.github/compare.js
@@ -102,7 +102,7 @@ jobs:
       run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 05_camera_controls
       working-directory: 05_camera_controls
-      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+      run: ../kore/make windows -v vs2026 -g direct3d12 --debug --option screenshot --run
     - name: Check 05_camera_controls
       working-directory: 05_camera_controls
       run: node ../.github/compare.js
@@ -117,7 +117,7 @@ jobs:
       run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 06_render_targets
       working-directory: 06_render_targets
-      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+      run: ../kore/make windows -v vs2026 -g direct3d12 --debug --option screenshot --run
     - name: Check 06_render_targets
       working-directory: 06_render_targets
       run: node ../.github/compare.js
@@ -132,7 +132,7 @@ jobs:
       run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 07_multiple_render_targets
       working-directory: 07_multiple_render_targets
-      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+      run: ../kore/make windows -v vs2026 -g direct3d12 --debug --option screenshot --run
     - name: Check 07_multiple_render_targets
       working-directory: 07_multiple_render_targets
       run: node ../.github/compare.js
@@ -147,7 +147,7 @@ jobs:
       run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 08_float_render_targets
       working-directory: 08_float_render_targets
-      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+      run: ../kore/make windows -v vs2026 -g direct3d12 --debug --option screenshot --run
     - name: Check 08_float_render_targets
       working-directory: 08_float_render_targets
       run: node ../.github/compare.js
@@ -162,7 +162,7 @@ jobs:
       run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 09_depth_render_targets
       working-directory: 09_depth_render_targets
-      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+      run: ../kore/make windows -v vs2026 -g direct3d12 --debug --option screenshot --run
     - name: Check 09_depth_render_targets
       working-directory: 09_depth_render_targets
       run: node ../.github/compare.js
@@ -177,7 +177,7 @@ jobs:
       run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 10_cubemap
       working-directory: 10_cubemap
-      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+      run: ../kore/make windows -v vs2026 -g direct3d12 --debug --option screenshot --run
     - name: Check 10_cubemap
       working-directory: 10_cubemap
       run: node ../.github/compare.js
@@ -192,7 +192,7 @@ jobs:
       run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 11_instanced_rendering
       working-directory: 11_instanced_rendering
-      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+      run: ../kore/make windows -v vs2026 -g direct3d12 --debug --option screenshot --run
     - name: Check 11_instanced_rendering
       working-directory: 11_instanced_rendering
       run: node ../.github/compare.js
@@ -207,7 +207,7 @@ jobs:
       run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 12_set_render_target_depth
       working-directory: 12_set_render_target_depth
-      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+      run: ../kore/make windows -v vs2026 -g direct3d12 --debug --option screenshot --run
     - name: Check 12_set_render_target_depth
       working-directory: 12_set_render_target_depth
       run: node ../.github/compare.js
@@ -222,7 +222,7 @@ jobs:
       run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 13_generate_mipmaps
       working-directory: 13_generate_mipmaps
-      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+      run: ../kore/make windows -v vs2026 -g direct3d12 --debug --option screenshot --run
     - name: Check 13_generate_mipmaps
       working-directory: 13_generate_mipmaps
       run: node ../.github/compare.js
@@ -237,7 +237,7 @@ jobs:
       run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 14_set_mipmap
       working-directory: 14_set_mipmap
-      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+      run: ../kore/make windows -v vs2026 -g direct3d12 --debug --option screenshot --run
     - name: Check 14_set_mipmap
       working-directory: 14_set_mipmap
       run: node ../.github/compare.js
@@ -252,7 +252,7 @@ jobs:
       run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile 15_deinterleaved_buffers
       working-directory: 15_deinterleaved_buffers
-      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+      run: ../kore/make windows -v vs2026 -g direct3d12 --debug --option screenshot --run
     - name: Check 15_deinterleaved_buffers
       working-directory: 15_deinterleaved_buffers
       run: node ../.github/compare.js
@@ -267,7 +267,7 @@ jobs:
       run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile shader
       working-directory: shader
-      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+      run: ../kore/make windows -v vs2026 -g direct3d12 --debug --option screenshot --run
     - name: Check shader
       working-directory: shader
       run: node ../.github/compare.js
@@ -282,7 +282,7 @@ jobs:
       run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile texture
       working-directory: texture
-      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+      run: ../kore/make windows -v vs2026 -g direct3d12 --debug --option screenshot --run
     - name: Check texture
       working-directory: texture
       run: node ../.github/compare.js
@@ -297,7 +297,7 @@ jobs:
       run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile computeshader
       working-directory: computeshader
-      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+      run: ../kore/make windows -v vs2026 -g direct3d12 --debug --option screenshot --run
     - name: Check computeshader
       working-directory: computeshader
       run: node ../.github/compare.js
@@ -312,7 +312,7 @@ jobs:
       run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile texturearray
       working-directory: texturearray
-      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+      run: ../kore/make windows -v vs2026 -g direct3d12 --debug --option screenshot --run
     - name: Check texturearray
       working-directory: texturearray
       run: node ../.github/compare.js
@@ -327,7 +327,7 @@ jobs:
       run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile raytracing
       working-directory: raytracing
-      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+      run: ../kore/make windows -v vs2026 -g direct3d12 --debug --option screenshot --run
     - name: Check raytracing
       working-directory: raytracing
       run: node ../.github/compare.js
@@ -342,7 +342,7 @@ jobs:
       run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile bindless
       working-directory: bindless
-      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+      run: ../kore/make windows -v vs2026 -g direct3d12 --debug --option screenshot --run
     - name: Check bindless
       working-directory: bindless
       run: node ../.github/compare.js
@@ -357,7 +357,7 @@ jobs:
       run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile busybuffers
       working-directory: busybuffers
-      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+      run: ../kore/make windows -v vs2026 -g direct3d12 --debug --option screenshot --run
     - name: Check busybuffers
       working-directory: busybuffers
       run: node ../.github/compare.js
@@ -372,7 +372,7 @@ jobs:
       run: echo F|xcopy D:\a\Kore-Samples\Kore-Samples\Microsoft.Direct3D.WARP.1.0.13\build\native\bin\x64\d3d10warp.dll deployment\d3d10warp.dll
     - name: Compile busydescriptors
       working-directory: busydescriptors
-      run: ../kore/make windows -v vs2022 -g direct3d12 --debug --option screenshot --run
+      run: ../kore/make windows -v vs2026 -g direct3d12 --debug --option screenshot --run
     - name: Check busydescriptors
       working-directory: busydescriptors
       run: node ../.github/compare.js
