@@ -5,9 +5,6 @@ let command = 'magick compare';
 if (process.platform === 'linux') {
 	command = 'compare-im6';
 }
-else if (process.platform === 'darwin') {
-	command = '$HOME/ImageMagick/utilities/magick compare';
-}
 
 try {
 	child_process.execSync(command + ' -metric mae ./reference.png ./deployment/test.png difference.png', {stdio: 'pipe', encoding: 'utf8'});
