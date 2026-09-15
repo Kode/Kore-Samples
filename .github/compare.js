@@ -6,7 +6,7 @@ if (process.platform === 'linux') {
 	command = 'compare-im6';
 }
 else if (process.platform === 'darwin') {
-	command = 'export DYLD_LIBRARY_PATH="$HOME/imagemagick/lib/" && $HOME/imagemagick/bin/magick compare';
+	command = '$HOME/ImageMagick/utilities/magick compare';
 }
 
 try {
