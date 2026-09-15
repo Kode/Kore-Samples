@@ -84,6 +84,13 @@ if (workflow.sys === 'Windows' && workflow.gfx === 'Direct3D 12') {
 `;
 }
 
+if (workflow.sys === 'macOS' && workflow.gfx === 'Metal') {
+    workflowText +=
+`    - name: Add homebrew
+      run: echo "/opt/homebrew/bin" >> $GITHUB_PATH
+`;
+}
+
 workflowText +=
 `    - name: Get Submodules
       run: ./get_dlc
