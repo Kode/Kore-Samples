@@ -3,7 +3,7 @@ const child_process = require('child_process');
 let command = 'magick compare';
 
 if (process.platform === 'linux') {
-	command = 'compare-im6';
+	command = 'compare-im7';
 }
 
 try {
